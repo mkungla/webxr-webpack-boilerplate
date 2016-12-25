@@ -1,0 +1,23 @@
+# Gitlab CI configuration
+stages:
+  - lint
+  - test
+
+# common before scripts
+.template-1: &common-prepare
+  before_script:
+   - echo "npm install"
+
+# Lint the styles and javascript
+lint-code:
+  stage: lint
+  <<: *common-prepare
+  script:
+    - echo "npm run lint"
+
+# Run tests
+tests:
+  stage: test
+  <<: *common-prepare
+  script:
+    - echo "npm run test"
