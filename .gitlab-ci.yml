@@ -1,7 +1,6 @@
 # Gitlab CI configuration
 stages:
-  - lint
-  - test
+  - verify
 
 # common before scripts
 .template-1: &common-prepare
@@ -9,16 +8,9 @@ stages:
   before_script:
    - npm install
 
-# Lint the styles and javascript
-lint:
-  stage: lint
+# Lint and run tests
+verify:
+  stage: verify
   <<: *common-prepare
   script:
-    - npm run lint
-
-# Run tests
-test:
-  stage: test
-  <<: *common-prepare
-  script:
-    - npm run test
+    - npm run verify

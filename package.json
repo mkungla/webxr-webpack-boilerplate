@@ -36,7 +36,8 @@
     "lint:semistandard": "eslint --no-eslintrc --ignore-path ./config/eslintignore.txt --config ./config/eslint.json ./src",
     "test": "NODE_ENV=test mocha --env.test --opts ./config/mocha.options './test/**/*.spec.js'",
     "test:watch": "npm run test -- --watch",
-    "test:grep": "npm run test -- --watch --grep $pattern"
+    "test:grep": "npm run test -- --watch --grep $pattern",
+    "verify": "npm-run-all lint test"
   },
   "dependencies": {},
   "devDependencies": {
