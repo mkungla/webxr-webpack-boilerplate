@@ -1,0 +1,7 @@
+# This directory should consist only production ready files.
+# To avoid git repository and git objects growing to big you SHOULD avoid
+# to commit any files from here to your repository.
+# Instead your CI (Continuous Integration) should create build artifact
+# containing these files.
+*
+!.gitignore

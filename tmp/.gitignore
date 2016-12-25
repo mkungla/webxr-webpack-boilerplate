@@ -1,0 +1,6 @@
+# this directory is for temporary files
+# everything will be cleaned up when you run
+# - `npm run clean` or
+# - `npm run clean:tmp`
+*
+!.gitignore
