@@ -25,8 +25,9 @@ script: npm run $CI_JOB
 env:
   # Define our job matrix
   matrix:
+    # Lint sass and js
     - CI_JOB="lint"
-    - CI_JOB="test"
+    # Run tests and generate coverage report
     - CI_JOB="coverage"
 
 # run that job only on master branch

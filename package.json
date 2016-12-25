@@ -48,7 +48,6 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
-    "codacy-coverage": "^2.0.0",
     "eslint": "^3.12.2",
     "eslint-config-semistandard": "^7.0.0",
     "eslint-config-standard": "^6.2.1",
