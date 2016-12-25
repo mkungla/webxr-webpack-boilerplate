@@ -1,6 +1,6 @@
 {
   "name": "aframe-webpack-boilerplate",
-  "version": "0.9.x",
+  "version": "0.9.0-dev",
   "description": "A-Frame Starter Kit of WebVR with Webpack2 ES2015 SASS",
   "author": "Marko Kungla <marko.kungla@gmail.com> (https://github.com/mkungla)",
   "main": "src/js/index.js",
@@ -22,7 +22,13 @@
     "chai",
     "istanbul"
   ],
-  "scripts": {},
+  "scripts": {
+    "clean": "npm-run-all clean:*",
+    "clean:dist": "rimraf dist/* !dist/.gitignore",
+    "clean:tmp": "rimraf tmp/* !tmp/.gitignore",
+    "clean:coverage": "rimraf devel/coverage/* !devel/coverage/.gitignore",
+    "clean:npm": "rimraf npm-debug.log"
+  },
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -56,5 +62,5 @@
       "tmp/**",
       "**/vendor/**"
    ]
-  },
+  }
 }
