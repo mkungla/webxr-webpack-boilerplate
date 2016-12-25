@@ -1,0 +1,20 @@
+{
+  "extends": "standard",
+  "env": {
+    "amd": true,
+    "browser": true,
+    "jquery": true,
+    "node": true
+  },
+  "rules": {
+    "semi": [2, "always"],
+    "no-extra-semi": 2,
+     "no-return-assign": 1,
+    "semi-spacing": [2, {
+      "before": false,
+      "after": true
+      }
+    ]
+  },
+  "parser": "babel-eslint"
+}
