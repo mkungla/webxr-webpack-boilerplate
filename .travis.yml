@@ -27,6 +27,7 @@ env:
   matrix:
     - CI_JOB="lint"
     - CI_JOB="test"
+    - CI_JOB="coverage"
 
 # run that job only on master branch
 branches:
@@ -35,7 +36,8 @@ branches:
 
 # Do something when everything was successful!
 after_success:
-  - echo "Do something when everything was successful!"
+  # For example here we upload covergae report to codacy
+  - cat ./devel/coverage/lcov.info | node_modules/.bin/codacy-coverage --token $CODACY_PROJECT_TOKEN
 
 # You probably want to cache node modules to speed up builds
 cache:
