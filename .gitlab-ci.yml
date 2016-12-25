@@ -5,19 +5,20 @@ stages:
 
 # common before scripts
 .template-1: &common-prepare
+  image: node:7-alpine
   before_script:
-   - echo "npm install"
+   - npm install
 
 # Lint the styles and javascript
 lint:
   stage: lint
   <<: *common-prepare
   script:
-    - echo "npm run lint"
+    - npm run lint
 
 # Run tests
 test:
   stage: test
   <<: *common-prepare
   script:
-    - echo "npm run test"
+    - npm run test

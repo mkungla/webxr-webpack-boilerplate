@@ -27,7 +27,13 @@
     "clean:dist": "rimraf dist/* !dist/.gitignore",
     "clean:tmp": "rimraf tmp/* !tmp/.gitignore",
     "clean:coverage": "rimraf devel/coverage/* !devel/coverage/.gitignore",
-    "clean:npm": "rimraf npm-debug.log"
+    "clean:npm": "rimraf npm-debug.log",
+
+    "lint": "npm-run-all lint:*",
+    "lint:stylelint": "stylelint './src/scss/**/*.scss' --syntax scss --config ./config/stylelint.json",
+    "lint:semistandard": "eslint --no-eslintrc --ignore-path ./config/eslintignore.txt --config ./config/eslint.json ./src",
+
+    "test": "echo 'run tests'"
   },
   "dependencies": {},
   "devDependencies": {

@@ -20,13 +20,13 @@ before_script:
 
 # All commands executed should be present in your package.json
 # CI_JOB is job matrix which we define below
-script: "echo $CI_JOB"
+script: npm run $CI_JOB
 
 env:
   # Define our job matrix
   matrix:
-    - CI_JOB="npm run lint"
-    - CI_JOB="npm run test"
+    - CI_JOB="lint"
+    - CI_JOB="test"
 
 # run that job only on master branch
 branches:
