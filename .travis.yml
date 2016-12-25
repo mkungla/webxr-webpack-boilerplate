@@ -9,7 +9,7 @@ node_js:
 
 # Travis CI environment setup
 install:
-  - echo "npm install"
+  - npm install
 
 # Your before scripts
 # You can run custom commands before the installation step (before_install),
