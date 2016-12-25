@@ -9,14 +9,14 @@ stages:
    - echo "npm install"
 
 # Lint the styles and javascript
-lint-code:
+lint:
   stage: lint
   <<: *common-prepare
   script:
     - echo "npm run lint"
 
 # Run tests
-tests:
+test:
   stage: test
   <<: *common-prepare
   script:

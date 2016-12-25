@@ -1,0 +1,43 @@
+# Travis CI configuration
+language: node_js
+
+# You can choose Node.js and io.js versions to run your tests
+# by adding them to the node_js section of your .travis.yml:
+# docs: https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Choosing-Node-versions-to-test-against
+node_js:
+  - '6'
+
+# Travis CI environment setup
+install:
+  - echo "npm install"
+
+# Your before scripts
+# You can run custom commands before the installation step (before_install),
+# and before (before_script) or after (after_script) the script step.
+# docs: https://docs.travis-ci.com/user/customizing-the-build#The-Build-Lifecycle
+before_script:
+  - echo "run your preparation scripts or commands"
+
+# All commands executed should be present in your package.json
+# CI_JOB is job matrix which we define below
+script: "echo $CI_JOB"
+
+env:
+  # Define our job matrix
+  matrix:
+    - CI_JOB="npm run lint"
+    - CI_JOB="npm run test"
+
+# run that job only on master branch
+branches:
+  only:
+    - master
+
+# Do something when everything was successful!
+after_success:
+  - echo "Do something when everything was successful!"
+
+# You probably want to cache node modules to speed up builds
+cache:
+  directories:
+    - node_modules
