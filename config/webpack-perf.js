@@ -3,7 +3,7 @@
  */
 const webpack = require('webpack');
 const path = require('path');
-const vendorDir = path.resolve(process.cwd(), 'dist', 'vendor');
+const vendorDir = path.resolve(process.cwd(), 'dist', 'vendors');
 
 module.exports = {
   context: process.cwd(),
@@ -17,7 +17,7 @@ module.exports = {
     ],
   },
   entry: {
-    vendor: [
+    vendors: [
       'babel-polyfill',
       './src/js/vendors.js'
     ],

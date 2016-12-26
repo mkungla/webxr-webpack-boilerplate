@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+import clioutput from '../devel/utils/clioutput';
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
@@ -10,37 +10,41 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const helper = require('../devel/utils/helpers');
 const argv = helper.parseArguments(process.argv.slice(2));
-
 const isDevel = process.env.NODE_ENV !== 'production' && !argv['env.production'];
 const isProduction = !isDevel;
 const isHot = argv['hot'] || false;
 const src = path.resolve(process.cwd(), 'src');
 const dist = path.resolve(process.cwd(), 'dist');
-const vendorDir = path.resolve(dist, 'vendor');
+const jsDir = path.resolve(dist, 'js');
+const cssDir = path.resolve(dist, 'css');
+const vendorDir = path.resolve(dist, 'vendors');
 const publicPath = '/';
 
 const devPlugins = () => {
 
   if(isDevel) {
-    const vendorManifest = path.resolve(vendorDir, 'vendor-mainifest.json');
+    clioutput.hr();
+    const vendorManifest = path.resolve(vendorDir, 'vendors-manifest.json');
     const indexHTML = path.resolve(src, 'index.html');
 
+    // Check that vendor manifest exists
     if (!fs.existsSync(vendorManifest)) {
-      console.error(chalk.red(`Vendor manifest "${vendorManifest}" is missing.`));
-      console.error(chalk.red('Please run'), chalk.magenta('`npm run vendor:perf`'));
+      clioutput.error('Vendor manifest json is missing.');
+      clioutput.error('Please run `npm run vendor:perf`');
       process.exit(0);
     }
 
+    // Check that main index.html exits
     if (!fs.existsSync(indexHTML)) {
-      console.error(chalk.red(`"${indexHTML}" is missing.`));
+      clioutput.error('src/index.html is missing.');
       process.exit(0);
     }
 
     const templateContent = () => {
-      // Append 'vendor-perf.js' to template
+      clioutput.info('Injecting vendors-perf.js...');
       const jsdom = require('jsdom');
       const document = jsdom.jsdom(fs.readFileSync(indexHTML, 'utf8').toString());
-      document.body.insertAdjacentHTML('beforeend', `<script type="text/javascript" src="${publicPath}/vendor/vendor-perf.js"></script>`);
+      document.head.insertAdjacentHTML('beforeend', `<script type="text/javascript" src="${publicPath}vendors/vendors-perf.js"></script>`);
       return jsdom.serializeDocument(document);
     };
 
@@ -52,8 +56,7 @@ const devPlugins = () => {
 
       new HtmlWebpackPlugin({
         templateContent: templateContent(),
-        inject: true,
-        favicon: 'favicon.png',
+        inject: 'head',
         chunksSortMode: 'none',
         xhtml: true,
       }),
@@ -64,28 +67,18 @@ const devPlugins = () => {
 
 const hotPlugins = isHot ? [
   new webpack.HotModuleReplacementPlugin({
-    multiStep: true, // Enable multi-pass compilation for enhanced performance in larger projects.
+    multiStep: true,
   }),
 ] : [];
 
 const prodPlugins = isProduction ? [
-  // Note: do not use '-p' in "build:prod" script
-
-
-  // CommonsChunk analyzes everything in your bundles, extracts common bits into files together.
-  // See: https://webpack.js.org/guides/code-splitting-libraries/
   new webpack.optimize.CommonsChunkPlugin({
-    names: ['vendor', 'manifest'],
+    names: ['vendors', 'manifest'],
   }),
 
-  // Minify and optimize the index.html
   new HtmlWebpackPlugin({
     template: './index.html',
-    inject: true,
-    favicon: 'favicon.png',
-    // Correct bundle order: [manifest, vendor, app]
-    // see: http://stackoverflow.com/questions/36796319/webpack-with-commonschunkplugin-results-with-wrong-bundle-order-in-html-file
-    // see: https://github.com/ampedandwired/html-webpack-plugin/issues/481
+    inject: 'head',
     chunksSortMode: 'dependency',
     xhtml: true,
     minify: {
@@ -101,10 +94,6 @@ const prodPlugins = isProduction ? [
       minifyURLs: true,
     },
   }),
-
-  // Merge all duplicate modules
-  // No longer needed; default in webpack2
-  //new webpack.optimize.DedupePlugin(),
 
   new webpack.LoaderOptionsPlugin({
     minimize: true,
@@ -135,25 +124,20 @@ const prodPlugins = isProduction ? [
 
 const cssRules = isHot ? [
   {
-    // Enables HMR. Inlines CSS in html head style tag
     test: /\.css$/,
     include: [
       src,
       path.resolve(process.cwd(), 'node_modules')
     ],
     use: [
+      'raw-loader',
       'style-loader',
-      // urls does not work when using sourceMap.
-      // See: https://github.com/webpack/css-loader/issues/216
-      // See: https://github.com/webpack/css-loader/issues/296
-      // See: http://stackoverflow.com/questions/37288886/webpack-background-images-not-loading
-      'css-loader', // { loader: 'css', query: { sourceMap: true } },
+      'css-loader',
       'postcss-loader',
       'resolve-url-loader',
     ]
   },
   {
-    // Enables HMR. Inlines CSS in html head
     test: /\.s?(a|c)ss$/,
     include: [
       src,
@@ -161,15 +145,14 @@ const cssRules = isHot ? [
     ],
     use: [
       'style-loader',
-      'css-loader', // { loader: 'css', query: { sourceMap: true } }, // urls does not work when using sourceMap, see: comments above
+      'css-loader',
       'postcss-loader',
       'resolve-url-loader',
-      { loader: 'sass-loader', query: { sourceMap: isProd ? 'compressed' : 'expanded' } },
+      { loader: 'sass-loader', query: { sourceMap: isProduction ? 'compressed' : 'expanded' } },
     ]
   },
 ] : [
   {
-    // No HMR. Creates external CSS
     test: /\.css$/,
     include: [
       src,
@@ -181,7 +164,6 @@ const cssRules = isHot ? [
     })
   },
   {
-    // No HMR. Creates external CSS
     test: /\.s?(a|c)ss$/,
     include: [
       src,
@@ -205,21 +187,10 @@ const cssRules = isHot ? [
 
 module.exports = {
   context: src,
-
-  // Developer tool to enhance debugging, source maps
-  // http://webpack.github.io/docs/configuration.html#devtool
-  // http://moduscreate.com/optimizing-react-es6-webpack-production-build/
-  // https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md
-  // https://twitter.com/dan_abramov/status/555770268489375746
-  // see: https://twitter.com/dan_abramov/status/706294608603553793
-  // source map can be turned on/off in UglifyJsPlugin
-  // devtool: isProduction ? 'cheap-module-source-map' : 'eval',  // Redux needs 'eval', see: https://twitter.com/dan_abramov/status/706294608603553793
-  // devtool: isProduction ? 'cheap-module-source-map' : 'cheap-module-eval-source-map', // 'cheap-module-source-map': not possible to map errors to source in production
-  // devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map', // 'source-map': detailed mapping of errors to source in production
   devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
   cache:   !isProduction,
-  bail:    isProduction,  // Don't attempt to continue if there are any errors.
-  target:  'web',   // Make web variables accessible to webpack, e.g. window. This is a default value; just be aware of it
+  bail:    isProduction,
+  target:  'web',
   resolve: {
     modules: [
       'src',
@@ -228,36 +199,18 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.html']
   },
   entry: helper.sanitizeObject({
-    // Correct bundle order: [manifest, vendor, app]
-    // see: http://stackoverflow.com/questions/36796319/webpack-with-commonschunkplugin-results-with-wrong-bundle-order-in-html-file
-    // see: https://github.com/ampedandwired/html-webpack-plugin/issues/481
-    vendor: isProduction ? ['babel-polyfill', './vendor.js'] : [],
-    app: (isHot ? [
-      // Dynamically set the webpack public path at runtime below
-      // Must be first entry to properly set public path
-      // See: http://webpack.github.io/docs/configuration.html#output-publicpath
-      './webpack-public-path.js',
-
-      // reload - Set to true to auto-reload the page when webpack gets stuck. (React: use reload=false)
-      // See: https://github.com/glenjamin/webpack-hot-middleware
-      // 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
-      // `webpack-hot-middleware/client?path=http://${host}:${port}/__webpack_hmr&timeout=20000&reload=true`,
-      // 'webpack-hot-middleware/client',
+    vendor: isProduction ? ['babel-polyfill', './js/vendors.js'] : [],
+    'aframe-project': (isHot ? [
+      '../devel/utils/webpack-runtime.js',
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
-
-      // Webpack2: remove any reference to webpack/hot/dev-server or webpack/hot/only-dev-server
-      // from your webpack config. Instead, use the reload config option of 'webpack-hot-middleware'.
-      // See: https://github.com/glenjamin/webpack-hot-middleware#200
-      //'webpack/hot/only-dev-server',
-
     ] : [] ).concat([
-      './index.js',
-      './styles.scss',
+      './js/index.js',
+      './sass/entry.scss',
     ]),
   }),
 
   output: {
-    filename: isProduction ? '[name].[chunkhash].js' : '[name].js', // Don't use hashes in dev mode
+    filename: path.join('js', (isProduction ? '[name].[chunkhash].js' : '[name].js')),
     chunkFilename: isProduction ? '[name].[chunkhash].chunk.js' : '[name].chunk.js',
     path: dist,
     publicPath: publicPath,
@@ -286,9 +239,8 @@ module.exports = {
 
       },
       {
-        // Enables HMR. Extra step is needed in './src/index.js'
         test: /\.html$/,
-        loader: 'html-loader', // loader: 'html', // loader: 'raw' // html vs raw: what's the difference??
+        loader: 'html-loader',
       },
       {
         test: /\.json$/,
@@ -329,26 +281,16 @@ module.exports = {
     ].concat(cssRules)
   },
   plugins: [
-    // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
-    // inside your code for any environment checks; UglifyJS will automatically
-    // drop any unreachable code.
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isProduction ? JSON.stringify('production') : JSON.stringify('development'),
       __DEV__: !isProduction
     }),
 
     new webpack.ProvidePlugin({
-      // make fetch available
-      // See: http://mts.io/2015/04/08/webpack-shims-polyfills/
       'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
     }),
 
-    // Hook into the compiler to extract progress information.
-    //new webpack.ProgressPlugin(),
-
     new webpack.LoaderOptionsPlugin({
-      // See: https://github.com/postcss/postcss-loader/issues/125
-      // See: http://pastebin.com/Lmka3rju
       minimize: isProduction,
       debug: !isProduction,
       stats: {
@@ -375,25 +317,18 @@ module.exports = {
       },
     }),
 
-    // Avoid publishing files when compilation fails
     new webpack.NoErrorsPlugin(),
 
-    // No longer needed in Webpack2, on by default
-    //new webpack.optimize.OccurrenceOrderPlugin(),
-
-    // Generate an external css file with a hash in the filename
     new ExtractTextPlugin({
-      filename: isProduction ? '[name].[chunkhash].styles.css' : '[name].styles.css',
+      filename: path.join('css', (isProduction ? '[name].[chunkhash].css' : '[name].css')),
       disable: false,
       allChunks: true
     }),
 
     new StyleLintPlugin({
-      // https://github.com/vieron/stylelint-webpack-plugin
-      // http://stylelint.io/user-guide/example-config/
       configFile: './config/stylelint.json',
-      context: 'src',
-      files: '**/*.s?(a|c)ss',
+      context: 'src/sass',
+      files: '**/*.scss',
       syntax: 'scss',
       failOnError: false
     }),
@@ -402,8 +337,6 @@ module.exports = {
       { from: 'assets', to: 'assets' }
     ]),
 
-    // Module ids are full names
-    // Outputs more readable module names in the browser console on HMR updates
     new webpack.NamedModulesPlugin(),
 
   ].concat(devPlugins()).concat(hotPlugins).concat(prodPlugins)

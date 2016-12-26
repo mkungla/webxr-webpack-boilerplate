@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 const parseArguments = array => {
   const getKey = arg => String(arg).trim().startsWith('-') ? arg.trim().replace(/^[-]+/, '') : false;
   return array.reduce((previous, current, index, args_array) => {
@@ -11,8 +13,11 @@ const parseArguments = array => {
           args_array.splice(index, 1);
         }
       }
-      return {...previous, [key]: argVal}
-      // return {previous, [key]: argVal}
+      return {
+       ...previous,
+       [key]: argVal
+      }
+      //return {previous, [key]: argVal}
     }
     return previous;
   }, {});
