@@ -33,7 +33,7 @@ module.exports = {
       __DEV__: true
     }),
     new webpack.DllPlugin({
-      path: path.join(vendorDir, '[name].json'),
+      path: path.join(vendorDir, '[name]-manifest.json'),
       name: '[name]',
     }),
   ],
