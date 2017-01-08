@@ -1,8 +1,23 @@
 @charset "UTF-8";
 
-@import 'themes/red';
+/**
+ * THEME CONFIGURATION
+ */
+// Global variables
+@import "config/variables";
 
+// Color themes red !default, yellow, green, blue
+@import 'config/color-themes/red';
+
+/**
+ * VENDORS
+ */
 // A-Frame
 @import
   'vendor/aframevr/aframe',
   'vendor/aframevr/rStats';
+
+/**
+ * Project styles
+ */
+@import 'project/entry';

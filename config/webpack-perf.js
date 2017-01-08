@@ -23,7 +23,7 @@ module.exports = {
     ],
   },
   output: {
-    filename: '[name]-perf.js',
+    filename: '[name]-bundle.js',
     path: vendorDir,
     library: '[name]'
   },
@@ -33,7 +33,7 @@ module.exports = {
       __DEV__: true
     }),
     new webpack.DllPlugin({
-      path: path.join(vendorDir, '[name]-manifest.json'),
+      path: path.join(vendorDir, '[name].manifest.json'),
       name: '[name]',
     }),
   ],

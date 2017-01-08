@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import webpack from 'webpack';
-import config from '../config/webpack-main';
+import config from '../config/webpack.config.babel';
 import express from 'express';
 import path from 'path';
 import history from 'connect-history-api-fallback';
@@ -14,7 +14,7 @@ const isHot = argv['hot'] || false;
 const publicPath = config.output.publicPath || '/';
 const outputPath = config.output.path || path.resolve(process.cwd(), 'dist');
 const host = '0.0.0.0';
-const port = process.env.PORT || argv.port || 8000;
+const port = process.env.PORT || argv.port || 9000;
 const app = express();
 
 if(isHot) {
@@ -36,7 +36,7 @@ if(isHot) {
 
   app.use(webpackHotMiddleware(compiler, {
     log: console.log,
-    path: '/__webpack_hmr',
+    path: '/webpack-hot-module-replace',
     heartbeat: 10 * 1000,
   }));
 }

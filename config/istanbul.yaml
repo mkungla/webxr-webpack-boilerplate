@@ -7,9 +7,10 @@ instrumentation:
       - 'devel/*'
       - 'dist/*'
       - 'node_modules/*'
+      - 'res/*'
       - 'tmp/*'
       - '**/lib/**'
-      - '**/vendor/**'
+      - '**/vendors/**'
     variable: __coverage__
     compact: true
     default-excludes: true

@@ -1,0 +1,6 @@
+# this directory is for project resources
+# which you don't want to have in repository
+# - `npm run clean` or
+# - `npm run clean:tmp`
+* MUST NOT clean that drectory
+!.gitignore

@@ -1,8 +1,48 @@
 | |
 | :---: |
 | <h1>A-Frame Webpack Boilerplate</h1> |
-| A-Frame Starter Kit of WebVR with Webpack2 ES2015 SASS |
+| A-Frame Starter Kit of WebVR with Webpack2 SASS |
 | [![Build Status][travis-ci-image]][travis-ci-url] [![Codacy Badge][codacy-grade-image]][codacy-grade-url] [![Codacy Badge][codacy-coverage-image]][codacy-coverage-url] [![A-Frame Version][aframe-image]][aframe-url] [![Project License][license-image]][license-url] |
+
+### A-Frame Project skeleton
+
+- **config** project configuration files.
+- **devel** development
+  - **coverage** coverage report
+- **dist** project release files, output of `npm run build`.
+- **src** project source files.
+  - **api** Dummy API served by Express
+  - **assets** project assets
+    - **audio** audio files
+    - **images** image files
+    - **models** 3D objects and models
+    - **video** video files
+  - **js** javascript files
+    - **a-components** custom components
+    - **a-primitives** custom primitives
+    - **a-shaders** custom shaders
+    - **a-systems** custom systems
+    - **project** main application
+  - **sass** 
+    - **config** sass variables and themes
+    - **vendor** vendor sass files
+    - **project** application styles
+  - **scene** A-Frame scene
+    - **camera** camera templates (handlebars)
+    - **entity** entity templates (handlebars)
+    - **sky** sky templates (handlebars)
+- **test** testsuites.
+- **tmp** Temporary files.
+
+### Custom A-Frame Theme
+You can change A-Frame themes by modifying [src/sass/entry.scss](src/sass/entry.scss)
+```sass
+// Color themes red !default, yellow, green, blue
+@import 'config/color-themes/red';
+```
+| default | blue | green | red |
+| :---: | :---: | :---: | :---: |
+| ![Theme Default][screeenshot-theme-red] | ![Theme Default][screeenshot-theme-blue]  | ![Theme Default][screeenshot-theme-green]  | ![Theme Default][screeenshot-theme-yellow] |
 
 <!-- ASSETS and LINKS -->
 <!-- License -->
@@ -20,3 +60,8 @@
 <!-- Codacy Badge Coverage -->
 [codacy-coverage-image]: https://api.codacy.com/project/badge/Coverage/7a47a8ae8682467b9e33a3d47a6fbd54
 [codacy-coverage-url]: https://www.codacy.com/app/marko-kungla/aframe-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mkungla/aframe-webpack-boilerplate&amp;utm_campaign=Badge_Coverage
+<!-- Screenshots -->
+[screeenshot-theme-red]: src/assets/images/screenshots/theme-red.png
+[screeenshot-theme-blue]: src/assets/images/screenshots/theme-blue.png
+[screeenshot-theme-green]: src/assets/images/screenshots/theme-green.png
+[screeenshot-theme-yellow]: src/assets/images/screenshots/theme-yellow.png
