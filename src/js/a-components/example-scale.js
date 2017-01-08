@@ -46,11 +46,11 @@ AFRAME.registerComponent('example-scale', {
   },
   // Called once when the component is initialized.
   // Used to set up initial state and instantiate variables.
-  init: function () {},
+  init () {},
 
   // Called both when the component is initialized and whenever the component’s
   // data changes (e.g, via setAttribute). Used to modify the entity.
-  update: function () {
+  update () {
     var data = this.data;
     var object3D = this.el.object3D;
     var x = data.x === 0 ? zeroScale : data.x;
