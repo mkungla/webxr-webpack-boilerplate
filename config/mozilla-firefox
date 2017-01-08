@@ -1,0 +1,3 @@
+Package: *
+Pin: origin mozilla.debian.net
+Pin-Priority: 501
