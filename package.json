@@ -29,6 +29,7 @@
     "clean:tmp": "rimraf tmp/* !tmp/.gitignore",
     "clean:coverage": "rimraf devel/coverage/* !devel/coverage/.gitignore",
     "clean:npm": "rimraf npm-debug.log",
+    "precoverage": "npm run vendor:perf",
     "coverage": "npm-run-all --parallel coverage:run --serial coverage:check",
     "coverage:run": "babel-node ./node_modules/.bin/istanbul cover --root ./src --config ./config/istanbul.yaml npm run test:ci",
     "coverage:check": "istanbul check-coverage --root ./devel/coverage",
