@@ -30,28 +30,15 @@ var karma_conf = {
 
 // configuration for code coverage reporting
 if (process.env.TEST_ENV === 'ci') {
-  Object.assign(karma_conf.browserify, {
-    transform: [
-      [
-        'browserify-istanbul', {
-          instrumenterConfig: {
-            embedSource: true
-          },
-          defaultIgnore: true,
-          ignore: ['**/node_modules/**', '**/tests/**', '**/vendors/**', '**/*.css']
-        }
-      ]
-    ]
-  });
   karma_conf.coverageReporter = {
     dir: 'devel/coverage',
-    includeAllSources: true,
     reporters: [
       {'type': 'html', subdir: '.'},
       {'type': 'lcov', subdir: '.'}
     ]
   };
   karma_conf.reporters.push('coverage');
+  karma_conf.reporters.push('progress');
   karma_conf.preprocessors['src/**/*.js'] = ['coverage'];
 }
 
