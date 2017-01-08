@@ -61,19 +61,19 @@ AFRAME.registerComponent('example-scale', {
 
   // Called when the component detaches from the element (e.g.,
   // via removeAttribute). Used to undo all previous modifications to the entity.
-  remove: function () {},
+  remove () {},
 
   // Called on each render loop or tick of the scene. Used for continuous changes.
-  tick: function () {},
+  tick () {},
 
   // Called whenever the scene or entity plays to add
   // any background or dynamic behavior. Used to start or resume behavior.
-  play: function () {},
+  play () {},
 
   // Called whenever the scene or entity pauses to remove any
   // background or dynamic behavior. Used to pause behavior.
-  pause: function () {},
+  pause () {},
 
   // Called on every update. Can be used to dynamically modify the schema.
-  updateSchema: function () {}
+  updateSchema () {}
 });
