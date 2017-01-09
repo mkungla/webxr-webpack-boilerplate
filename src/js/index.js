@@ -9,7 +9,7 @@ import './a-components';
 import './a-primitives';
 
 // Load Application
-import './project';
+import './a-project';
 
 if (module.hot) {
   module.hot.accept();

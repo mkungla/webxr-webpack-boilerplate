@@ -35,12 +35,12 @@
 - **tmp** Temporary files.
 
 ### Custom A-Frame Theme
-You can change A-Frame themes by modifying [src/sass/entry.scss](src/sass/entry.scss)
+You can change A-Frame themes by modifying SASS configuration [`$theme` variable](src/sass/config/_index.scss)
 ```sass
 // Color themes red !default, yellow, green, blue
-@import 'config/color-themes/red';
+$theme: red;
 ```
-| default | blue | green | yellow |
+| red | blue | green | yellow |
 | :---: | :---: | :---: | :---: |
 | ![Theme Default][screeenshot-theme-red] | ![Theme Default][screeenshot-theme-blue]  | ![Theme Default][screeenshot-theme-green]  | ![Theme Default][screeenshot-theme-yellow] |
 

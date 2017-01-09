@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+/**********************************************
+* SASS Configuration
+***********************************************/
+
+/**
+ * A-Frame color themes
+ *
+ * available themes are blue, green, red, yellow
+ * That defines which sass theme will be imported from ./color-themes
+ */
+$theme:         red;
+
+// Import global variables
+@import 'config/variables';
+
+// Import Default theme
+@import 'color-themes/red';
+
+// Import other themes
+@import
+  'color-themes/blue',
+  'color-themes/green',
+  'color-themes/yellow';

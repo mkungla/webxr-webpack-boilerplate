@@ -4,10 +4,7 @@
  * THEME CONFIGURATION
  */
 // Global variables
-@import "config/variables";
-
-// Color themes red !default, yellow, green, blue
-@import 'config/color-themes/red';
+@import "config/index";
 
 /**
  * VENDORS
@@ -20,4 +17,4 @@
 /**
  * Project styles
  */
-@import 'project/entry';
+@import 'a-project/entry';
