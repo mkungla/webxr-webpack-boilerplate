@@ -41,10 +41,12 @@ const devPlugins = () => {
     }
 
     const generateHtml = () => {
-      const jsdom = require('jsdom');
-      const document = jsdom.jsdom(fs.readFileSync(indexHTML, 'utf8').toString());
-      document.head.insertAdjacentHTML('beforeend', `<script type="text/javascript" src="${publicPath}vendors/vendors-bundle.js"></script>`);
-      return jsdom.serializeDocument(document);
+      const jsdom = require("jsdom");
+      const { JSDOM } = jsdom;
+
+      const dom = new JSDOM(fs.readFileSync(indexHTML, 'utf8').toString());
+      dom.window.document.head.insertAdjacentHTML('beforeend', `<script type="text/javascript" src="${publicPath}vendors/vendors-bundle.js"></script>`);
+      return '<!DOCTYPE HTML>' + '\n' + dom.window.document.documentElement.outerHTML;
     };
     clioutput.info('starting...');
     return [
@@ -157,8 +159,8 @@ const cssRules = isHot ? [
       src,
       path.resolve(process.cwd(), 'node_modules')
     ],
-    loader: ExtractTextPlugin.extract({
-      fallbackLoader: 'style-loader',
+    use: ExtractTextPlugin.extract({
+      fallback: 'style-loader',
       loader: ['css-loader?sourceMap', 'postcss-loader', 'resolve-url-loader']
     })
   },
@@ -168,8 +170,8 @@ const cssRules = isHot ? [
       src,
       path.resolve(process.cwd(), 'node_modules')
     ],
-    loader: ExtractTextPlugin.extract({
-      fallbackLoader: 'style-loader',
+    use: ExtractTextPlugin.extract({
+      fallback: 'style-loader',
       loader: [
         {
           loader: 'css-loader', query: { sourceMap: true }
@@ -308,7 +310,7 @@ module.exports = {
       },
     }),
 
-    new Webpack.NoErrorsPlugin(),
+    new Webpack.NoEmitOnErrorsPlugin(),
 
     new ExtractTextPlugin({
       filename: path.join('css', (isProduction ? '[name].[chunkhash].css' : '[name].css')),

@@ -1,7 +1,6 @@
 'use strict';
 
 class HttpError extends Error {
-
   /**
    * HTTP Status constructor
    *
@@ -62,7 +61,6 @@ class HttpError extends Error {
 }
 
 class ResponseError extends HttpError {
-
   /**
    * Response error
    *
@@ -78,7 +76,6 @@ class ResponseError extends HttpError {
 }
 
 class NotFoundError extends HttpError {
-
   /**
    * Not found error
    *
@@ -94,4 +91,3 @@ class NotFoundError extends HttpError {
 }
 
 export {HttpError, ResponseError, NotFoundError};
-

@@ -7,7 +7,6 @@ import 'whatwg-fetch';
  * A-Frame SERVER API
  */
 class API {
-
   /**
    * API
    *
