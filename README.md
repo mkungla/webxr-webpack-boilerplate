@@ -49,7 +49,7 @@ $theme: red;
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-url]: https://raw.githubusercontent.com/mkungla/aframe-php/master/LICENSE
 <!-- A-Frame -->
-[aframe-image]: https://img.shields.io/badge/a--frame-0.4.0-FC3164.svg?style=flat-square
+[aframe-image]: https://img.shields.io/badge/a--frame-0.5.0-FC3164.svg?style=flat-square
 [aframe-url]: https://aframe.io/
 <!-- travis-ci -->
 [ci-image]: https://travis-ci.org/mkungla/aframe-webpack-boilerplate.svg?branch=master

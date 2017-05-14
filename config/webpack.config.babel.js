@@ -226,9 +226,11 @@ module.exports = {
       {
         test: /\.js[x]?$/,
         enforce: 'pre',
-        loader: 'eslint-loader',
-        options: {
-          configFile: './config/eslint.json',
+        use: {
+          loader: 'eslint-loader',
+          options: {
+            configFile: './config/eslint.json',
+          },
         },
         include: [src],
         exclude: [/node_modules/],
@@ -236,28 +238,36 @@ module.exports = {
         test: /\.js[x]?$/,
         include: [src],
         exclude: [/node_modules/],
-        loader: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+        },
       },{
         test: /\.html$/,
-        loader: 'html-loader',
+        use: {
+          loader: 'html-loader',
+        },
       },{
         test: /\.hbs/,
-        loader: "handlebars-loader"
+        use: {
+          loader: "handlebars-loader",
+        },
       },{
         test: /\.json$/,
-        loader: 'json-loader',
+        use: {
+          loader: 'json-loader',
+        },
       },{
         test: /\.(jpg|jpeg)$/,
-        loader: 'url-loader?name=[name].[ext]&limit=8192&mimetype=image/jpg'
+        use: 'url-loader?name=[name].[ext]&limit=8192&mimetype=image/jpg'
       },{
         test: /\.gif$/,
-        loader: 'url-loader?name=[name].[ext]&limit=8192&mimetype=image/gif'
+        use: 'url-loader?name=[name].[ext]&limit=8192&mimetype=image/gif'
       },{
         test: /\.png$/,
         use: 'url-loader?name=[name].[ext]&limit=8192&mimetype=image/png'
       },{
         test: /\.svg$/,
-        loader: 'url-loader?name=[name].[ext]&limit=8192&mimetype=image/svg+xml'
+        use: 'url-loader?name=[name].[ext]&limit=8192&mimetype=image/svg+xml'
       },{
         test: /\.woff?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: ['url-loader?name=[name].[ext]&limit=100000&mimetype=application/font-woff']
@@ -269,7 +279,7 @@ module.exports = {
         use: ['file-loader?name=[name].[ext]&limit=100000&mimetype=application/octet-stream']
       },{
         test: /\.otf(\?.*)?$/,
-        loader: 'file-loader?name=[name].[ext]&limit=10000&mimetype=font/opentype'
+        use: 'file-loader?name=[name].[ext]&limit=10000&mimetype=font/opentype'
       },
     ].concat(cssRules)
   },

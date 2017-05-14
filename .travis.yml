@@ -20,7 +20,7 @@ install:
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  
+
 # All commands executed should be present in your package.json
 # CI_JOB is job matrix which we define below
 script: npm run $CI_JOB
@@ -31,7 +31,7 @@ env:
     # Lint sass and js
     - CI_JOB="lint"
     # Run tests and generate coverage report
-    - CI_JOB="coverage"
+    - CI_JOB="coverage:run"
 
 # run that job only on master branch
 branches:
