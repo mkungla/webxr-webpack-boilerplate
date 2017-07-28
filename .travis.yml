@@ -1,5 +1,9 @@
 # Travis CI configuration
 language: node_js
+
+git:
+  depth: 10
+
 addons:
   firefox: 'latest'
 
@@ -9,9 +13,15 @@ addons:
 node_js:
   - '6'
 
+# You probably want to cache node modules to speed up builds
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
 # Travis CI environment setup
 install:
-  - npm install
+  - yarn install
 
 # Your before scripts
 # You can run custom commands before the installation step (before_install),
@@ -23,7 +33,7 @@ before_script:
 
 # All commands executed should be present in your package.json
 # CI_JOB is job matrix which we define below
-script: npm run $CI_JOB
+script: yarn run $CI_JOB
 
 env:
   # Define our job matrix
@@ -42,8 +52,3 @@ branches:
 after_success:
   # For example here we upload covergae report to codacy
   - cat ./devel/coverage/lcov.info | node_modules/.bin/codacy-coverage --token $CODACY_PROJECT_TOKEN
-
-# You probably want to cache node modules to speed up builds
-cache:
-  directories:
-    - node_modules
