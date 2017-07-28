@@ -16,11 +16,9 @@
     "media-feature-colon-space-after": "always",
     "media-feature-colon-space-before": "never",
     "number-no-trailing-zeros": null,
-    "rule-nested-empty-line-before": null,
     "selector-list-comma-space-before": "never",
     "selector-list-comma-newline-after": "always",
     "selector-pseudo-element-colon-notation": "single",
-    "selector-no-id": null,
     "color-hex-case": [ "lower", {
       "message": "Lowercase letters are easier to distinguish from numbers",
       "severity": "warning"

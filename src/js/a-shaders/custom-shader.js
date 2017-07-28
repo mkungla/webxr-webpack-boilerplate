@@ -11,7 +11,8 @@ AFRAME.registerShader('custom-shader', {
    */
   init (data) {
     this.material = new THREE.LineDashedMaterial(data);
-    this.update(data);  // `update()` currently not called after `init`. (#1834)
+    // `update()` currently not called after `init`. (#1834)
+    this.update(data);
   },
   /**
    * `update` used to update the material. Called on initialization and when data updates.
