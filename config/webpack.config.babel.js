@@ -147,7 +147,7 @@ const cssRules = isHot ? [
     use: [
       'style-loader',
       'css-loader',
-      'postcss-loader',
+      { loader: 'postcss-loader', options: { sourceMap: true } },
       'resolve-url-loader',
       { loader: 'sass-loader', query: { sourceMap: isProduction ? 'compressed' : 'expanded' } },
     ]
@@ -161,7 +161,11 @@ const cssRules = isHot ? [
     ],
     use: ExtractTextPlugin.extract({
       fallback: 'style-loader',
-      loader: ['css-loader?sourceMap', 'postcss-loader', 'resolve-url-loader']
+      use: [
+        { loader: 'css-loader', options: { sourceMap: 'inline' } }, 
+        { loader: 'postcss-loader', options: { sourceMap: true } },
+        'resolve-url-loader'
+      ]
     })
   },
   {
@@ -172,15 +176,11 @@ const cssRules = isHot ? [
     ],
     use: ExtractTextPlugin.extract({
       fallback: 'style-loader',
-      loader: [
-        {
-          loader: 'css-loader', query: { sourceMap: true }
-        },
-        'postcss-loader',
+      use: [
+        { loader: 'css-loader', options: { sourceMap: true } },
+        { loader: 'postcss-loader', options: { sourceMap: true } },
         'resolve-url-loader',
-        {
-          loader: 'sass-loader', query: { sourceMap: isProduction ? 'compressed' : 'expanded' }
-        }
+        { loader: 'sass-loader', options: { sourceMap: isProduction ? 'compressed' : 'expanded' } }
       ]
     })
   }
