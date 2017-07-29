@@ -1,6 +1,6 @@
 {
   "name": "aframe-webpack-boilerplate",
-  "version": "1.0.0",
+  "version": "0.9.1",
   "description": "A-Frame Starter Kit of WebVR with Webpack2 and SASS",
   "author": "Marko Kungla <marko.kungla@gmail.com> (https://github.com/mkungla)",
   "main": "src/js/index.js",
