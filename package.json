@@ -20,6 +20,7 @@
     "webpack"
   ],
   "scripts": {
+    "build": "cross-env WITH_VENDORS=true NODE_ENV=staging webpack --config ./devel/webpack.build.js",
     "check": "npm-run-all check:*",
     "check:yarn": "yarn check && yarn check --integrity && yarn outdated",
     "clean": "npm-run-all clean:*",
@@ -27,7 +28,8 @@
     "dist": "npm-run-all dist:*",
     "dist:build": "cross-env WITH_VENDORS=true NODE_ENV=production webpack --config ./devel/webpack.build.js",
     "dist:notice": "yarn licenses generate-disclaimer > NOTICE.md",
-    "build": "cross-env WITH_VENDORS=true NODE_ENV=staging webpack --config ./devel/webpack.build.js",
+    "info": "npm-run-all info:*",
+    "info:versions": "yarn versions",
     "lint": "npm-run-all lint:*",
     "lint:stylelint": "stylelint './src/app/sass/**/*.scss' --syntax scss --config ./config/stylelint.json",
     "lint:standard": "standard -v | snazzy",
