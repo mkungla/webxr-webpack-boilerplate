@@ -6,8 +6,12 @@ cache: '%LOCALAPPDATA%\\Yarn'
 build:
   verbosity: minimal
 
+environment:
+  nodejs_version: "9"
+
 install:
   # yarn issue with cross-env
+  - ps: Install-Product node $env:nodejs_version
   - npm install --global cross-env
   - yarn install
 
@@ -16,6 +20,6 @@ build_script:
   - yarn run dist
 
 test_script:
-  - cmd: test:ci-on-windows
+  - cmd: yarn run test:ci-on-windows
 
 deploy: off

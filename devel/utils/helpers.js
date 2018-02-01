@@ -1,3 +1,5 @@
+'use strict'
+
 const parseArguments = array => {
   const getKey = arg => String(arg).trim().startsWith('-') ? arg.trim().replace(/^[-]+/, '') : false
   return array.reduce((previous, current, index, argsArray) => {

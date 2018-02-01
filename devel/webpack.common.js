@@ -1,3 +1,5 @@
+'use strict'
+
 const cli = require('./utils/cli')
 const webpack = require('webpack')
 const path = require('path')
