@@ -1,0 +1,60 @@
+# https://circleci.com/docs/2.0/configuration-reference/
+version: 2
+
+# jobs
+jobs:
+  build-staging:
+    macos:
+      xcode: "9.0"
+    steps:
+      - run:
+          name: install yarn
+          command: echo "install"
+
+      - checkout
+      - run:
+          name: install dependencies
+          command: echo "setup"
+      - run:
+          name: build staging
+          command: echo "build"
+  build-dist:
+    macos:
+      xcode: "9.0"
+    steps:
+      - run:
+          name: install yarn
+          command: echo "install"
+
+      - checkout
+      - run:
+          name: install dependencies
+          command: echo "setup"
+      - run:
+          name: build dist
+          command: echo "build"
+
+  test:
+    macos:
+      xcode: "9.0"
+    steps:
+      - run:
+          name: run mac tests
+          command: echo "test"
+
+# Workflow configuration
+workflows:
+  version: 2
+  member-push:
+    jobs:
+      - build-staging
+      - build-dist
+      - test:
+          requires:
+            - build-staging
+            - build-dist
+          filters:
+            branches:
+              only:
+                - master
+                - /hotfix-.*/
