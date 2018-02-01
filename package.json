@@ -20,8 +20,8 @@
     "webpack"
   ],
   "scripts": {
-    "dist": "WITH_VENDORS=true NODE_ENV=production webpack --config ./devel/webpack.build.js",
-    "build": "WITH_VENDORS=true NODE_ENV=staging webpack --config ./devel/webpack.build.js",
+    "dist": "cross-env WITH_VENDORS=true NODE_ENV=production webpack --config ./devel/webpack.build.js",
+    "build": "cross-env WITH_VENDORS=true NODE_ENV=staging webpack --config ./devel/webpack.build.js",
     "lint": "npm-run-all lint:*",
     "lint:stylelint": "stylelint './src/app/sass/**/*.scss' --syntax scss --config ./config/stylelint.json",
     "lint:standard": "standard -v | snazzy",

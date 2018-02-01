@@ -41,7 +41,7 @@ env:
     # Lint sass and js
     - CI_JOB="lint"
     # Run tests and generate coverage report
-    - CI_JOB="test:ci"
+    - CI_JOB="test:ci-on-linux"
 
 # run that job only on master branch
 branches:

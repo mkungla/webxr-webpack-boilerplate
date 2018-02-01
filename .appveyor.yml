@@ -1,27 +1,20 @@
-version: v0.9-{branch}.{build}
+version: 0.9.{branch}.{build}.
 
-branches:
-  only:
-    - master
-
+clone_depth: 10
 shallow_clone: true
+cache: '%LOCALAPPDATA%\\Yarn'
 build:
   verbosity: minimal
 
-platform:
-  - x64
-
 install:
-  - yarn install
+  - cmd: yarn install
 
 build_script:
-  - yarn run build
-  - yarn run dist
+  - cmd: >-
+      yarn run build
+      yarn run dist
 
 test_script:
-  - test:ci-on-windows
+  - cmd: test:ci-on-windows
 
 deploy: off
-
-cache:
-  - "%LOCALAPPDATA%\\Yarn"
