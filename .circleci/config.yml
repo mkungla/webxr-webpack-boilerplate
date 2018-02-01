@@ -7,40 +7,36 @@ jobs:
     macos:
       xcode: "9.0"
     steps:
-      - run:
-          name: install yarn
-          command: echo "install"
-
       - checkout
       - run:
           name: install dependencies
-          command: echo "setup"
+          command: yarn install
       - run:
           name: build staging
-          command: echo "build"
+          command: yarn run build
   build-dist:
     macos:
       xcode: "9.0"
     steps:
-      - run:
-          name: install yarn
-          command: echo "install"
-
       - checkout
       - run:
           name: install dependencies
-          command: echo "setup"
+          command: yarn install
       - run:
           name: build dist
-          command: echo "build"
+          command: yarn run build
 
   test:
     macos:
       xcode: "9.0"
     steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: yarn install
       - run:
           name: run mac tests
-          command: echo "test"
+          command: yarn run test:ci-on-mac
 
 # Workflow configuration
 workflows:
