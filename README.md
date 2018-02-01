@@ -210,12 +210,12 @@ WITH_VENDORS="true" yarn start
 [appveyor-link]: https://ci.appveyor.com/project/mkungla/aframe-webpack-boilerplate
 
 <!-- Codacy Badge Grade -->
-[codacy-grade-img]: https://api.codacy.com/project/badge/Grade/7a47a8ae8682467b9e33a3d47a6fbd54
-[codacy-grade-link]: https://www.codacy.com/app/marko-kungla/aframe-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mkungla/aframe-webpack-boilerplate&amp;utm_campaign=Badge_Grade
+[codacy-grade-img]: https://api.codacy.com/project/badge/Grade/eaf550aae1184461ada4003f544f41ec
+[codacy-grade-link]: https://www.codacy.com/app/mkungla/aframe-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mkungla/aframe-webpack-boilerplate&amp;utm_campaign=Badge_Grade
 
 <!-- Codacy Badge Coverage -->
-[coverage-img]: https://api.codacy.com/project/badge/Coverage/7a47a8ae8682467b9e33a3d47a6fbd54
-[coverage-link]: https://www.codacy.com/app/marko-kungla/aframe-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mkungla/aframe-webpack-boilerplate&amp;utm_campaign=Badge_Coverage
+[coverage-img]: https://img.shields.io/coveralls/github/mkungla/aframe-webpack-boilerplate.svg
+[coverage-link]: https://github.com/mkungla/aframe-webpack-boilerplate
 
 [dep-status-img]: https://david-dm.org/mkungla/aframe-webpack-boilerplate/status.svg
 [dep-status-link]: https://david-dm.org/mkungla/aframe-webpack-boilerplate#info=dependencies
