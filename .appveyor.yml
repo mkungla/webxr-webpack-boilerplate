@@ -7,7 +7,9 @@ build:
   verbosity: minimal
 
 install:
-  - cmd: yarn install
+  # yarn issue with cross-env
+  - npm install --global cross-env
+  - yarn install
 
 build_script:
   - yarn run build
