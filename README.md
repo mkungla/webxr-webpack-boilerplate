@@ -7,7 +7,8 @@
 
 ## Introduction
 
-The goal of A-Frame Webpack Boilerplate is to provide a high-quality, high-performance codebase to accelerate Web XR development with A-Frame. It is designed to be flexible in order to support rapid implementation and customization within your project.
+The goal of A-Frame Webpack Boilerplate is to provide a high-quality, high-performance code base to accelerate Web XR development with A-Frame.  
+It is designed to be flexible in order to support rapid implementation and customization within your project.
 
 **Build Status**
 
@@ -20,8 +21,28 @@ The goal of A-Frame Webpack Boilerplate is to provide a high-quality, high-perfo
 [![Dependencies][dep-status-img]][dep-status-link]
 [![Dev Dependencies][devdep-status-img]][devdep-status-link]
 
+---
 
-## A-Frame Project skeleton
+- [Overview](#overview)
+  * [Project structure](#project-structure)
+  * [Custom A-Frame Theme](#custom-a-frame-theme)
+- [Getting Started](#getting-started)
+  * [Fork this repository](#fork-this-repository)
+    + [(option 1) Create fork to contribute back to this repository](#-option-1--create-fork-to-contribute-back-to-this-repository)
+    + [(option 2) Create new Open Source project based on this repository](#-option-2--create-new-open-source-project-based-on-this-repository)
+    + [(option 3) Create new private project based on this repository](#-option-3--create-new-private-project-based-on-this-repository)
+  * [First run](#first-run)
+  * [Build Configuration](#build-configuration)
+    * [Add A-Frame components](#add-a-frame-components)
+    * [Add 3rd party libraries](#add-3rd-party-libraries)
+    * [Build or rebuild 3rd party libraries](build-or-rebuild-3rd-party-libraries)
+
+---
+## Overview
+> here is overview of A-Frame Webpack Boilerplate project and what's included.
+
+### Project structure
+
 - **build** development and staging build output directory
 - **devel** development related files like webpack and project configuration files.
   - **coverage** coverage report
@@ -39,37 +60,46 @@ The goal of A-Frame Webpack Boilerplate is to provide a high-quality, high-perfo
     - **shaders** custom shaders
     - **systems** custom systems
   - **api** dummy API
-  - **assets** project assets which may be processed by webpack if rule is set in webpack config
+  - **assets** project assets which may be processed by Webpack if rule is set in Webpack configuration
     - **static** all assets are just copied to {build}/assets/static
   - **js** main application
+  - **partials** partials for handlebars
+    - **aframe** partials for A-Frame scenes
+    - **html** partials for HTML pages
+    - **...** your own partials structure
   - **scenes** all your A-Frame scenes or HTML pages
   - **style** project styles
     - **config** style configuration
       - **themes** style themes
       - **vendor** vendor sass files
-    - **project** your project styles
-- **tests** testsuites.
-- **tmp** temporary and local files wich are not tracked by git.
+    - **app** your app styles
+- **tests** test suites.
+- **tmp** temporary and local files which are not tracked by git.
 
 ---
 
-## Custom A-Frame Theme
-You can change A-Frame themes by modifying SASS configuration [`$theme` variable](src/style/app-theme.scss)
-```sass
-// Color themes red !default, yellow, green, blue
-$theme: red;
-```
+### Custom A-Frame Theme
+
 | red | blue | green | yellow |
 | :---: | :---: | :---: | :---: |
 | ![Theme red][screeenshot-theme-red] | ![Theme blue][screeenshot-theme-blue]  | ![Theme -green][screeenshot-theme-green]  | ![Theme yellow][screeenshot-theme-yellow] |
 
+You can change A-Frame themes by modifying SASS configuration  `$theme` variable in [src/style/app-theme.scss](src/style/app-theme.scss)
+
+```sass
+// Color themes red !default, yellow, green, blue
+$theme: red;
+```
+
 ---
 
 ## Getting Started
+> instructions to set up your project
 
 ### Fork this repository
-> navigate to directory you keep your projects and
-> set following temporary environment variables
+> Follow one of the 3 options below
+
+> navigate to directory you keep your projects and set following temporary environment variables
 
 ```bash
 cd <your-projects>
@@ -79,10 +109,7 @@ GITHUB_USERNAME="<github-username>"
 
 *for full copy you need [git-lfs plugin for git][git-lfs-link]*
 
-#### Follow one of the 3 options below
-
-**(option 1) Create fork to contribute back to this repository**
-
+#### (option 1) Create fork to contribute back to this repository
 > clone full copy of this repository and set remotes to be able sync your repository with upstream
 
 ```bash
@@ -92,12 +119,11 @@ git remote add github/mkungla git@github.com:mkungla/aframe-webpack-boilerplate.
 ```
 <sup>and start hacking.</sup>
 
-**(option 2) Create new Open Source project based on this repository**
-
-> clone minimal copy of this repository and set remotes to your new
-> project repository you made in github project url should be in for of
-> https://github.com/$GITHUB_USERNAME/$PROJECT_NAME
-> and repo should be new (clean repository)
+#### (option 2) Create new Open Source project based on this repository
+> clone minimal copy of this repository and set remotes for your new repository.  
+> Your repository GitHub project URL should be in form of  
+> https://github.com/$GITHUB_USERNAME/$PROJECT_NAME  
+> and repository should be new (clean repository)
 
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/aframe-webpack-boilerplate.git "$PROJECT_NAME"
@@ -107,7 +133,8 @@ git push -f github/"$GITHUB_USERNAME" master
 ```
 <sup>and start hacking.</sup>
 
-**(option 3) Create new private project based on this repository**
+#### (option 3) Create new private project based on this repository
+
 
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:"$GITHUB_USERNAME"/aframe-webpack-boilerplate.git "$PROJECT_NAME"
@@ -118,7 +145,8 @@ git remote rm github/"$GITHUB_USERNAME"
 
 ### First run
 
-by default `yarn start` will not build vendor libraries and these are only built when running `yarn run build` or `yarn run dist`
+By default `yarn start` will not build vendor libraries to improve `webpack-dev-server` performance a bit.
+Vendor libraries are only built when running `yarn run build` or `yarn run dist`
 
 ```
 yarn install
@@ -128,29 +156,28 @@ yarn start
 
 ### Build Configuration
 
-**adding 3rd party libraries**
+#### Add A-Frame components
+
+```
+yarn add -D <some-aframe-component>
+```
+add import statement to `./src/aframe/aframe-base.js`
+
+#### Add 3rd party libraries
 
 ```
 yarn add -D <some-library>
 ```
 
-and import that optionally in `./src/js/vendors.js`
+optionally add import statement to `./src/js/vendors.js` if you want to bundle that dependency together with other 3rd party libraries
 
-**add A-Frame components**
+#### Build or rebuild 3rd party libraries*
 
-```
-yarn add -D <some-aframe-component>
-```
-and import that in `./src/aframe/aframe-base.js`
-
-**build or rebuild 3rd party libraries**
-
-when you want to update/rebuild vendor libraries you have to run
+when you want to update/rebuild vendor libraries you have to run `yarn run build` before `yarn start`.
 
 > - `./src/aframe-base.js` *where you import A-Frame and external A-Frame components.*
 > - `./src/js/vendors.js` *where you import any other 3rd party libraries*
 
-`yarn run build` before `yarn start`.
 
 however if you some reason want to rebuild and watch vendor libraries while
 developing you can enable that by setting environment variable.
@@ -159,13 +186,14 @@ developing you can enable that by setting environment variable.
 WITH_VENDORS="true" yarn start
 ```
 
+---
 <!-- ASSETS and LINKS -->
 <!-- License -->
 [license-img]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-link]: https://raw.githubusercontent.com/mkungla/aframe-php/master/LICENSE
 
 <!-- A-Frame -->
-[aframe-img]: https://img.shields.io/badge/a--frame-0.7.0-FC3164.svg?style=flat-square
+[aframe-img]: https://img.shields.io/badge/a--frame-0.7.1-FC3164.svg?style=flat-square
 [aframe-link]: https://aframe.io/
 [aframe-logo]: assets/images/aframe/logo-152.png
 
