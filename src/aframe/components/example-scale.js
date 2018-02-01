@@ -1,4 +1,4 @@
-const AFRAME = window.AFRAME;
+const AFRAME = window.AFRAME
 /**
  * Example component
  * https://aframe.io/docs/0.4.0/core/component.html#toc
@@ -33,7 +33,7 @@ const AFRAME = window.AFRAME;
  * }
  *
  */
-var zeroScale = 0.00001;
+var zeroScale = 0.00001
 
 AFRAME.registerComponent('example-scale', {
   // To enable multiple instancing on your component,
@@ -51,12 +51,12 @@ AFRAME.registerComponent('example-scale', {
   // Called both when the component is initialized and whenever the component’s
   // data changes (e.g, via setAttribute). Used to modify the entity.
   update () {
-    var data = this.data;
-    var object3D = this.el.object3D;
-    var x = data.x === 0 ? zeroScale : data.x;
-    var y = data.y === 0 ? zeroScale : data.y;
-    var z = data.z === 0 ? zeroScale : data.z;
-    object3D.scale.set(x, y, z);
+    var data = this.data
+    var object3D = this.el.object3D
+    var x = data.x === 0 ? zeroScale : data.x
+    var y = data.y === 0 ? zeroScale : data.y
+    var z = data.z === 0 ? zeroScale : data.z
+    object3D.scale.set(x, y, z)
   },
 
   // Called when the component detaches from the element (e.g.,
@@ -76,4 +76,4 @@ AFRAME.registerComponent('example-scale', {
 
   // Called on every update. Can be used to dynamically modify the schema.
   updateSchema () {}
-});
+})

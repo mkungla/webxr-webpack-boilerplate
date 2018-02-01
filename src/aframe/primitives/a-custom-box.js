@@ -1,9 +1,9 @@
 // A-Frame
-const AFRAME = window.AFRAME;
-var extendDeep = AFRAME.utils.extendDeep;
+const AFRAME = window.AFRAME
+let extendDeep = AFRAME.utils.extendDeep
 // The mesh mixin provides common material properties for creating mesh-based primitives.
 // This makes the material component a default component and maps all the base material properties.
-var meshMixin = AFRAME.primitives.getMeshMixin();
+let meshMixin = AFRAME.primitives.getMeshMixin()
 AFRAME.registerPrimitive('a-custom-box', extendDeep({}, meshMixin, {
   // Preset default components.
   // These components and component
@@ -19,4 +19,4 @@ AFRAME.registerPrimitive('a-custom-box', extendDeep({}, meshMixin, {
     height: 'geometry.height',
     width: 'geometry.width'
   }
-}));
+}))
