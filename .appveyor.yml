@@ -10,9 +10,8 @@ install:
   - cmd: yarn install
 
 build_script:
-  - cmd: >-
-      yarn run build
-      yarn run dist
+  - yarn run build
+  - yarn run dist
 
 test_script:
   - cmd: test:ci-on-windows
