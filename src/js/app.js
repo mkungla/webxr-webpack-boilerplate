@@ -5,6 +5,9 @@
  */
 import '../style/app-theme.scss'
 import '../style/app-theme-blue.scss'
+import '../style/app-theme-green.scss'
+import '../style/app-theme-red.scss'
+import '../style/app-theme-yellow.scss'
 
 const metadata = require('../metadata')
 

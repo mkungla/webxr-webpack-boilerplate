@@ -42,7 +42,7 @@ The goal of A-Frame Webpack Boilerplate is to provide a high-quality, high-perfo
   - **assets** project assets which may be processed by webpack if rule is set in webpack config
     - **static** all assets are just copied to {build}/assets/static
   - **js** main application
-  - **scenes** all your A-Frame scenes
+  - **scenes** all your A-Frame scenes or HTML pages
   - **style** project styles
     - **config** style configuration
       - **themes** style themes

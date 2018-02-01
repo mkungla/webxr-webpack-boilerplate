@@ -22,7 +22,7 @@ const extractBlueTheme = new ExtractTextPlugin({
 
 const extractGreenTheme = new ExtractTextPlugin({
   allChunks: true,
-  filename: 'style/app-theme-red.css'
+  filename: 'style/app-theme-green.css'
 })
 
 const extractRedTheme = new ExtractTextPlugin({
@@ -32,7 +32,7 @@ const extractRedTheme = new ExtractTextPlugin({
 
 const extractYellowTheme = new ExtractTextPlugin({
   allChunks: true,
-  filename: 'style/app-theme-red.css'
+  filename: 'style/app-theme-yellow.css'
 })
 
 let PLUGINS = [
@@ -79,12 +79,12 @@ let PLUGINS = [
     onBeforeAddPartials: function (Handlebars, partialsMap) {
       cli.info('update Handlebars partials')
     },
-    onBeforeCompile: function (Handlebars, templateContent) {
-      if (templateContent.startsWith('<a-scene')) {
-        return `{{> aframe/header}}${templateContent}{{> aframe/footer}}`
-      }
-      return `{{> html/header}}${templateContent}{{> html/footer}}`
-    },
+    // onBeforeCompile: function (Handlebars, templateContent) {
+    //   if (templateContent.startsWith('<a-scene')) {
+    //     return `{{> aframe/header}}${templateContent}{{> aframe/footer}}`
+    //   }
+    //   return `{{> html/header}}${templateContent}{{> html/footer}}`
+    // },
     onBeforeRender: function (Handlebars, data) {
       cli.info('update Handlebars data')
       data.aframe = {
