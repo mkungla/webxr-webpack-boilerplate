@@ -206,7 +206,7 @@ WITH_VENDORS="true" yarn start
 [circleci-link]: https://circleci.com/gh/okramlabs/aframe-webpack-boilerplate/tree/master
 
 <!-- appveyor -->
-[appveyor-img]: https://ci.appveyor.com/api/projects/status/8w0pjo5xs8n1wap8?svg=true
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/c8nebbmvwxby2rjd?svg=true
 [appveyor-link]: https://ci.appveyor.com/project/mkungla/aframe-webpack-boilerplate
 
 <!-- Codacy Badge Grade -->
