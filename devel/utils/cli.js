@@ -49,7 +49,7 @@ const Hr = () => {
 module.exports = {
   error: Error,
   info: Info,
-  warning: Warning,
+  warn: Warning,
   ok: Ok,
   debug: Debug,
   hr: Hr,

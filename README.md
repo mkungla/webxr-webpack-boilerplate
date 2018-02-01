@@ -20,6 +20,7 @@ The goal of A-Frame Webpack Boilerplate is to provide a high-quality, high-perfo
 [![Dependencies][dep-status-img]][dep-status-link]
 [![Dev Dependencies][devdep-status-img]][devdep-status-link]
 
+
 ## A-Frame Project skeleton
 - **build** development and staging build output directory
 - **devel** development related files like webpack and project configuration files.
@@ -50,8 +51,10 @@ The goal of A-Frame Webpack Boilerplate is to provide a high-quality, high-perfo
 - **tests** testsuites.
 - **tmp** temporary and local files wich are not tracked by git.
 
+---
+
 ## Custom A-Frame Theme
-You can change A-Frame themes by modifying SASS configuration [`$theme` variable](src/style/app-style.scss)
+You can change A-Frame themes by modifying SASS configuration [`$theme` variable](src/style/app-theme.scss)
 ```sass
 // Color themes red !default, yellow, green, blue
 $theme: red;
@@ -60,10 +63,11 @@ $theme: red;
 | :---: | :---: | :---: | :---: |
 | ![Theme red][screeenshot-theme-red] | ![Theme blue][screeenshot-theme-blue]  | ![Theme -green][screeenshot-theme-green]  | ![Theme yellow][screeenshot-theme-yellow] |
 
+---
 
 ## Getting Started
 
-### fork this repository
+### Fork this repository
 > navigate to directory you keep your projects and
 > set following temporary environment variables
 
@@ -75,7 +79,7 @@ GITHUB_USERNAME="<github-username>"
 
 *for full copy you need [git-lfs plugin for git][git-lfs-link]*
 
-### follow one of the 3 options below
+#### Follow one of the 3 options below
 
 **(option 1) Create fork to contribute back to this repository**
 
@@ -111,6 +115,49 @@ cd "$PROJECT_NAME"
 git remote rm github/"$GITHUB_USERNAME"
 ```
 <sup>and start hacking.</sup>
+
+### First run
+
+by default `yarn start` will not build vendor libraries and these are only built when running `yarn run build` or `yarn run dist`
+
+```
+yarn install
+yarn run build
+yarn start
+```
+
+### Build Configuration
+
+**adding 3rd party libraries**
+
+```
+yarn add -D <some-library>
+```
+
+and import that optionally in `./src/js/vendors.js`
+
+**add A-Frame components**
+
+```
+yarn add -D <some-aframe-component>
+```
+and import that in `./src/aframe/aframe-base.js`
+
+**build or rebuild 3rd party libraries**
+
+when you want to update/rebuild vendor libraries you have to run
+
+> - `./src/aframe-base.js` *where you import A-Frame and external A-Frame components.*
+> - `./src/js/vendors.js` *where you import any other 3rd party libraries*
+
+`yarn run build` before `yarn start`.
+
+however if you some reason want to rebuild and watch vendor libraries while
+developing you can enable that by setting environment variable.
+
+```
+WITH_VENDORS="true" yarn start
+```
 
 <!-- ASSETS and LINKS -->
 <!-- License -->
@@ -150,7 +197,7 @@ git remote rm github/"$GITHUB_USERNAME"
 [git-lfs-link]: https://git-lfs.github.com/
 
 <!-- images -->
-[screeenshot-theme-red]: assets/static/images/screenshots/theme-red.png
-[screeenshot-theme-blue]: assets/static/images/screenshots/theme-blue.png
-[screeenshot-theme-green]: assets/static/images/screenshots/theme-green.png
-[screeenshot-theme-yellow]: assets/static/images/screenshots/theme-yellow.png
+[screeenshot-theme-red]: res/images/screenshots/theme-red.png
+[screeenshot-theme-blue]: res/images/screenshots/theme-blue.png
+[screeenshot-theme-green]: res/images/screenshots/theme-green.png
+[screeenshot-theme-yellow]: res/images/screenshots/theme-yellow.png

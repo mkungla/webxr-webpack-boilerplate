@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+/**
+ * A-Frame color themes
+ *
+ * available themes are blue, green, red, yellow
+ * That defines which sass theme will be imported from ./config/color-themes
+ */
+ // set theme blue when building only current theme
+ $theme: red;
+
+ ////////////////////////////////////////////////////////////////////////////////
+ // project styles
+ @import 'app/entry';

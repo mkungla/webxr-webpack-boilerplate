@@ -8,7 +8,16 @@
 @import 'variables';
 
 // Import themes
-@import 'themes/red',
+@import 'themes/default';
+@import
   'themes/blue',
   'themes/green',
   'themes/yellow';
+
+/**
+ * VENDORS
+ */
+// A-Frame
+@import
+  'vendor/aframevr/aframe',
+  'vendor/aframevr/rStats';

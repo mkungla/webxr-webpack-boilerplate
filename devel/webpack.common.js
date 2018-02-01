@@ -7,12 +7,32 @@ const HandlebarsPlugin = require('handlebars-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const aframeVersion = require('aframe/package.json').version
 const isDev = process.env.NODE_ENV !== 'production'
-
+const fs = require('fs')
 const buildDir = (isDev) ? 'build' : 'dist'
 
-const extractStyle = new ExtractTextPlugin({
+const extractDefaultTheme = new ExtractTextPlugin({
   allChunks: true,
-  filename: 'style/app-style.css'
+  filename: 'style/app-theme.css'
+})
+
+const extractBlueTheme = new ExtractTextPlugin({
+  allChunks: true,
+  filename: 'style/app-theme-blue.css'
+})
+
+const extractGreenTheme = new ExtractTextPlugin({
+  allChunks: true,
+  filename: 'style/app-theme-red.css'
+})
+
+const extractRedTheme = new ExtractTextPlugin({
+  allChunks: true,
+  filename: 'style/app-theme-red.css'
+})
+
+const extractYellowTheme = new ExtractTextPlugin({
+  allChunks: true,
+  filename: 'style/app-theme-red.css'
 })
 
 let PLUGINS = [
@@ -21,15 +41,25 @@ let PLUGINS = [
     PROJECT_NAME: JSON.stringify(packageJson.name),
     PROJECT_ISSUE_URL: JSON.stringify(packageJson.bugs.url)
   }),
-  new CleanWebpackPlugin([
-    path.join(buildDir, '*')], {
-      root: path.join(__dirname, '../'),
-      exclude: ['.gitkeep'],
-      verbose: true,
-      dry: false
-    }
-  ),
-  extractStyle,
+  new CleanWebpackPlugin([buildDir, path.join(buildDir, 'js')], {
+    root: path.join(__dirname, '../'),
+    exclude: [
+      '.gitkeep',
+      'js',
+      'aframe-base.js',
+      'aframe-base.js.map',
+      'vendors.js',
+      'vendors.js.map'
+    ],
+    verbose: true,
+    dry: false
+  }),
+
+  extractDefaultTheme,
+  extractBlueTheme,
+  extractGreenTheme,
+  extractRedTheme,
+  extractYellowTheme,
   new HandlebarsPlugin({
     // path to hbs scene entry file(s)
     entry: path.join(process.cwd(), 'src', 'scenes', '*.hbs'),
@@ -47,7 +77,7 @@ let PLUGINS = [
       cli.info('Handlebars version: ', Handlebars.VERSION)
     },
     onBeforeAddPartials: function (Handlebars, partialsMap) {
-      cli.info('update partials')
+      cli.info('update Handlebars partials')
     },
     onBeforeCompile: function (Handlebars, templateContent) {
       if (templateContent.startsWith('<a-scene')) {
@@ -56,6 +86,7 @@ let PLUGINS = [
       return `{{> html/header}}${templateContent}{{> html/footer}}`
     },
     onBeforeRender: function (Handlebars, data) {
+      cli.info('update Handlebars data')
       data.aframe = {
         'version': aframeVersion
       }
@@ -65,17 +96,39 @@ let PLUGINS = [
     },
     // onBeforeSave: function (Handlebars, resultHtml, filename) {},
     onDone: function (Handlebars, filename) {
-      cli.info(`updated: ${filename}`)
+      cli.ok(`updated: ${filename}`)
     }
   })
 ]
 
 let entryPoints = {
-  'js/vendors.js': path.join(process.cwd(), 'src', 'js', 'vendors.js'),
-  'js/aframe-base.js': './src/aframe/aframe-base.js',
   'js/aframe-app.js': './src/aframe/aframe-app.js',
-  'js/app.js': './src/js/app.js',
-  'style/app-style.css.js': './src/style/app-style.scss'
+  'js/app.js': './src/js/app.js'
+}
+
+if (process.env.WITH_VENDORS === 'true') {
+  cli.info('rebuilding vendors')
+  entryPoints['js/vendors.js'] = path.join(process.cwd(), 'src', 'js', 'vendors.js')
+  entryPoints['js/aframe-base.js'] = path.join(process.cwd(), 'src', 'aframe', 'aframe-base.js')
+} else {
+  const vendorsBundle = path.join(process.cwd(), 'build', 'js', 'vendors.js')
+  const aframeBundle = path.join(process.cwd(), 'build', 'js', 'aframe-base.js')
+  cli.info('ignoring vendors')
+  let readyToStart = true
+  if (!fs.existsSync(vendorsBundle)) {
+    readyToStart = false
+    cli.warn('missing: ', vendorsBundle)
+  }
+  if (readyToStart && !fs.existsSync(aframeBundle)) {
+    readyToStart = false
+    cli.warn('missing: ', aframeBundle)
+  }
+  if (!readyToStart) {
+    cli.warn('yarn start is not rebuilding vendor libraries')
+    cli.warn('run `yarn run build` first to build vendor libraries')
+    cli.warn('and then run `yarn start` again.')
+    process.exit(1)
+  }
 }
 
 cli.info(`env is ${process.env.NODE_ENV}`)
@@ -98,8 +151,9 @@ module.exports = {
           }
         }
       }, {
-        test: /\.scss$/,
-        use: extractStyle.extract({
+        // main theme extracted to style/app-theme.css
+        test: /app-theme.scss$/,
+        use: extractDefaultTheme.extract({
           fallback: 'style-loader',
           use: [
             { loader: 'css-loader', options: { sourceMap: isDev } },
@@ -116,8 +170,9 @@ module.exports = {
           ]
         })
       }, {
+        // additional css extracted to style/app-theme.css
         test: /\.css$/,
-        use: extractStyle.extract({
+        use: extractDefaultTheme.extract({
           fallback: 'style-loader',
           use: [
             { loader: 'css-loader', options: { sourceMap: isDev } },
@@ -130,6 +185,82 @@ module.exports = {
               }
             },
             'resolve-url-loader'
+          ]
+        })
+      }, {
+        // blue theme extracted to style/app-theme-blue.css
+        test: /app-theme-blue.scss$/,
+        use: extractBlueTheme.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader', options: { sourceMap: isDev } },
+            { loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                plugins: (loader) => [
+                  require('autoprefixer')({browsers: ['last 3 versions', 'iOS 9']})
+                ]
+              }
+            },
+            'resolve-url-loader',
+            { loader: 'sass-loader', options: { outputStyle: (isDev ? 'expanded' : 'compressed') } }
+          ]
+        })
+      }, {
+        // blue theme extracted to style/app-theme-blue.css
+        test: /app-theme-green.scss$/,
+        use: extractGreenTheme.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader', options: { sourceMap: isDev } },
+            { loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                plugins: (loader) => [
+                  require('autoprefixer')({browsers: ['last 3 versions', 'iOS 9']})
+                ]
+              }
+            },
+            'resolve-url-loader',
+            { loader: 'sass-loader', options: { outputStyle: (isDev ? 'expanded' : 'compressed') } }
+          ]
+        })
+      }, {
+        // blue theme extracted to style/app-theme-blue.css
+        test: /app-theme-red.scss$/,
+        use: extractRedTheme.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader', options: { sourceMap: isDev } },
+            { loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                plugins: (loader) => [
+                  require('autoprefixer')({browsers: ['last 3 versions', 'iOS 9']})
+                ]
+              }
+            },
+            'resolve-url-loader',
+            { loader: 'sass-loader', options: { outputStyle: (isDev ? 'expanded' : 'compressed') } }
+          ]
+        })
+      }, {
+        // blue theme extracted to style/app-theme-blue.css
+        test: /app-theme-yellow.scss$/,
+        use: extractYellowTheme.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: 'css-loader', options: { sourceMap: isDev } },
+            { loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                plugins: (loader) => [
+                  require('autoprefixer')({browsers: ['last 3 versions', 'iOS 9']})
+                ]
+              }
+            },
+            'resolve-url-loader',
+            { loader: 'sass-loader', options: { outputStyle: (isDev ? 'expanded' : 'compressed') } }
           ]
         })
       }, {
