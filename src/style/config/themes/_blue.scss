@@ -1,0 +1,10 @@
+////////////////////////////////////////////////////////////////////////////////
+// BLUE THEME configuration
+@if $theme == blue {
+  $color-bg-primary:            $color-blue;
+  $color-text-primary:          darken($color-blue, 35%);
+  $color-text-primary-shadow:   darken($color-blue, 15%);
+  $color-text-alert:            darken($color-red, 35%);
+  $color-a-bg:                  rgba($color-bg-primary, 30%);
+  $color-a-bg-active:           darken($color-a-bg, 30%);
+}

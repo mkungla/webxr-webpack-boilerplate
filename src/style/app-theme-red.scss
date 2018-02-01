@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+// set theme red when building only current theme
+$theme: red !default;
+
+////////////////////////////////////////////////////////////////////////////////
+// project styles
+@import 'app/entry';

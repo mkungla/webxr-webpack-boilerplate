@@ -1,0 +1,10 @@
+////////////////////////////////////////////////////////////////////////////////
+// YELLOW THEME configuration
+@if $theme == yellow {
+  $color-bg-primary:            $color-yellow;
+  $color-text-primary:          darken($color-blue, 35%);
+  $color-text-primary-shadow:   darken($color-yellow, 15%);
+  $color-text-alert:            darken($color-red, 35%);
+  $color-a-bg:                  rgba($color-bg-primary, 30%);
+  $color-a-bg-active:           darken($color-a-bg, 30%);
+}

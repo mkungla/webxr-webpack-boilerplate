@@ -1,14 +1,22 @@
-# Main gitignore file, each subdirectory may contain
-# git ignore files specific for the path.
-
-# ignore files may be created by developers environment
-# and based on choice of editor, Please enhance this section
-# if notice that your editor or any of node modules is creating
-# files which should not end up in repository.
-node_modules/
-.project
-.settings/
-.idea/
+################################################################################
+# FILES to ignore
+################################################################################
+# Files to ignore
+*.sw[mnop]
+.DS_Store
 *.log
-*.pid
-*.seed
+npm-debug.log*
+
+################################################################################
+# DIRECTORIES to ignore
+################################################################################
+**/[Bb]uild/*
+**/dist/*
+**/devel/coverage/*
+**/[Tt]mp/*
+**/node_modules/*
+
+################################################################################
+# exception rules
+################################################################################
+!**/*.gitkeep

@@ -1,0 +1,10 @@
+////////////////////////////////////////////////////////////////////////////////
+// GREEN THEME configuration
+@if $theme == green {
+  $color-bg-primary:            $color-green;
+  $color-text-primary:          darken($color-green, 45%);
+  $color-text-primary-shadow:   darken($color-green, 15%);
+  $color-text-alert:            darken($color-red, 35%);
+  $color-a-bg:                  rgba($color-bg-primary, 30%);
+  $color-a-bg-active:           darken($color-a-bg, 30%);
+}

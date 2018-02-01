@@ -1,5 +1,0 @@
-config/
-devel/
-dist/
-node_modules/
-tmp/
