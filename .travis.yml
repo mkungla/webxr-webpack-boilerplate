@@ -127,7 +127,9 @@ jobs:
       deploy:
         skip_cleanup: true
         provider: script
-        script: echo "deploy https://mkungla.github.io/aframe-webpack-boilerplate/"
+        script:
+          - git checkout -b gh-pages
+          - git push origin gh-pages
         on:
           branch: master
       after_deploy: echo "create new release production (create new release)"
