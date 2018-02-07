@@ -1,54 +1,121 @@
+################################################################################
 # Travis CI configuration
-language: node_js
+# Docs: https://docs.travis-ci.com/
+# About Stages: https://docs.travis-ci.com/user/build-stages/
+#
+sudo: false
+dist: trusty
 
-git:
-  depth: 10
+# https://docs.travis-ci.com/user/notifications/
+notifications:
+  email: false
 
-addons:
-  firefox: 'latest'
 
-# You can choose Node.js and io.js versions to run your tests
-# by adding them to the node_js section of your .travis.yml:
-# docs: https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Choosing-Node-versions-to-test-against
-node_js:
-  - '6'
-
-# You probably want to cache node modules to speed up builds
+# https://docs.travis-ci.com/user/caching/
 cache:
-  yarn: true
   directories:
     - node_modules
+  timeout: 180
+  yarn: true
 
-# Travis CI environment setup
-install:
-  - yarn install
+################################################################################
+# Templates
+templates:
+  - &tmpl-common-setup
+    # You can choose Node.js and io.js versions to run your tests
+    # by adding them to the node_js section of your .travis.yml:
+    # docs: https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Choosing-Node-versions-to-test-against
+    language: node_js
+    node_js:
+      - node
+    install: yarn install
+  - &tmpl-test-deployment
+    stage: test deployments
+    language: node_js
+    node_js:
+      - node
+    script: 'curl https://mkungla.github.io/aframe-webpack-boilerplate/'
+
+# defaults
+before_install: skip
+install: skip
+before_script: skip
+script: skip
+after_success: skip
+after_failure: skip
+after_script: skip
+
+################################################################################
+# stages
+stages:
+  # verify pull request
+  - name: lint
+    # if: (type = pull_request) AND (branch = master)
+    if: (push, pull_request)  AND (branch = master)
+  # test source
+  - name: test
+    if: type IN (push, pull_request)
+  # build site
+  - name: push to okramlabs fork
+    if: (type = push) AND (branch = master OR tag IS present)
+  # deploy okramlabs.github.io
+  - name: deploy staging
+    if: (repo = okramlabs/aframe-webpack-boilerplate) AND (type = push) AND (branch = master) AND (NOT tag IS present)
+  # deploy okramlabs.github.io (only on tags on upstream)
+  - name: deploy production
+    if: (repo = mkungla/aframe-webpack-boilerplate) AND (NOT type = pull_request) AND (tag IS present)
+
+################################################################################
+# jobs
+jobs:
+  include:
+    # verify A-Frame pull request
+    - stage: lint
+      <<: *tmpl-common-setup
+      script: yarn run lint
+    # run primary tests
+    - stage: test
+      <<: *tmpl-common-setup
+      script: yarn run test:ci-on-linux
+      # Do something when everything was successful!
+      after_success:
+        # For example here we upload covergae report to codacy
+        - cat ./devel/coverage/lcov.info | node_modules/.bin/codacy-coverage --token $CODACY_PROJECT_TOKEN
+    # build A-Frame
+    - stage: push to okramlabs fork
+      <<: *tmpl-common-setup
+      script:
+        - git remote add --origin github/okramlabs git@github.com:okramlabs/aframe-webpack-boilerplate.git
+        - git push github/okramlabs master
+    # deploy preview
+    - stage: deploy staging
+      <<: *tmpl-common-setup
+      script: echo "deploy staging"
+      before_deploy: echo "before_deploy okramlabs.github.src"
+      deploy:
+        skip_cleanup: true
+        provider: script
+        script: echo "deploy okramlabs.github.io"
+        on:
+          branch: master
+      after_deploy: echo "after_deploy okramlabs.github.src"
+    # deploy new release + npm package
+    - stage: deploy production
+      <<: *tmpl-common-setup
+      script: echo "deploy production"
+      before_deploy: echo "before_deploy production"
+      deploy:
+        skip_cleanup: true
+        provider: script
+        script: echo "deploy https://mkungla.github.io/aframe-webpack-boilerplate/"
+        on:
+          branch: master
+      after_deploy: echo "create new release production (create new release)"
 
 # Your before scripts
 # You can run custom commands before the installation step (before_install),
 # and before (before_script) or after (after_script) the script step.
 # docs: https://docs.travis-ci.com/user/customizing-the-build#The-Build-Lifecycle
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
-# All commands executed should be present in your package.json
-# CI_JOB is job matrix which we define below
-script: yarn run $CI_JOB
-
-env:
-  # Define our job matrix
-  matrix:
-    # Lint sass and js
-    - CI_JOB="lint"
-    # Run tests and generate coverage report
-    - CI_JOB="test:ci-on-linux"
-
-# run that job only on master branch
-branches:
-  only:
-    - master
-
-# Do something when everything was successful!
-after_success:
-  # For example here we upload covergae report to codacy
-  - cat ./devel/coverage/lcov.info | node_modules/.bin/codacy-coverage --token $CODACY_PROJECT_TOKEN
+# before_script:
+#   - export DISPLAY=:99.0
+#   - sh -e /etc/init.d/xvfb start
