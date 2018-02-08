@@ -10,7 +10,6 @@ dist: trusty
 notifications:
   email: false
 
-
 # https://docs.travis-ci.com/user/caching/
 cache:
   directories:
@@ -66,14 +65,14 @@ stages:
     # if: (type = pull_request) AND (branch = master)
     if: (push, pull_request) AND (branch = master)
   # build site
-  - name: push to okramlabs fork
-    if: (repo = mkungla/aframe-webpack-boilerplate) AND (type = push) AND (branch = master OR tag IS present)
-  # deploy okramlabs.github.io
-  - name: deploy staging
-    if: (repo = mkungla/aframe-webpack-boilerplate) AND (type = push) AND (branch = master) AND (NOT tag IS present)
-  # deploy okramlabs.github.io (only on tags on upstream)
-  - name: deploy production
-    if: (repo = mkungla/aframe-webpack-boilerplate) AND (NOT type = pull_request) AND (tag IS present)
+  # - name: push to okramlabs fork
+  #   if: (repo = mkungla/aframe-webpack-boilerplate) AND (type = push) AND (branch = master OR tag IS present)
+  # # deploy okramlabs.github.io
+  # - name: deploy staging
+  #   if: (repo = mkungla/aframe-webpack-boilerplate) AND (type = push) AND (branch = master) AND (NOT tag IS present)
+  # # deploy okramlabs.github.io (only on tags on upstream)
+  # - name: deploy production
+  #   if: (repo = mkungla/aframe-webpack-boilerplate) AND (NOT type = pull_request) AND (tag IS present)
 
 ################################################################################
 # jobs
@@ -84,55 +83,55 @@ jobs:
       env: JOB_NAME=lint
       <<: *tmpl-common-setup
       script: yarn run lint
-    # run primary tests
-    - <<: *tmpl-common-setup
-      env: JOB_NAME=test:ci-on-linux
-      script: yarn run test:ci-on-linux
-      # Do something when everything was successful!
-      after_success:
-        # For example here we upload covergae report to codacy
-        - cat ./devel/coverage/lcov.info | node_modules/.bin/codacy-coverage --token $CODACY_PROJECT_TOKEN
+    # # run primary tests
+    # - <<: *tmpl-common-setup
+    #   env: JOB_NAME=test:ci-on-linux
+    #   script: yarn run test:ci-on-linux
+    #   # Do something when everything was successful!
+    #   after_success:
+    #     # For example here we upload covergae report to codacy
+    #     - cat ./devel/coverage/lcov.info | node_modules/.bin/codacy-coverage --token $CODACY_PROJECT_TOKEN
     # build A-Frame
-    - stage: push to okramlabs fork
-      <<: *tmpl-okramlabs-setup
-      script:
-        - git remote add github/okramlabs git@github.com:okramlabs/aframe-webpack-boilerplate.git
-        - git fetch github/okramlabs
-        - git checkout -b push-to-okramlabs $TRAVIS_COMMIT
-        - git rebase -i github/okramlabs/master
-        - git push github/okramlabs master
+    # - stage: push to okramlabs fork
+    #   <<: *tmpl-okramlabs-setup
+    #   script:
+    #     - git remote add github/okramlabs git@github.com:okramlabs/aframe-webpack-boilerplate.git
+    #     - git fetch github/okramlabs
+    #     - git checkout -b push-to-okramlabs $TRAVIS_COMMIT
+    #     - git rebase -i github/okramlabs/master
+    #     - git push github/okramlabs master
     # deploy preview
-    - stage: deploy staging
-      <<: *tmpl-ssh-setup
-      <<: *tmpl-common-setup
-      script: echo "deploy staging"
-      before_deploy: echo "before_deploy okramlabs.github.src"
-      deploy:
-        skip_cleanup: true
-        provider: script
-        script:
-          - git remote add github/okramlabs git@github.com:okramlabs/aframe-webpack-boilerplate.git
-          - git fetch github/okramlabs
-          - git checkout -b push-to-okramlabs $TRAVIS_COMMIT
-          - git push github/okramlabs gh-pages
-        on:
-          branch: master
-      after_deploy: echo "after_deploy okramlabs.github.src"
+    # - stage: deploy staging
+    #   <<: *tmpl-ssh-setup
+    #   <<: *tmpl-common-setup
+    #   script: echo "deploy staging"
+    #   before_deploy: echo "before_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
+    #   deploy:
+    #     skip_cleanup: true
+    #     provider: script
+    #     script:
+    #       - git remote add github/okramlabs git@github.com:okramlabs/aframe-webpack-boilerplate.git
+    #       - git fetch github/okramlabs
+    #       - git checkout -b push-to-okramlabs $TRAVIS_COMMIT
+    #       - git push github/okramlabs gh-pages
+    #     on:
+    #       branch: master
+    #   after_deploy: echo "after_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
     # deploy new release + npm package
-    - stage: deploy production
-      <<: *tmpl-ssh-setup
-      <<: *tmpl-common-setup
-      script: echo "deploy production"
-      before_deploy: echo "before_deploy production"
-      deploy:
-        skip_cleanup: true
-        provider: script
-        script:
-          - git checkout -b gh-pages
-          - git push origin gh-pages
-        on:
-          branch: master
-      after_deploy: echo "create new release production (create new release)"
+    # - stage: deploy production
+    #   <<: *tmpl-ssh-setup
+    #   <<: *tmpl-common-setup
+    #   script: echo "deploy production"
+    #   before_deploy: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
+    #   deploy:
+    #     skip_cleanup: true
+    #     provider: script
+    #     script:
+    #       - git checkout -b gh-pages
+    #       - git push origin gh-pages
+    #     on:
+    #       branch: master
+    #   after_deploy: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
 
 # Your before scripts
 # You can run custom commands before the installation step (before_install),
