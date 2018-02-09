@@ -71,8 +71,8 @@ stages:
   - name: deploy staging
     if: (repo = mkungla/aframe-webpack-boilerplate) AND (type = push) AND (branch = master) AND (NOT tag IS present)
   # deploy okramlabs.github.io (only on tags on upstream)
-  # - name: deploy production
-  #   if: (repo = mkungla/aframe-webpack-boilerplate) AND (NOT type = pull_request) AND (tag IS present)
+  - name: deploy production
+    if: (repo = mkungla/aframe-webpack-boilerplate) AND (NOT type = pull_request) AND (tag IS present)
 
 ################################################################################
 # jobs
@@ -121,20 +121,20 @@ jobs:
           - git push -f github/okramlabs gh-pages
       after_deploy: echo "after_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
     # deploy new release + npm package
-    # - stage: deploy production
-    #   <<: *tmpl-ssh-setup
-    #   <<: *tmpl-common-setup
-    #   script: echo "deploy production"
-    #   before_deploy: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
-    #   deploy:
-    #     skip_cleanup: true
-    #     provider: script
-    #     script:
-    #       - git checkout -b gh-pages
-    #       - git push origin gh-pages
-    #     on:
-    #       branch: master
-    #   after_deploy: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
+    - stage: deploy production
+      <<: *tmpl-ssh-setup
+      <<: *tmpl-common-setup
+      script: echo "deploy production"
+      before_deploy: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
+      deploy:
+        skip_cleanup: true
+        provider: script
+        script:
+          - git checkout -b push-to-gh-pages $TRAVIS_COMMIT
+          - git push origin gh-pages
+        on:
+          tags: true
+      after_deploy: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
 
 # Your before scripts
 # You can run custom commands before the installation step (before_install),
