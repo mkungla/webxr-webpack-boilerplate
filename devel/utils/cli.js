@@ -3,10 +3,11 @@
 const chalk = require('chalk')
 const ip = require('ip')
 const hrLine = chalk.magenta('\n=================================================================================')
+const packageName = require('../../package').name
 
 const Ok = (...message) => {
   console.log(
-    chalk.bold.magenta('[ A-Frame ]'),
+    chalk.bold.magenta(`[ ${packageName} ] `),
     chalk.bold.green('\u2714'),
     chalk.bold.white(message)
   )
@@ -14,7 +15,7 @@ const Ok = (...message) => {
 
 const Error = (...message) => {
   console.error(
-    chalk.bold.magenta('[ A-Frame ] '),
+    chalk.bold.magenta(`[ ${packageName} ] `),
     chalk.bold.red('\u2718'),
     chalk.bold.white(message)
   )
@@ -22,7 +23,7 @@ const Error = (...message) => {
 
 const Info = (...message) => {
   console.info(
-    chalk.bold.magenta('[ A-Frame ]'),
+    chalk.bold.magenta(`[ ${packageName} ] `),
     chalk.bold.blue('\u26A0'),
     chalk.bold.white(message)
   )
@@ -30,7 +31,7 @@ const Info = (...message) => {
 
 const Warning = (...message) => {
   console.warn(
-    chalk.bold.magenta('[ A-Frame ]'),
+    chalk.bold.magenta(`[ ${packageName} ] `),
     chalk.bold.yellow('\u26A0'),
     chalk.bold.white(message)
   )
@@ -38,7 +39,7 @@ const Warning = (...message) => {
 
 const Debug = (...message) => {
   console.log(
-    chalk.bold.magenta('[ A-Frame ]'),
+    chalk.bold.magenta(`[ ${packageName} ] `),
     chalk.bold.gray('\u2699'),
     chalk.bold(message)
   )
