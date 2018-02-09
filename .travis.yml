@@ -109,32 +109,36 @@ jobs:
     - stage: deploy staging
       <<: *tmpl-ssh-setup
       <<: *tmpl-common-setup
-      script: echo "deploy staging"
-      before_deploy: echo "before_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
-      deploy:
-        skip_cleanup: true
-        provider: script
-        script:
-          - git remote add github/okramlabs git@github.com:okramlabs/aframe-webpack-boilerplate.git
-          - git fetch github/okramlabs
-          - git checkout -b push-to-okramlabs $TRAVIS_COMMIT
-          - git push -f github/okramlabs gh-pages
-      after_deploy: echo "after_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
+      before_script: echo "before_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
+      script:
+        - git remote add github/okramlabs git@github.com:okramlabs/aframe-webpack-boilerplate.git
+        - git fetch github/okramlabs
+        - git checkout -b push-to-okramlabs $TRAVIS_COMMIT
+        - git push -f github/okramlabs gh-pages
+      after_script: echo "after_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
+      # before_deploy: echo "before_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
+      # deploy:
+      #   skip_cleanup: true
+      #   provider: script
+      #   script: ...
+      # after_deploy: echo "after_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
     # deploy new release + npm package
     - stage: deploy production
       <<: *tmpl-ssh-setup
       <<: *tmpl-common-setup
-      script: echo "deploy production"
-      before_deploy: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
-      deploy:
-        skip_cleanup: true
-        provider: script
-        script:
-          - git checkout -b push-to-gh-pages $TRAVIS_COMMIT
-          - git push origin gh-pages
-        on:
-          tags: true
-      after_deploy: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
+      before_script: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
+      script:
+        - git checkout -b push-to-gh-pages $TRAVIS_COMMIT
+        - git push origin gh-pages
+      after_script: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
+      # before_deploy: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
+      # deploy:
+      #   skip_cleanup: true
+      #   provider: script
+      #   script: ...
+      #   on:
+      #     tags: true
+      # after_deploy: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
 
 # Your before scripts
 # You can run custom commands before the installation step (before_install),

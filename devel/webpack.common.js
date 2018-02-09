@@ -88,7 +88,6 @@ let PLUGINS = [
     //   return `{{> html/header}}${templateContent}{{> html/footer}}`
     // },
     onBeforeRender: function (Handlebars, data) {
-      cli.info('update Handlebars data')
       data.aframe = {
         'version': aframeVersion
       }
