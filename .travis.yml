@@ -129,9 +129,11 @@ jobs:
         - git fetch github/okramlabs
         - git checkout -b gh-pages github/okramlabs/gh-pages
         - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
-        - git merge prepare-deploy --squash --allow-unrelated-histories
         - git add -A
         - git commit -m"$COMMIT_MSG"
+        - git merge prepare-deploy --squash --allow-unrelated-histories
+        - git add -A
+        - git commit --amend --no-edit
         # deploy
         - git push github/okramlabs gh-pages
       after_script: echo "after_script https://okramlabs.github.io/aframe-webpack-boilerplate"
@@ -147,9 +149,8 @@ jobs:
       <<: *tmpl-common-setup
       before_script: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
       script:
-        - git checkout -b push-to-gh-page $TRAVIS_COMMIT
-        - git branch -u origin/gh-pages
-        - git push -f origin HEAD:gh-pages
+        - git checkout -b prepare-deploy $TRAVIS_COMMIT
+
       after_script: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
       # before_deploy: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
       # deploy:
