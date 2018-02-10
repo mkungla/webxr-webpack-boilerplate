@@ -161,6 +161,7 @@ jobs:
             GIT_COMMITTER_NAME="howi-bot";
             GIT_COMMITTER_EMAIL="howi@okramlabs.com";' --subdirectory-filter deploy prepare-deploy
         # update gh-pages
+        - git fetch --all
         - git checkout -b gh-pages origin/gh-pages
         - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
         - git add -A
