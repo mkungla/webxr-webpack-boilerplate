@@ -149,10 +149,10 @@ jobs:
       before_script: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
       script:
         # build and prepare
-        - git checkout -b prepare-deploy $TRAVIS_COMMIT
+        - git checkout -b prepare-deploy master
         - yarn install
         - yarn run dist
-        - mv $TRAVIS_BUILD_DIR/build $TRAVIS_BUILD_DIR/deploy
+        - mv $TRAVIS_BUILD_DIR/dist $TRAVIS_BUILD_DIR/deploy
         - git add -A
         - BUILDREF="$TRAVIS_TAG :bookmark:"
         - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/mkungla/aframe-webpack-boilerplate/commit/$TRAVIS_COMMIT"
