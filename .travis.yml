@@ -116,7 +116,6 @@ jobs:
         - yarn install
         - yarn run build
         - mv $TRAVIS_BUILD_DIR/build $TRAVIS_BUILD_DIR/deploy
-        - echo "**/node_modules/*" > $TRAVIS_BUILD_DIR/.gitignore
         - git add -A
         - BUILDREF="$TRAVIS_COMMIT :bookmark:"
         - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/mkungla/aframe-webpack-boilerplate/commit/$TRAVIS_COMMIT"
@@ -149,7 +148,28 @@ jobs:
       <<: *tmpl-common-setup
       before_script: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
       script:
+        # build and prepare
         - git checkout -b prepare-deploy $TRAVIS_COMMIT
+        - yarn install
+        - yarn run build
+        - mv $TRAVIS_BUILD_DIR/build $TRAVIS_BUILD_DIR/deploy
+        - git add -A
+        - BUILDREF="$TRAVIS_TAG :bookmark:"
+        - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/mkungla/aframe-webpack-boilerplate/commit/$TRAVIS_COMMIT"
+        - git commit -m"$COMMIT_MSG"
+        - git filter-branch --prune-empty --env-filter '
+            GIT_COMMITTER_NAME="howi-bot";
+            GIT_COMMITTER_EMAIL="howi@okramlabs.com";' --subdirectory-filter deploy prepare-deploy
+        # update gh-pages
+        - git checkout -b gh-pages origin/gh-pages
+        - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
+        - git add -A
+        - git commit -m"$COMMIT_MSG"
+        - git merge prepare-deploy --squash --allow-unrelated-histories
+        - git add -A
+        - git commit --amend --no-edit
+        # deploy
+        - git push
 
       after_script: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
       # before_deploy: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
