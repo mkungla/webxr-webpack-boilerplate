@@ -173,21 +173,18 @@ module.exports = {
       }, {
         // additional css extracted to style/app-theme.css
         test: /\.css$/,
-        use: extractDefaultTheme.extract({
-          fallback: 'style-loader',
-          use: [
-            { loader: 'css-loader', options: { sourceMap: isDev } },
-            { loader: 'postcss-loader',
-              options: {
-                sourceMap: true,
-                plugins: (loader) => [
-                  require('autoprefixer')({browsers: ['last 3 versions', 'iOS 9']})
-                ]
-              }
-            },
-            'resolve-url-loader'
-          ]
-        })
+        use: [
+          { loader: 'css-loader', options: { sourceMap: isDev } },
+          { loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              plugins: (loader) => [
+                require('autoprefixer')({browsers: ['last 3 versions', 'iOS 9']})
+              ]
+            }
+          },
+          'resolve-url-loader'
+        ]
       }, {
         // blue theme extracted to style/app-theme-blue.css
         test: /app-theme-blue.scss$/,

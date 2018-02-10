@@ -11,7 +11,7 @@ import '../style/app-theme-yellow.scss'
 
 const metadata = require('../metadata')
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production' && typeof AFRAME !== 'undefined') {
   const info = AFRAME.utils.debug(`${PROJECT_NAME}:info`)
   info('Looks like we are in development mode!')
   info(`Version: ${PROJECT_VERSION}-dev`)

@@ -33,7 +33,7 @@
     "lint": "npm-run-all lint:*",
     "lint:stylelint": "stylelint './src/app/sass/**/*.scss' --syntax scss --config ./config/stylelint.json",
     "lint:standard": "standard -v | snazzy",
-    "start": "webpack-dev-server --config ./devel/webpack.dev.js",
+    "start": "NODE_ENV=development webpack-dev-server --config ./devel/webpack.dev.js",
     "test:ci-on-linux": "echo \"run tests\"",
     "test:ci-on-mac": "echo \"run tests\"",
     "test:ci-on-windows": "echo \"run tests\"",
