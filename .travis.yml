@@ -151,7 +151,7 @@ jobs:
         # build and prepare
         - git checkout -b prepare-deploy $TRAVIS_COMMIT
         - yarn install
-        - yarn run build
+        - yarn run dist
         - mv $TRAVIS_BUILD_DIR/build $TRAVIS_BUILD_DIR/deploy
         - git add -A
         - BUILDREF="$TRAVIS_TAG :bookmark:"
@@ -161,7 +161,7 @@ jobs:
             GIT_COMMITTER_NAME="howi-bot";
             GIT_COMMITTER_EMAIL="howi@okramlabs.com";' --subdirectory-filter deploy prepare-deploy
         # update gh-pages
-        - git checkout gh-pages
+        - git checkout -b gh-pages origin/gh-pages
         - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
         - git add -A
         - git commit -m"$COMMIT_MSG"
@@ -169,7 +169,7 @@ jobs:
         - git add -A
         - git commit --amend --no-edit
         # deploy
-        - git push
+        - git push origin gh-pages
 
       after_script: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
       # before_deploy: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
