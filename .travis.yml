@@ -161,8 +161,9 @@ jobs:
             GIT_COMMITTER_NAME="howi-bot";
             GIT_COMMITTER_EMAIL="howi@okramlabs.com";' --subdirectory-filter deploy prepare-deploy
         # update gh-pages
-        - git fetch --all
-        - git checkout -b gh-pages origin/gh-pages
+        - git remote add github/mkungla git@github.com:mkungla/aframe-webpack-boilerplate.git
+        - git fetch github/mkungla
+        - git checkout -b gh-pages github/mkungla/gh-pages
         - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
         - git add -A
         - git commit -m"$COMMIT_MSG"
@@ -170,7 +171,7 @@ jobs:
         - git add -A
         - git commit --amend --no-edit
         # deploy
-        - git push origin gh-pages
+        - git push github/mkungla gh-pages
 
       after_script: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
       # before_deploy: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
