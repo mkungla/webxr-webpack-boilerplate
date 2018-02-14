@@ -94,6 +94,7 @@ let PLUGINS = [
       data.app.name = data.app.name || data.project.name
       data.app.description = data.app.description || data.project.description
       data.app.keywords = data.app.keywords || data.project.keywords
+      data.defaults = require('./defaults.json')
     },
     // onBeforeSave: function (Handlebars, resultHtml, filename) {},
     onDone: function (Handlebars, filename) {

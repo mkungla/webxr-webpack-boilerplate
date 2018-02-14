@@ -128,8 +128,10 @@ git remote add github/mkungla git@github.com:mkungla/aframe-webpack-boilerplate.
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/aframe-webpack-boilerplate.git "$PROJECT_NAME"
 cd "$PROJECT_NAME"
+rm -rf .git
+git init
 git remote set-url github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/"$PROJECT_NAME".git
-git push -f github/"$GITHUB_USERNAME" master
+git push github/"$GITHUB_USERNAME" master
 ```
 <sup>and start hacking.</sup>
 
@@ -139,7 +141,9 @@ git push -f github/"$GITHUB_USERNAME" master
 ```bash
 GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:"$GITHUB_USERNAME"/aframe-webpack-boilerplate.git "$PROJECT_NAME"
 cd "$PROJECT_NAME"
-git remote rm github/"$GITHUB_USERNAME"
+rm -rf .git
+git init
+# add your private remote
 ```
 <sup>and start hacking.</sup>
 
