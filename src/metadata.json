@@ -21,6 +21,8 @@
     ]
   },
   "app": {
-    "name": "A-Frame Webpack Boilerplate"
+    "name": "A-Frame Webpack Boilerplate",
+    "themecolor": "#ee295f",
+    "mstilecolor": "#24caff"
   }
 }
