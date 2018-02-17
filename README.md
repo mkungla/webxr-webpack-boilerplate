@@ -2,7 +2,6 @@
 
 **Starter Kit for building rich, immersive WebXR projects with A-Frame, Webpack, handlebars and SASS**
 
-[![A-Frame Version][aframe-img]][aframe-link]
 [![Project License][license-img]][license-link]
 
 ## Introduction
@@ -40,6 +39,10 @@ It is designed to be flexible in order to support rapid implementation and custo
 ---
 ## Overview
 > here is overview of A-Frame Webpack Boilerplate project and what's included.
+
+### Frameworks
+
+- [![A-Frame Version][aframe-img]][aframe-link]
 
 ### Project structure
 
@@ -164,6 +167,14 @@ yarn start
 
 ### Build Configuration
 
+#### Modify package.json devSettings
+
+| key | description |
+| --- | --- |
+| host | host for webpack dev server, default `localhost` and set it `0.0.0.0` to share it on your LAN |
+| port | port to use by webpack dev server |
+| allowedHosts | `[]` array of allowed hosts |
+
 #### Add A-Frame components
 
 ```
@@ -198,7 +209,7 @@ WITH_VENDORS="true" yarn start
 <!-- ASSETS and LINKS -->
 <!-- License -->
 [license-img]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
-[license-link]: https://raw.githubusercontent.com/mkungla/aframe-php/master/LICENSE
+[license-link]: https://raw.githubusercontent.com/mkungla/webxr-webpack-boilerplate/master/LICENSE
 
 <!-- A-Frame -->
 [aframe-img]: https://img.shields.io/badge/a--frame-0.7.1-FC3164.svg?style=flat-square
@@ -206,29 +217,29 @@ WITH_VENDORS="true" yarn start
 [aframe-logo]: assets/images/aframe/logo-152.png
 
 <!-- travis-ci -->
-[travis-img]: https://travis-ci.org/mkungla/aframe-webpack-boilerplate.svg?branch=master
-[travis-link]: https://travis-ci.org/mkungla/aframe-webpack-boilerplate
+[travis-img]: https://travis-ci.org/mkungla/webxr-webpack-boilerplate.svg?branch=master
+[travis-link]: https://travis-ci.org/mkungla/webxr-webpack-boilerplate
 
 <!-- circleci -->
-[circleci-img]: https://circleci.com/gh/okramlabs/aframe-webpack-boilerplate/tree/master.svg?style=svg
-[circleci-link]: https://circleci.com/gh/okramlabs/aframe-webpack-boilerplate/tree/master
+[circleci-img]: https://circleci.com/gh/okramlabs/webxr-webpack-boilerplate/tree/master.svg?style=svg
+[circleci-link]: https://circleci.com/gh/okramlabs/webxr-webpack-boilerplate/tree/master
 
 <!-- appveyor -->
-[appveyor-img]: https://ci.appveyor.com/api/projects/status/c8nebbmvwxby2rjd?svg=true
-[appveyor-link]: https://ci.appveyor.com/project/mkungla/aframe-webpack-boilerplate
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/euaqfb6ir75eucxq?svg=true
+[appveyor-link]: https://ci.appveyor.com/project/mkungla/webxr-webpack-boilerplate
 
 <!-- Codacy Badge Grade -->
-[codacy-grade-img]: https://api.codacy.com/project/badge/Grade/eaf550aae1184461ada4003f544f41ec
-[codacy-grade-link]: https://www.codacy.com/app/mkungla/aframe-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mkungla/aframe-webpack-boilerplate&amp;utm_campaign=Badge_Grade
+[codacy-grade-img]: https://api.codacy.com/project/badge/Grade/b903edd39cb141de94c007cc4d0c4f7d
+[codacy-grade-link]: https://www.codacy.com/app/marko-kungla/webxr-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mkungla/webxr-webpack-boilerplate&amp;utm_campaign=Badge_Grade
 
 <!-- Codacy Badge Coverage -->
 [coverage-img]: https://img.shields.io/coveralls/github/mkungla/aframe-webpack-boilerplate.svg
 [coverage-link]: https://github.com/mkungla/aframe-webpack-boilerplate
 
-[dep-status-img]: https://david-dm.org/mkungla/aframe-webpack-boilerplate/status.svg
-[dep-status-link]: https://david-dm.org/mkungla/aframe-webpack-boilerplate#info=dependencies
-[devdep-status-img]: https://david-dm.org/mkungla/aframe-webpack-boilerplate/dev-status.svg
-[devdep-status-link]: https://david-dm.org/mkungla/aframe-webpack-boilerplate#info=devDependencies
+[dep-status-img]: https://david-dm.org/mkungla/webxr-webpack-boilerplate/status.svg
+[dep-status-link]: https://david-dm.org/mkungla/webxr-webpack-boilerplate#info=dependencies
+[devdep-status-img]: https://david-dm.org/mkungla/webxr-webpack-boilerplate/dev-status.svg
+[devdep-status-link]: https://david-dm.org/mkungla/webxr-webpack-boilerplate#info=devDependencies
 
 [git-lfs-link]: https://git-lfs.github.com/
 

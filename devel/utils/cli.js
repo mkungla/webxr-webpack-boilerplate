@@ -56,11 +56,11 @@ module.exports = {
   ok: Ok,
   debug: Debug,
   hr: Hr,
-  banner: (name, ver, port) => {
+  banner: (name, ver, host, port) => {
     Hr()
     Ok(`${name} v${ver} development server.`)
     Info('Open your browser:')
-    Info(`    localhost: http://localhost:${port}`)
+    Info(`    localhost: http://${host}:${port}`)
     Info(`          LAN: http://${ip.address()}:${port}`)
     Debug(`Press ${chalk.italic('CTRL-C')} to stop`)
   }
