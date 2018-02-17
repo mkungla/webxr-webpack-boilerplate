@@ -7,11 +7,19 @@ const packageJson = require('../package')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HandlebarsPlugin = require('handlebars-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const aframeVersion = require('aframe/package.json').version
 const isDev = process.env.NODE_ENV !== 'production'
 const fs = require('fs')
 const buildDir = (isDev) ? 'build' : 'dist'
 
+const assetCopy = new CopyWebpackPlugin([
+  {
+    from: path.join(process.cwd(), 'src', 'assets', 'static'),
+    to: path.join(process.cwd(), buildDir, 'assets', 'static')
+  }
+])
 const extractDefaultTheme = new ExtractTextPlugin({
   allChunks: true,
   filename: 'style/app-theme.css'
@@ -62,6 +70,7 @@ let PLUGINS = [
   extractGreenTheme,
   extractRedTheme,
   extractYellowTheme,
+  assetCopy,
   new HandlebarsPlugin({
     // path to hbs scene entry file(s)
     entry: path.join(process.cwd(), 'src', 'scenes', '*.hbs'),
