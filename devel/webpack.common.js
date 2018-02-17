@@ -20,6 +20,12 @@ const assetCopy = new CopyWebpackPlugin([
     to: path.join(process.cwd(), buildDir, 'assets', 'static')
   }
 ])
+const swCopy = new CopyWebpackPlugin([
+  {
+    from: path.join(process.cwd(), 'src', 'js' ,'sw'),
+    to: path.join(process.cwd(), buildDir)
+  }
+])
 const extractDefaultTheme = new ExtractTextPlugin({
   allChunks: true,
   filename: 'style/app-theme.css'
@@ -70,6 +76,7 @@ let PLUGINS = [
   extractGreenTheme,
   extractRedTheme,
   extractYellowTheme,
+  swCopy,
   assetCopy,
   new HandlebarsPlugin({
     // path to hbs scene entry file(s)
