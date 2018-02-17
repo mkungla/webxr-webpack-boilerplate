@@ -22,7 +22,7 @@ const assetCopy = new CopyWebpackPlugin([
 ])
 const swCopy = new CopyWebpackPlugin([
   {
-    from: path.join(process.cwd(), 'src', 'js' ,'sw'),
+    from: path.join(process.cwd(), 'src', 'js', 'sw'),
     to: path.join(process.cwd(), buildDir)
   }
 ])
