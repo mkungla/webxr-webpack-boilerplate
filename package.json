@@ -1,5 +1,5 @@
 {
-  "name": "aframe-webpack-boilerplate",
+  "name": "webxr-webpack-boilerplate",
   "version": "0.9.10",
   "description": "Starter Kit for building rich, immersive WebXR projects with A-Frame, Webpack, handlebars and SASS",
   "author": "Marko Kungla <marko.kungla@gmail.com> (https://github.com/mkungla)",
