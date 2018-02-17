@@ -65,6 +65,13 @@
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1"
   },
+  "devSettings": {
+    "host": "localhost",
+    "port": 9000,
+    "allowedHosts": [
+      ".github.com"
+    ]
+  },
   "standard": {
     "ignore": [
       "/assets/*",

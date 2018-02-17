@@ -79,7 +79,7 @@ let PLUGINS = [
       cli.info('Handlebars version: ', Handlebars.VERSION)
     },
     onBeforeAddPartials: function (Handlebars, partialsMap) {
-      cli.info('update Handlebars partials')
+      // cli.info('update Handlebars partials')
     },
     // onBeforeCompile: function (Handlebars, templateContent) {
     //   if (templateContent.startsWith('<a-scene')) {
@@ -98,7 +98,7 @@ let PLUGINS = [
     },
     // onBeforeSave: function (Handlebars, resultHtml, filename) {},
     onDone: function (Handlebars, filename) {
-      cli.ok(`updated: ${filename}`)
+      // cli.ok(`updated: ${filename}`)
     }
   })
 ]

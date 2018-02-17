@@ -160,6 +160,14 @@ yarn start
 
 ### Build Configuration
 
+#### Modify package.json devSettings
+
+| key | description |
+| --- | --- |
+| host | host for webpack dev server, default `localhost` and set it `0.0.0.0` to share it on your LAN |
+| port | port to use by webpack dev server |
+| allowedHosts | `[]` array of allowed hosts |
+
 #### Add A-Frame components
 
 ```
