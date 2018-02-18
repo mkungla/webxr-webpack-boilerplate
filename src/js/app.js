@@ -9,7 +9,7 @@ import '../style/app-theme-green.scss'
 import '../style/app-theme-red.scss'
 import '../style/app-theme-yellow.scss'
 
-const metadata = require('../metadata')
+const appConfig = require('../app-config')
 
 if (process.env.NODE_ENV !== 'production' && typeof AFRAME !== 'undefined') {
   const info = AFRAME.utils.debug(`${PROJECT_NAME}:info`)
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== 'production' && typeof AFRAME !== 'undefined') {
   info(`A-Frame Version: ${AFRAME.version}`)
   info(`three.js Version: r${THREE.REVISION}`)
   info(`including TWEEN: ${TWEEN._nextId}`)
-  console.log(metadata)
+  console.dir(appConfig)
 }
 
 // ServiceWorker is a progressive technology. Ignore unsupported browsers

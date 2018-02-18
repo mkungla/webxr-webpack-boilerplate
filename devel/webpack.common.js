@@ -85,7 +85,7 @@ let PLUGINS = [
     // if ommited, the input filepath stripped of its extension will be used
     output: path.join(process.cwd(), buildDir, '[name].html'),
     // data passed to main hbs template: `main-template(data)`
-    data: path.join(process.cwd(), 'src', 'metadata.json'),
+    data: path.join(process.cwd(), 'src', 'app-config.json'),
     // globbed path to partials, where dir/filename is unique
     partials: [
       path.join(process.cwd(), 'src', 'partials', '**', '*.hbs')

@@ -1,15 +1,14 @@
-# A-Frame Webpack Boilerplate
+# WebXR Webpack Boilerplate
 
-**Starter Kit for building rich, immersive WebXR projects with A-Frame, Webpack, handlebars and SASS**
+**Starter Kit for building rich, immersive WebXR projects (featuring [A-Frame][aframe-link]) PWA with Webpack and SASS**
 
 [![Project License][license-img]][license-link]
 
 ## Introduction
 
-The goal of A-Frame Webpack Boilerplate is to provide a high-quality, high-performance code base to accelerate Web XR development with A-Frame.  
-It is designed to be flexible in order to support rapid implementation and customization within your project.
+The goal of WebXR Webpack Boilerplate is to provide a high-quality, high-performance code base to accelerate WebXR development. It is designed to be flexible in order to support rapid implementation and customization within your project. — **take a look at [demo][demo-link]**
 
-**Build Status**
+**Project build status**
 
 | Linux | macOS | Windows |
 | --- | --- | --- |
@@ -38,7 +37,7 @@ It is designed to be flexible in order to support rapid implementation and custo
 
 ---
 ## Overview
-> here is overview of A-Frame Webpack Boilerplate project and what's included.
+> here is overview of WebXR Webpack Boilerplate project and what's included.
 
 ### Frameworks
 
@@ -48,9 +47,9 @@ It is designed to be flexible in order to support rapid implementation and custo
 
 - **build** development and staging build output directory
 - **devel** development related files like webpack and project configuration files.
-  - **coverage** coverage report
+  - **coverage** coverage report (#2)
 - **dist** project release files, output of `yarn run dist`.
-- **docs** project documentation or gh-pages
+- **docs** project documentation or can be used for gh-pages
 - **res** all static and raw resources which are rather src files for `src/assets` e.g raw design files.
   - **audio** audio files
   - **images** image files
@@ -116,9 +115,9 @@ GITHUB_USERNAME="<github-username>"
 > clone full copy of this repository and set remotes to be able sync your repository with upstream
 
 ```bash
-git clone --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/aframe-webpack-boilerplate.git "$PROJECT_NAME"
+git clone --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/webxr-webpack-boilerplate.git "$PROJECT_NAME"
 cd "$PROJECT_NAME"
-git remote add github/mkungla git@github.com:mkungla/aframe-webpack-boilerplate.git
+git remote add github/mkungla git@github.com:mkungla/webxr-webpack-boilerplate.git
 ```
 <sup>and start hacking.</sup>
 
@@ -129,7 +128,7 @@ git remote add github/mkungla git@github.com:mkungla/aframe-webpack-boilerplate.
 > and repository should be new (clean repository)
 
 ```bash
-GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/aframe-webpack-boilerplate.git "$PROJECT_NAME"
+GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/webxr-webpack-boilerplate.git "$PROJECT_NAME"
 cd "$PROJECT_NAME"
 rm -rf .git
 git init
@@ -142,7 +141,7 @@ git push github/"$GITHUB_USERNAME" master
 
 
 ```bash
-GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:"$GITHUB_USERNAME"/aframe-webpack-boilerplate.git "$PROJECT_NAME"
+GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:"$GITHUB_USERNAME"/webxr-webpack-boilerplate.git "$PROJECT_NAME"
 cd "$PROJECT_NAME"
 rm -rf .git
 git init
@@ -233,8 +232,8 @@ WITH_VENDORS="true" yarn start
 [codacy-grade-link]: https://www.codacy.com/app/marko-kungla/webxr-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mkungla/webxr-webpack-boilerplate&amp;utm_campaign=Badge_Grade
 
 <!-- Codacy Badge Coverage -->
-[coverage-img]: https://img.shields.io/coveralls/github/mkungla/aframe-webpack-boilerplate.svg
-[coverage-link]: https://github.com/mkungla/aframe-webpack-boilerplate
+[coverage-img]: https://img.shields.io/coveralls/github/mkungla/webxr-webpack-boilerplate.svg
+[coverage-link]: https://github.com/mkungla/webxr-webpack-boilerplate
 
 [dep-status-img]: https://david-dm.org/mkungla/webxr-webpack-boilerplate/status.svg
 [dep-status-link]: https://david-dm.org/mkungla/webxr-webpack-boilerplate#info=dependencies
@@ -242,7 +241,7 @@ WITH_VENDORS="true" yarn start
 [devdep-status-link]: https://david-dm.org/mkungla/webxr-webpack-boilerplate#info=devDependencies
 
 [git-lfs-link]: https://git-lfs.github.com/
-
+[demo-link]: mkungla.github.io/webxr-webpack-boilerplate
 <!-- images -->
 [screeenshot-theme-red]: res/images/screenshots/theme-red.png
 [screeenshot-theme-blue]: res/images/screenshots/theme-blue.png

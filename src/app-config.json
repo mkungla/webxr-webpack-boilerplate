@@ -2,7 +2,7 @@
   "project": {
     "name": "webxr-webpack-boilerplate",
     "version": "0.9.1",
-    "description": "Starter Kit for WebXR (featuring A-Frame) PWA with Webpack and SASS",
+    "description": "Starter Kit for building rich, immersive WebXR projects (featuring A-Frame) PWA with Webpack and SASS",
     "author": "Marko Kungla <marko.kungla@gmail.com> (https://github.com/mkungla)",
     "license": "MIT",
     "repository": {
@@ -14,12 +14,21 @@
     },
     "homepage": "https://github.com/mkungla/webxr-webpack-boilerplate#readme",
     "keywords": [
-      "aframe",
       "webxr-boilerplate",
+      "webvr",
+      "webxr",
+      "boilerplate-application",
+      "starter-kit",
+      "aframe",
+      "aframevr",
+      "aframexr",
+      "aframe-vr",
+      "aframe-boilerplate",
+      "webpack",
+      "webpack-boilerplate",
+      "sass",
       "pwa",
-      "service-workers",
-      "webpack2",
-      "webpack"
+      "service-workers"
     ]
   },
   "app": {
