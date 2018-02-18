@@ -241,7 +241,7 @@ WITH_VENDORS="true" yarn start
 [devdep-status-link]: https://david-dm.org/mkungla/webxr-webpack-boilerplate#info=devDependencies
 
 [git-lfs-link]: https://git-lfs.github.com/
-[demo-link]: mkungla.github.io/webxr-webpack-boilerplate
+[demo-link]: https://mkungla.github.io/webxr-webpack-boilerplate
 <!-- images -->
 [screeenshot-theme-red]: res/images/screenshots/theme-red.png
 [screeenshot-theme-blue]: res/images/screenshots/theme-blue.png
