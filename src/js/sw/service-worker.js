@@ -8,8 +8,7 @@ var CACHE_FILE_LIST = [
   'js/aframe-base.js',
   'js/app.js',
   'js/vendors.js',
-  'index.html',
-  'https://aframe.io/releases/0.7.0/aframe.min.js'
+  'index.html'
 ]
 
 self.addEventListener('install', function (event) {
