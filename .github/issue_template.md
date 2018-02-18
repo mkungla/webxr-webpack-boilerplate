@@ -14,6 +14,3 @@ If this issue can divided to multiple smaller tasks consider format below to cre
 - [ ] Windows
 - [ ] macOS
 - [ ] Linux
-
-<!-- - #1 (hash issue id) -->
-- *none*
