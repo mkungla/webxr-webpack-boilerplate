@@ -156,6 +156,10 @@ By default `yarn start` will not build vendor libraries to improve `webpack-dev-
 Vendor libraries are only built when running `yarn run build` or `yarn run dist`
 
 ```
+brew install yarn
+```
+
+```
 yarn install
 yarn run build
 yarn start

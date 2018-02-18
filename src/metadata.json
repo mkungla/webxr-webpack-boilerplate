@@ -1,26 +1,30 @@
 {
   "project": {
-    "name": "aframe-webpack-boilerplate",
+    "name": "webxr-webpack-boilerplate",
     "version": "0.9.1",
-    "description": "Starter Kit for A-Frame WebXR with Webpack and SASS",
+    "description": "Starter Kit for WebXR (featuring A-Frame) PWA with Webpack and SASS",
     "author": "Marko Kungla <marko.kungla@gmail.com> (https://github.com/mkungla)",
     "license": "MIT",
     "repository": {
       "type": "git",
-      "url": "https://github.com/mkungla/aframe-webpack-boilerplate.git"
+      "url": "https://github.com/mkungla/webxr-webpack-boilerplate.git"
     },
     "bugs": {
-      "url": "https://github.com/mkungla/aframe-webpack-boilerplate/issues"
+      "url": "https://github.com/mkungla/webxr-webpack-boilerplate/issues"
     },
-    "homepage": "https://github.com/mkungla/aframe-webpack-boilerplate#readme",
+    "homepage": "https://github.com/mkungla/webxr-webpack-boilerplate#readme",
     "keywords": [
       "aframe",
-      "aframe-boilerplate",
+      "webxr-boilerplate",
+      "pwa",
+      "service-workers",
       "webpack2",
       "webpack"
     ]
   },
   "app": {
-    "name": "A-Frame Webpack Boilerplate"
+    "name": "WebXR Webpack Boilerplate",
+    "themecolor": "#ee295f",
+    "mstilecolor": "#24caff"
   }
 }
