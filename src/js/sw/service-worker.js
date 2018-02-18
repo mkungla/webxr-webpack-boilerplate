@@ -1,6 +1,17 @@
 /* global self caches fetch Response Headers */
 var version = 'v1::'
 
+var CACHE_FILE_LIST = [
+  '.',
+  'style/app-theme.css',
+  'js/aframe-app.js',
+  'js/aframe-base.js',
+  'js/app.js',
+  'js/vendors.js',
+  'index.html',
+  'https://aframe.io/releases/0.7.0/aframe.min.js'
+]
+
 self.addEventListener('install', function (event) {
   console.log('WORKER: install event in progress.')
   event.waitUntil(
@@ -18,11 +29,8 @@ self.addEventListener('install', function (event) {
            The method below will add all resources we've indicated to the cache,
            after making HTTP requests for each of them.
         */
-        return cache.addAll([
-          '/',
-          '/css/global.css',
-          '/js/global.js'
-        ])
+        return cache.addAll(CACHE_FILE_LIST)
+
       })
       .then(function () {
         console.log('WORKER: install completed')
