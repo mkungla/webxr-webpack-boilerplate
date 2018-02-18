@@ -116,10 +116,10 @@ jobs:
         - yarn install
         - yarn run build
         - mv $TRAVIS_BUILD_DIR/build $TRAVIS_BUILD_DIR/deploy
-        - git add -A
         - BUILDREF="$TRAVIS_COMMIT :bookmark:"
         - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/mkungla/webxr-webpack-boilerplate/commit/$TRAVIS_COMMIT"
-        - git commit -m"$COMMIT_MSG"
+        - ls -la && git status
+        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit -m"$COMMIT_MSG"; fi
         - git filter-branch --prune-empty --env-filter '
             GIT_COMMITTER_NAME="howi-bot";
             GIT_COMMITTER_EMAIL="howi@okramlabs.com";' --subdirectory-filter deploy prepare-deploy
@@ -128,11 +128,11 @@ jobs:
         - git fetch github/okramlabs
         - git checkout -b gh-pages github/okramlabs/gh-pages
         - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
-        - git add -A
-        - git commit -m"$COMMIT_MSG"
+        - ls -la && git status
+        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit -m"$COMMIT_MSG"; fi
         - git merge prepare-deploy --squash --allow-unrelated-histories
-        - git add -A
-        - git commit --amend --no-edit
+        - ls -la && git status
+        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit --amend --no-edit; fi
         # deploy
         - git push github/okramlabs gh-pages
       after_script: echo "after_script https://okramlabs.github.io/webxr-webpack-boilerplate"
@@ -153,10 +153,10 @@ jobs:
         - yarn install
         - yarn run dist
         - mv $TRAVIS_BUILD_DIR/dist $TRAVIS_BUILD_DIR/deploy
-        - git add -A
         - BUILDREF="$TRAVIS_TAG :bookmark:"
         - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/mkungla/webxr-webpack-boilerplate/tree/$TRAVIS_TAG"
-        - git commit -m"$COMMIT_MSG"
+        - ls -la && git status
+        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit -m"$COMMIT_MSG"; fi
         - git filter-branch --prune-empty --env-filter '
             GIT_COMMITTER_NAME="howi-bot";
             GIT_COMMITTER_EMAIL="howi@okramlabs.com";' --subdirectory-filter deploy prepare-deploy
@@ -165,11 +165,11 @@ jobs:
         - git fetch github/mkungla
         - git checkout -b gh-pages github/mkungla/gh-pages
         - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
-        - git add -A
-        - git commit -m"$COMMIT_MSG"
+        - ls -la && git status
+        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit -m"$COMMIT_MSG"; fi
         - git merge prepare-deploy --squash --allow-unrelated-histories
-        - git add -A
-        - git commit --amend --no-edit
+        - ls -la && git status
+        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit --amend --no-edit; fi
         # deploy
         - git push github/mkungla gh-pages
 
