@@ -29,7 +29,6 @@ self.addEventListener('install', function (event) {
            after making HTTP requests for each of them.
         */
         return cache.addAll(CACHE_FILE_LIST)
-
       })
       .then(function () {
         console.log('WORKER: install completed')
