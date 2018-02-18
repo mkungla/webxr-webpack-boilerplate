@@ -128,11 +128,11 @@ jobs:
         - git fetch github/okramlabs
         - git checkout -b gh-pages github/okramlabs/gh-pages
         - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
-        - ls -la && git status
-        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit -m"$COMMIT_MSG"; fi
+        - echo "$(date --rfc-3339=ns)" > .last-deploy
+        - git add -A && git commit -m"$COMMIT_MSG"
         - git merge prepare-deploy --squash --allow-unrelated-histories
-        - ls -la && git status
         - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit --amend --no-edit; fi
+        - ls -la && git status
         # deploy
         - git push github/okramlabs gh-pages
       after_script: echo "after_script https://okramlabs.github.io/webxr-webpack-boilerplate"
@@ -165,8 +165,8 @@ jobs:
         - git fetch github/mkungla
         - git checkout -b gh-pages github/mkungla/gh-pages
         - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
-        - ls -la && git status
-        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit -m"$COMMIT_MSG"; fi
+        - echo "$(date --rfc-3339=ns)" > .last-deploy
+        - git add -A && git commit -m"$COMMIT_MSG"
         - git merge prepare-deploy --squash --allow-unrelated-histories
         - ls -la && git status
         - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit --amend --no-edit; fi
