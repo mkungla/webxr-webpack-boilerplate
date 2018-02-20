@@ -1,16 +1,14 @@
-# A-Frame Webpack Boilerplate
+# WebXR Webpack Boilerplate
 
-**Starter Kit for building rich, immersive WebXR projects with A-Frame, Webpack, handlebars and SASS**
+**Starter Kit for building rich, immersive WebXR projects (featuring [A-Frame][aframe-link]) PWA with Webpack and SASS**
 
-[![A-Frame Version][aframe-img]][aframe-link]
 [![Project License][license-img]][license-link]
 
 ## Introduction
 
-The goal of A-Frame Webpack Boilerplate is to provide a high-quality, high-performance code base to accelerate Web XR development with A-Frame.  
-It is designed to be flexible in order to support rapid implementation and customization within your project.
+The goal of WebXR Webpack Boilerplate is to provide a high-quality, high-performance code base to accelerate WebXR development. It is designed to be flexible in order to support rapid implementation and customization within your project. — **take a look at [demo][demo-link]**
 
-**Build Status**
+**Project build status**
 
 | Linux | macOS | Windows |
 | --- | --- | --- |
@@ -39,15 +37,19 @@ It is designed to be flexible in order to support rapid implementation and custo
 
 ---
 ## Overview
-> here is overview of A-Frame Webpack Boilerplate project and what's included.
+> here is overview of WebXR Webpack Boilerplate project and what's included.
+
+### Frameworks
+
+- [![A-Frame Version][aframe-img]][aframe-link]
 
 ### Project structure
 
 - **build** development and staging build output directory
 - **devel** development related files like webpack and project configuration files.
-  - **coverage** coverage report
+  - **coverage** coverage report (#2)
 - **dist** project release files, output of `yarn run dist`.
-- **docs** project documentation or gh-pages
+- **docs** project documentation or can be used for gh-pages
 - **res** all static and raw resources which are rather src files for `src/assets` e.g raw design files.
   - **audio** audio files
   - **images** image files
@@ -113,9 +115,9 @@ GITHUB_USERNAME="<github-username>"
 > clone full copy of this repository and set remotes to be able sync your repository with upstream
 
 ```bash
-git clone --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/aframe-webpack-boilerplate.git "$PROJECT_NAME"
+git clone --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/webxr-webpack-boilerplate.git "$PROJECT_NAME"
 cd "$PROJECT_NAME"
-git remote add github/mkungla git@github.com:mkungla/aframe-webpack-boilerplate.git
+git remote add github/mkungla git@github.com:mkungla/webxr-webpack-boilerplate.git
 ```
 <sup>and start hacking.</sup>
 
@@ -126,7 +128,7 @@ git remote add github/mkungla git@github.com:mkungla/aframe-webpack-boilerplate.
 > and repository should be new (clean repository)
 
 ```bash
-GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/aframe-webpack-boilerplate.git "$PROJECT_NAME"
+GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/webxr-webpack-boilerplate.git "$PROJECT_NAME"
 cd "$PROJECT_NAME"
 rm -rf .git
 git init
@@ -139,7 +141,7 @@ git push github/"$GITHUB_USERNAME" master
 
 
 ```bash
-GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:"$GITHUB_USERNAME"/aframe-webpack-boilerplate.git "$PROJECT_NAME"
+GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:"$GITHUB_USERNAME"/webxr-webpack-boilerplate.git "$PROJECT_NAME"
 cd "$PROJECT_NAME"
 rm -rf .git
 git init
@@ -153,12 +155,24 @@ By default `yarn start` will not build vendor libraries to improve `webpack-dev-
 Vendor libraries are only built when running `yarn run build` or `yarn run dist`
 
 ```
+brew install yarn
+```
+
+```
 yarn install
 yarn run build
 yarn start
 ```
 
 ### Build Configuration
+
+#### Modify package.json devSettings
+
+| key | description |
+| --- | --- |
+| host | host for webpack dev server, default `localhost` and set it `0.0.0.0` to share it on your LAN |
+| port | port to use by webpack dev server |
+| allowedHosts | `[]` array of allowed hosts |
 
 #### Add A-Frame components
 
@@ -194,7 +208,7 @@ WITH_VENDORS="true" yarn start
 <!-- ASSETS and LINKS -->
 <!-- License -->
 [license-img]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
-[license-link]: https://raw.githubusercontent.com/mkungla/aframe-php/master/LICENSE
+[license-link]: https://raw.githubusercontent.com/mkungla/webxr-webpack-boilerplate/master/LICENSE
 
 <!-- A-Frame -->
 [aframe-img]: https://img.shields.io/badge/a--frame-0.7.1-FC3164.svg?style=flat-square
@@ -202,32 +216,32 @@ WITH_VENDORS="true" yarn start
 [aframe-logo]: assets/images/aframe/logo-152.png
 
 <!-- travis-ci -->
-[travis-img]: https://travis-ci.org/mkungla/aframe-webpack-boilerplate.svg?branch=master
-[travis-link]: https://travis-ci.org/mkungla/aframe-webpack-boilerplate
+[travis-img]: https://travis-ci.org/mkungla/webxr-webpack-boilerplate.svg?branch=master
+[travis-link]: https://travis-ci.org/mkungla/webxr-webpack-boilerplate
 
 <!-- circleci -->
-[circleci-img]: https://circleci.com/gh/okramlabs/aframe-webpack-boilerplate/tree/master.svg?style=svg
-[circleci-link]: https://circleci.com/gh/okramlabs/aframe-webpack-boilerplate/tree/master
+[circleci-img]: https://circleci.com/gh/okramlabs/webxr-webpack-boilerplate/tree/master.svg?style=svg
+[circleci-link]: https://circleci.com/gh/okramlabs/webxr-webpack-boilerplate/tree/master
 
 <!-- appveyor -->
-[appveyor-img]: https://ci.appveyor.com/api/projects/status/c8nebbmvwxby2rjd?svg=true
-[appveyor-link]: https://ci.appveyor.com/project/mkungla/aframe-webpack-boilerplate
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/euaqfb6ir75eucxq?svg=true
+[appveyor-link]: https://ci.appveyor.com/project/mkungla/webxr-webpack-boilerplate
 
 <!-- Codacy Badge Grade -->
-[codacy-grade-img]: https://api.codacy.com/project/badge/Grade/eaf550aae1184461ada4003f544f41ec
-[codacy-grade-link]: https://www.codacy.com/app/mkungla/aframe-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mkungla/aframe-webpack-boilerplate&amp;utm_campaign=Badge_Grade
+[codacy-grade-img]: https://api.codacy.com/project/badge/Grade/b903edd39cb141de94c007cc4d0c4f7d
+[codacy-grade-link]: https://www.codacy.com/app/marko-kungla/webxr-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mkungla/webxr-webpack-boilerplate&amp;utm_campaign=Badge_Grade
 
 <!-- Codacy Badge Coverage -->
-[coverage-img]: https://img.shields.io/coveralls/github/mkungla/aframe-webpack-boilerplate.svg
-[coverage-link]: https://github.com/mkungla/aframe-webpack-boilerplate
+[coverage-img]: https://img.shields.io/coveralls/github/mkungla/webxr-webpack-boilerplate.svg
+[coverage-link]: https://github.com/mkungla/webxr-webpack-boilerplate
 
-[dep-status-img]: https://david-dm.org/mkungla/aframe-webpack-boilerplate/status.svg
-[dep-status-link]: https://david-dm.org/mkungla/aframe-webpack-boilerplate#info=dependencies
-[devdep-status-img]: https://david-dm.org/mkungla/aframe-webpack-boilerplate/dev-status.svg
-[devdep-status-link]: https://david-dm.org/mkungla/aframe-webpack-boilerplate#info=devDependencies
+[dep-status-img]: https://david-dm.org/mkungla/webxr-webpack-boilerplate/status.svg
+[dep-status-link]: https://david-dm.org/mkungla/webxr-webpack-boilerplate#info=dependencies
+[devdep-status-img]: https://david-dm.org/mkungla/webxr-webpack-boilerplate/dev-status.svg
+[devdep-status-link]: https://david-dm.org/mkungla/webxr-webpack-boilerplate#info=devDependencies
 
 [git-lfs-link]: https://git-lfs.github.com/
-
+[demo-link]: https://mkungla.github.io/webxr-webpack-boilerplate
 <!-- images -->
 [screeenshot-theme-red]: res/images/screenshots/theme-red.png
 [screeenshot-theme-blue]: res/images/screenshots/theme-blue.png

@@ -16,6 +16,7 @@ install:
   - yarn install
 
 build_script:
+  - yarn run lint
   - yarn run build
   - yarn run dist
 

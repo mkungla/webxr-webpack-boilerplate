@@ -66,13 +66,13 @@ stages:
     if: type IN (push, pull_request) AND (branch = master) AND (NOT tag IS present)
   # build site
   - name: push to okramlabs fork
-    if: repo = mkungla/aframe-webpack-boilerplate AND type = push AND branch = master
+    if: repo = mkungla/webxr-webpack-boilerplate AND type = push AND branch = master
   # # deploy okramlabs.github.io
   - name: deploy staging
-    if: (repo = mkungla/aframe-webpack-boilerplate) AND (type = push) AND (branch = master) AND (NOT tag IS present)
+    if: (repo = mkungla/webxr-webpack-boilerplate) AND (type = push) AND (branch = master) AND (NOT tag IS present)
   # deploy okramlabs.github.io (only on tags on upstream)
   - name: deploy production
-    if: (repo = mkungla/aframe-webpack-boilerplate) AND (NOT type = pull_request) AND (tag IS present)
+    if: (repo = mkungla/webxr-webpack-boilerplate) AND (NOT type = pull_request) AND (tag IS present)
 
 ################################################################################
 # jobs
@@ -95,13 +95,13 @@ jobs:
     - stage: push to okramlabs fork
       <<: *tmpl-ssh-setup
       script:
-        - git remote add github/okramlabs git@github.com:okramlabs/aframe-webpack-boilerplate.git
+        - git remote add github/okramlabs git@github.com:okramlabs/webxr-webpack-boilerplate.git
         - git fetch github/okramlabs
         - git checkout -b push-to-okramlabs $TRAVIS_COMMIT
         # README.md
         # A-Frame Webpack Boilerplate
         #
-        # fork of mkungla/aframe-webpack-boilerplate for macOS builds and staging gh-pages
+        # fork of mkungla/webxr-webpack-boilerplate for macOS builds and staging gh-pages
         # Build Status [CircleCI Build Status]
         # - git rebase --force-rebase github/okramlabs/master
         - git push -f github/okramlabs master
@@ -109,79 +109,79 @@ jobs:
     - stage: deploy staging
       <<: *tmpl-ssh-setup
       <<: *tmpl-common-setup
-      before_script: echo "before_script https://okramlabs.github.io/aframe-webpack-boilerplate"
+      before_script: echo "before_script https://okramlabs.github.io/webxr-webpack-boilerplate"
       script:
         # build and prepare
         - git checkout -b prepare-deploy $TRAVIS_COMMIT
         - yarn install
         - yarn run build
         - mv $TRAVIS_BUILD_DIR/build $TRAVIS_BUILD_DIR/deploy
-        - git add -A
         - BUILDREF="$TRAVIS_COMMIT :bookmark:"
-        - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/mkungla/aframe-webpack-boilerplate/commit/$TRAVIS_COMMIT"
-        - git commit -m"$COMMIT_MSG"
+        - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/mkungla/webxr-webpack-boilerplate/commit/$TRAVIS_COMMIT"
+        - ls -la && git status
+        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit -m"$COMMIT_MSG"; fi
         - git filter-branch --prune-empty --env-filter '
             GIT_COMMITTER_NAME="howi-bot";
             GIT_COMMITTER_EMAIL="howi@okramlabs.com";' --subdirectory-filter deploy prepare-deploy
         # update gh-pages
-        - git remote add github/okramlabs git@github.com:okramlabs/aframe-webpack-boilerplate.git
+        - git remote add github/okramlabs git@github.com:okramlabs/webxr-webpack-boilerplate.git
         - git fetch github/okramlabs
         - git checkout -b gh-pages github/okramlabs/gh-pages
         - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
-        - git add -A
-        - git commit -m"$COMMIT_MSG"
+        - echo "$(date --rfc-3339=ns)" > .last-deploy
+        - git add -A && git commit -m"$COMMIT_MSG"
         - git merge prepare-deploy --squash --allow-unrelated-histories
-        - git add -A
-        - git commit --amend --no-edit
+        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit --amend --no-edit; fi
+        - ls -la && git status
         # deploy
         - git push github/okramlabs gh-pages
-      after_script: echo "after_script https://okramlabs.github.io/aframe-webpack-boilerplate"
-      # before_deploy: echo "before_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
+      after_script: echo "after_script https://okramlabs.github.io/webxr-webpack-boilerplate"
+      # before_deploy: echo "before_deploy https://okramlabs.github.io/webxr-webpack-boilerplate"
       # deploy:
       #   skip_cleanup: true
       #   provider: script
       #   script: ...
-      # after_deploy: echo "after_deploy https://okramlabs.github.io/aframe-webpack-boilerplate"
+      # after_deploy: echo "after_deploy https://okramlabs.github.io/webxr-webpack-boilerplate"
     # deploy new release + npm package
     - stage: deploy production
       <<: *tmpl-ssh-setup
       <<: *tmpl-common-setup
-      before_script: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
+      before_script: echo "before_deploy https://mkungla.github.io/webxr-webpack-boilerplate"
       script:
         # build and prepare
         - git checkout -b prepare-deploy $TRAVIS_TAG
         - yarn install
         - yarn run dist
         - mv $TRAVIS_BUILD_DIR/dist $TRAVIS_BUILD_DIR/deploy
-        - git add -A
         - BUILDREF="$TRAVIS_TAG :bookmark:"
-        - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/mkungla/aframe-webpack-boilerplate/tree/$TRAVIS_TAG"
-        - git commit -m"$COMMIT_MSG"
+        - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/mkungla/webxr-webpack-boilerplate/tree/$TRAVIS_TAG"
+        - ls -la && git status
+        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit -m"$COMMIT_MSG"; fi
         - git filter-branch --prune-empty --env-filter '
             GIT_COMMITTER_NAME="howi-bot";
             GIT_COMMITTER_EMAIL="howi@okramlabs.com";' --subdirectory-filter deploy prepare-deploy
         # update gh-pages
-        - git remote add github/mkungla git@github.com:mkungla/aframe-webpack-boilerplate.git
+        - git remote add github/mkungla git@github.com:mkungla/webxr-webpack-boilerplate.git
         - git fetch github/mkungla
         - git checkout -b gh-pages github/mkungla/gh-pages
         - find . -maxdepth 1 ! -iname .git -exec rm -rf {} \;
-        - git add -A
-        - git commit -m"$COMMIT_MSG"
+        - echo "$(date --rfc-3339=ns)" > .last-deploy
+        - git add -A && git commit -m"$COMMIT_MSG"
         - git merge prepare-deploy --squash --allow-unrelated-histories
-        - git add -A
-        - git commit --amend --no-edit
+        - ls -la && git status
+        - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit --amend --no-edit; fi
         # deploy
         - git push github/mkungla gh-pages
 
-      after_script: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
-      # before_deploy: echo "before_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
+      after_script: echo "after_deploy https://mkungla.github.io/webxr-webpack-boilerplate"
+      # before_deploy: echo "before_deploy https://mkungla.github.io/webxr-webpack-boilerplate"
       # deploy:
       #   skip_cleanup: true
       #   provider: script
       #   script: ...
       #   on:
       #     tags: true
-      # after_deploy: echo "after_deploy https://mkungla.github.io/aframe-webpack-boilerplate"
+      # after_deploy: echo "after_deploy https://mkungla.github.io/webxr-webpack-boilerplate"
 
 # Your before scripts
 # You can run custom commands before the installation step (before_install),

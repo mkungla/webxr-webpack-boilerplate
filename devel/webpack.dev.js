@@ -12,20 +12,25 @@ let PLUGINS = [
 
 cli.banner(packageJson.name, packageJson.version, 9000)
 
+let devSettings = packageJson.devSettings || {}
+devSettings.host = devSettings.host || 'localhost'
+devSettings.port = devSettings.port || 9000
+devSettings.https = devSettings.https || false
 module.exports = merge(common, {
   plugins: PLUGINS,
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './build',
-    allowedHosts: [
-      '.github.com'
-    ],
-    host: '127.0.0.1',
-    port: 9000,
-    https: false,
+    allowedHosts: devSettings.allowedHosts,
+    host: devSettings.host,
+    port: devSettings.port,
+    https: devSettings.https,
     hot: false,
     inline: true,
-    noInfo: true
+    noInfo: true,
+    after: (app) => {
+      cli.banner(packageJson.name, packageJson.version, devSettings.host, devSettings.port)
+    }
   },
   module: {
     rules: []

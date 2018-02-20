@@ -7,11 +7,25 @@ const packageJson = require('../package')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HandlebarsPlugin = require('handlebars-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const aframeVersion = require('aframe/package.json').version
 const isDev = process.env.NODE_ENV !== 'production'
 const fs = require('fs')
 const buildDir = (isDev) ? 'build' : 'dist'
 
+const assetCopy = new CopyWebpackPlugin([
+  {
+    from: path.join(process.cwd(), 'src', 'assets', 'static'),
+    to: path.join(process.cwd(), buildDir, 'assets', 'static')
+  }
+])
+const swCopy = new CopyWebpackPlugin([
+  {
+    from: path.join(process.cwd(), 'src', 'js', 'sw'),
+    to: path.join(process.cwd(), buildDir)
+  }
+])
 const extractDefaultTheme = new ExtractTextPlugin({
   allChunks: true,
   filename: 'style/app-theme.css'
@@ -62,6 +76,8 @@ let PLUGINS = [
   extractGreenTheme,
   extractRedTheme,
   extractYellowTheme,
+  swCopy,
+  assetCopy,
   new HandlebarsPlugin({
     // path to hbs scene entry file(s)
     entry: path.join(process.cwd(), 'src', 'scenes', '*.hbs'),
@@ -69,7 +85,7 @@ let PLUGINS = [
     // if ommited, the input filepath stripped of its extension will be used
     output: path.join(process.cwd(), buildDir, '[name].html'),
     // data passed to main hbs template: `main-template(data)`
-    data: path.join(process.cwd(), 'src', 'metadata.json'),
+    data: path.join(process.cwd(), 'src', 'app-config.json'),
     // globbed path to partials, where dir/filename is unique
     partials: [
       path.join(process.cwd(), 'src', 'partials', '**', '*.hbs')
@@ -79,7 +95,7 @@ let PLUGINS = [
       cli.info('Handlebars version: ', Handlebars.VERSION)
     },
     onBeforeAddPartials: function (Handlebars, partialsMap) {
-      cli.info('update Handlebars partials')
+      // cli.info('update Handlebars partials')
     },
     // onBeforeCompile: function (Handlebars, templateContent) {
     //   if (templateContent.startsWith('<a-scene')) {
@@ -98,7 +114,7 @@ let PLUGINS = [
     },
     // onBeforeSave: function (Handlebars, resultHtml, filename) {},
     onDone: function (Handlebars, filename) {
-      cli.ok(`updated: ${filename}`)
+      // cli.ok(`updated: ${filename}`)
     }
   })
 ]
