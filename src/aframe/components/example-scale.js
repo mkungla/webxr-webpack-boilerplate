@@ -1,4 +1,4 @@
-const AFRAME = window.AFRAME
+/* global AFRAME */
 /**
  * Example component
  * https://aframe.io/docs/0.4.0/core/component.html#toc
