@@ -220,8 +220,8 @@ WITH_VENDORS="true" yarn start
 [travis-link]: https://travis-ci.org/digaverse/webxr-webpack-boilerplate
 
 <!-- circleci -->
-[circleci-img]: https://circleci.com/gh/okramlabs/webxr-webpack-boilerplate/tree/master.svg?style=svg
-[circleci-link]: https://circleci.com/gh/okramlabs/webxr-webpack-boilerplate/tree/master
+[circleci-img]: https://circleci.com/gh/digaverse/webxr-webpack-boilerplate/tree/master.svg?style=svg
+[circleci-link]: https://circleci.com/gh/digaverse/webxr-webpack-boilerplate/tree/master
 
 <!-- appveyor -->
 [appveyor-img]: https://ci.appveyor.com/api/projects/status/euaqfb6ir75eucxq?svg=true

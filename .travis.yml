@@ -45,7 +45,7 @@ templates:
               "  IdentityFile $SSH_FILE" \
               "  LogLevel ERROR" >> ~/.ssh/config
 
-       git config user.email "howi@okramlabs.com"
+       git config user.email "devops@digaverse.com"
        git config user.name "howibot"
 
 # defaults
@@ -64,7 +64,7 @@ stages:
   - name: lint and test
     # if: (type = pull_request) AND (branch = master)
     if: type IN (push, pull_request) AND (branch = master) AND (NOT tag IS present)
-  # deploy okramlabs.github.io (only on tags on upstream)
+  # deploy digaverse.github.io (only on tags on upstream)
   - name: deploy
     if: (repo = digaverse/webxr-webpack-boilerplate) AND (NOT type = pull_request) AND (tag IS present)
 
@@ -102,7 +102,7 @@ jobs:
         - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit -m"$COMMIT_MSG"; fi
         - git filter-branch --prune-empty --env-filter '
             GIT_COMMITTER_NAME="howi-bot";
-            GIT_COMMITTER_EMAIL="howi@okramlabs.com";' --subdirectory-filter deploy prepare-deploy
+            GIT_COMMITTER_EMAIL="devops@digaverse.com";' --subdirectory-filter deploy prepare-deploy
         # update gh-pages
         - git remote add github/digaverse git@github.com:digaverse/webxr-webpack-boilerplate.git
         - git fetch github/digaverse
