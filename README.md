@@ -225,7 +225,7 @@ WITH_VENDORS="true" yarn start
 
 <!-- appveyor -->
 [appveyor-img]: https://ci.appveyor.com/api/projects/status/euaqfb6ir75eucxq?svg=true
-[appveyor-link]: https://ci.appveyor.com/project/digaverse/webxr-webpack-boilerplate
+[appveyor-link]: https://ci.appveyor.com/project/mkungla/webxr-webpack-boilerplate
 
 <!-- Codacy Badge Grade -->
 [codacy-grade-img]: https://api.codacy.com/project/badge/Grade/b903edd39cb141de94c007cc4d0c4f7d
