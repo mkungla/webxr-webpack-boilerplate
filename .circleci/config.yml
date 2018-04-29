@@ -1,6 +1,26 @@
 # https://circleci.com/docs/2.0/configuration-reference/
 version: 2
 
+# Workflow configuration
+workflows:
+  version: 2
+  jobs:
+    - lint
+    - build-staging:
+        requires:
+          - lint
+    - build-dist:
+        requires:
+          - lint
+    - test:
+        requires:
+          - build-staging
+          - build-dist
+        filters:
+          branches:
+            only:
+              - master
+              - /hotfix-.*/
 # jobs
 jobs:
   lint:
@@ -48,25 +68,3 @@ jobs:
       - run:
           name: run mac tests
           command: yarn run test:ci-on-mac
-
-# Workflow configuration
-workflows:
-  version: 2
-  member-push:
-    jobs:
-      - lint
-      - build-staging:
-          requires:
-            - lint
-      - build-dist:
-          requires:
-            - lint
-      - test:
-          requires:
-            - build-staging
-            - build-dist
-          filters:
-            branches:
-              only:
-                - master
-                - /hotfix-.*/
