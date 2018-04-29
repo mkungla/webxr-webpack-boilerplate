@@ -51,7 +51,7 @@
     "which:yarn": "which yarn && yarn bin"
   },
   "dependencies": {
-    "aframe": "^0.8.0"
+    "aframe": "^0.8.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
