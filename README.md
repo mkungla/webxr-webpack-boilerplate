@@ -117,7 +117,7 @@ GITHUB_USERNAME="<github-username>"
 ```bash
 git clone --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/webxr-webpack-boilerplate.git "$PROJECT_NAME"
 cd "$PROJECT_NAME"
-git remote add github/mkungla git@github.com:mkungla/webxr-webpack-boilerplate.git
+git remote add github/digaverse git@github.com:digaverse/webxr-webpack-boilerplate.git
 ```
 <sup>and start hacking.</sup>
 
@@ -208,7 +208,7 @@ WITH_VENDORS="true" yarn start
 <!-- ASSETS and LINKS -->
 <!-- License -->
 [license-img]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
-[license-link]: https://raw.githubusercontent.com/mkungla/webxr-webpack-boilerplate/master/LICENSE
+[license-link]: https://raw.githubusercontent.com/digaverse/webxr-webpack-boilerplate/master/LICENSE
 
 <!-- A-Frame -->
 [aframe-img]: https://img.shields.io/badge/a--frame-0.7.1-FC3164.svg?style=flat-square
@@ -216,8 +216,8 @@ WITH_VENDORS="true" yarn start
 [aframe-logo]: assets/images/aframe/logo-152.png
 
 <!-- travis-ci -->
-[travis-img]: https://travis-ci.org/mkungla/webxr-webpack-boilerplate.svg?branch=master
-[travis-link]: https://travis-ci.org/mkungla/webxr-webpack-boilerplate
+[travis-img]: https://travis-ci.org/digaverse/webxr-webpack-boilerplate.svg?branch=master
+[travis-link]: https://travis-ci.org/digaverse/webxr-webpack-boilerplate
 
 <!-- circleci -->
 [circleci-img]: https://circleci.com/gh/okramlabs/webxr-webpack-boilerplate/tree/master.svg?style=svg
@@ -225,23 +225,23 @@ WITH_VENDORS="true" yarn start
 
 <!-- appveyor -->
 [appveyor-img]: https://ci.appveyor.com/api/projects/status/euaqfb6ir75eucxq?svg=true
-[appveyor-link]: https://ci.appveyor.com/project/mkungla/webxr-webpack-boilerplate
+[appveyor-link]: https://ci.appveyor.com/project/digaverse/webxr-webpack-boilerplate
 
 <!-- Codacy Badge Grade -->
 [codacy-grade-img]: https://api.codacy.com/project/badge/Grade/b903edd39cb141de94c007cc4d0c4f7d
-[codacy-grade-link]: https://www.codacy.com/app/marko-kungla/webxr-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mkungla/webxr-webpack-boilerplate&amp;utm_campaign=Badge_Grade
+[codacy-grade-link]: https://www.codacy.com/app/marko-kungla/webxr-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=digaverse/webxr-webpack-boilerplate&amp;utm_campaign=Badge_Grade
 
 <!-- Codacy Badge Coverage -->
-[coverage-img]: https://img.shields.io/coveralls/github/mkungla/webxr-webpack-boilerplate.svg
-[coverage-link]: https://github.com/mkungla/webxr-webpack-boilerplate
+[coverage-img]: https://img.shields.io/coveralls/github/digaverse/webxr-webpack-boilerplate.svg
+[coverage-link]: https://github.com/digaverse/webxr-webpack-boilerplate
 
-[dep-status-img]: https://david-dm.org/mkungla/webxr-webpack-boilerplate/status.svg
-[dep-status-link]: https://david-dm.org/mkungla/webxr-webpack-boilerplate#info=dependencies
-[devdep-status-img]: https://david-dm.org/mkungla/webxr-webpack-boilerplate/dev-status.svg
-[devdep-status-link]: https://david-dm.org/mkungla/webxr-webpack-boilerplate#info=devDependencies
+[dep-status-img]: https://david-dm.org/digaverse/webxr-webpack-boilerplate/status.svg
+[dep-status-link]: https://david-dm.org/digaverse/webxr-webpack-boilerplate#info=dependencies
+[devdep-status-img]: https://david-dm.org/digaverse/webxr-webpack-boilerplate/dev-status.svg
+[devdep-status-link]: https://david-dm.org/digaverse/webxr-webpack-boilerplate#info=devDependencies
 
 [git-lfs-link]: https://git-lfs.github.com/
-[demo-link]: https://mkungla.github.io/webxr-webpack-boilerplate
+[demo-link]: https://digaverse.github.io/webxr-webpack-boilerplate
 <!-- images -->
 [screeenshot-theme-red]: res/images/screenshots/theme-red.png
 [screeenshot-theme-blue]: res/images/screenshots/theme-blue.png

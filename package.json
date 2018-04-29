@@ -7,12 +7,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mkungla/webxr-webpack-boilerplate.git"
+    "url": "https://github.com/digaverse/webxr-webpack-boilerplate.git"
   },
   "bugs": {
-    "url": "https://github.com/mkungla/webxr-webpack-boilerplate/issues"
+    "url": "https://github.com/digaverse/webxr-webpack-boilerplate/issues"
   },
-  "homepage": "https://github.com/mkungla/webxr-webpack-boilerplate#readme",
+  "homepage": "https://github.com/digaverse/webxr-webpack-boilerplate#readme",
   "keywords": [
     "webxr-boilerplate",
     "webvr",
