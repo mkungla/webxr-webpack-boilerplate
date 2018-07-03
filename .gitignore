@@ -7,6 +7,8 @@
 *.log
 npm-debug.log*
 package-lock.json
+devel/ssl/localhost.crt
+devel/ssl/localhost.key
 
 ################################################################################
 # DIRECTORIES to ignore
