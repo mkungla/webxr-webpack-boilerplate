@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+body {
+  background: #e2e2e2;
+  color: #fafafa;
+}
+
+#offline {
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  color: #444;
+  font-size: 14px;
+  line-height: 24px;
+  font-style: normal;
+  position: relative;
+  padding: 15px;
+  text-align: center;
+
+  h1 {
+    color: rgb(239, 45, 94);
+    font-size: 76px;
+    font-weight: 900;
+    letter-spacing: 10px;
+    line-height: 70px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: #4c4c4c;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 35px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+}
+#logo {
+  width: 150px;
+  height: 150px;
+}

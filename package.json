@@ -3,7 +3,7 @@
   "version": "0.9.10",
   "description": "Starter Kit for building rich, immersive WebXR projects (featuring A-Frame) PWA with Webpack and SASS",
   "author": "Marko Kungla <marko.kungla@gmail.com> (https://github.com/mkungla)",
-  "main": "src/js/index.js",
+  "main": "src/app.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/digaverse/webxr-webpack-boilerplate/issues"
   },
-  "homepage": "https://github.com/digaverse/webxr-webpack-boilerplate#readme",
+  "homepage": "https://digaverse.github.io/webxr-webpack-boilerplate/",
   "keywords": [
     "webxr-boilerplate",
     "webvr",
@@ -31,66 +31,52 @@
     "service-workers"
   ],
   "scripts": {
-    "build": "cross-env WITH_VENDORS=true NODE_ENV=staging webpack --config ./devel/webpack.build.js",
+    "build": "webpack --config ./devel/webpack.prod.js",
     "check": "npm-run-all check:*",
     "check:yarn": "yarn check && yarn check --integrity && yarn outdated",
     "clean": "npm-run-all clean:*",
     "clean:yarn": " yarn autoclean --force --verbose --emoji",
-    "dist": "npm-run-all dist:*",
-    "dist:build": "cross-env WITH_VENDORS=true NODE_ENV=production webpack --config ./devel/webpack.build.js",
-    "dist:notice": "yarn licenses generate-disclaimer > NOTICE.md",
-    "info": "npm-run-all info:*",
-    "info:versions": "yarn versions",
     "lint": "npm-run-all lint:*",
-    "lint:stylelint": "stylelint './src/app/sass/**/*.scss' --syntax scss --config ./config/stylelint.json",
-    "lint:standard": "standard -v | snazzy",
-    "start": "NODE_ENV=development webpack-dev-server --config ./devel/webpack.dev.js",
+    "lint:eslint": "eslint . --ignore-path .gitignore",
+    "lint:stylelint": "stylelint 'src/sass/**/*.scss' --syntax scss --config devel/stylelint.json",
+    "setup": "npm-run-all setup:*",
+    "setup:cert": "openssl req -newkey rsa:4096 -nodes -keyout devel/ssl/localhost.key -x509 -days 365 -out devel/ssl/localhost.crt -config devel/ssl/ssl.cnf",
+    "start": "webpack --config ./devel/webpack.dev.js",
     "test:ci-on-linux": "echo \"run tests\"",
     "test:ci-on-mac": "echo \"run tests\"",
-    "test:ci-on-windows": "echo \"run tests\"",
-    "which:yarn": "which yarn && yarn bin"
+    "test:ci-on-windows": "echo \"run tests\""
   },
   "dependencies": {
     "aframe": "^0.8.2"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "clean-webpack-plugin": "^0.1.17",
-    "copy-webpack-plugin": "^4.4.1",
-    "cross-env": "^5.1.3",
-    "css-loader": "^0.28.9",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "handlebars-webpack-plugin": "^1.3.2",
-    "node-sass": "^4.7.2",
-    "npm-run-all": "^4.1.2",
-    "postcss-loader": "^2.0.10",
-    "resolve-url-loader": "^2.2.1",
-    "sass-loader": "^6.0.6",
-    "snazzy": "^7.0.0",
-    "standard": "^10.0.3",
-    "style-loader": "^0.20.1",
-    "stylelint": "^8.4.0",
-    "stylelint-config-standard": "^18.0.0",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1",
-    "webpack-merge": "^4.1.1"
-  },
-  "devSettings": {
-    "host": "localhost",
-    "port": 9000,
-    "allowedHosts": [
-      ".github.com"
-    ]
-  },
-  "standard": {
-    "ignore": [
-      "/assets/*",
-      "/build/*",
-      "/dist/*",
-      "/docs/*",
-      "/tmp/*"
-    ]
+    "@babel/core": "^7.0.0-beta.52",
+    "@babel/preset-env": "^7.0.0-beta.52",
+    "babel-loader": "8.0.0-beta.4",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.0.1",
+    "handlebars": "^4.0.11",
+    "handlebars-loader": "^1.7.0",
+    "handlebars-webpack-plugin": "^1.5.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "humanize-duration": "^3.15.0",
+    "ip": "^1.1.5",
+    "json-loader": "^0.5.7",
+    "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.0",
+    "npm-run-all": "^4.1.3",
+    "optimize-css-assets-webpack-plugin": "^4.0.3",
+    "postcss-loader": "^2.1.5",
+    "sass-loader": "^7.0.3",
+    "stylelint": "^9.3.0",
+    "stylelint-config-standard": "^18.2.0",
+    "webapp-webpack-plugin": "^2.2.0",
+    "webpack": "^4.14.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-merge": "^4.1.3",
+    "webpack-serve": "^1.0.4"
   }
 }

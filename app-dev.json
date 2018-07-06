@@ -1,0 +1,43 @@
+{
+  "host": "localhost",
+  "port": 9000,
+  "http2": true,
+  "https": {
+    "key": "./devel/ssl/localhost.key",
+    "cert": "./devel/ssl/localhost.crt"
+  },
+  "logLevel": "error",
+  "logTime": false,
+  "open": false,
+  "webpackDevMiddleware": {
+    "headers": {
+      "x-app": "webxr-webpack-boilerplate"
+    },
+    "index": "index.html",
+    "lazy": false,
+    "logLevel": "error",
+    "logTime": false,
+    "mimeTypes": null,
+    "publicPath": "/",
+    "serverSideRender": false,
+    "stats": null,
+    "watchOptions": {
+      "aggregateTimeout": 200
+    },
+    "writeToDisk": false
+  },
+  "webpackHotClient": {
+    "allEntries": false,
+    "autoConfigure": true,
+    "host": "localhost",
+    "hmr": true,
+    "https": true,
+    "logLevel": "error",
+    "logTime": false,
+    "port": 0,
+    "reload": true,
+    "server": null,
+    "stats": null,
+    "validTargets": ["web"]
+  }
+}

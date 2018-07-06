@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+/**
+ * A-Frame color themes
+ *
+ * available themes are ./themes directory
+ * That defines which sass theme will be imported
+ */
+// set theme name when building only current theme
+$theme: aframe;

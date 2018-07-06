@@ -16,7 +16,8 @@ devel/ssl/localhost.key
 **/[Bb]uild/*
 **/dist/*
 **/devel/coverage/*
-**/[Tt]mp/*
+**/public/*
+**/tmp/*
 **/node_modules/*
 
 ################################################################################
