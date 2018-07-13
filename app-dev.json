@@ -6,7 +6,7 @@
     "key": "./devel/ssl/localhost.key",
     "cert": "./devel/ssl/localhost.crt"
   },
-  "logLevel": "error",
+  "logLevel": "warn",
   "logTime": false,
   "open": false,
   "webpackDevMiddleware": {
@@ -15,7 +15,7 @@
     },
     "index": "index.html",
     "lazy": false,
-    "logLevel": "error",
+    "logLevel": "warn",
     "logTime": false,
     "mimeTypes": null,
     "publicPath": "/",
@@ -32,7 +32,7 @@
     "host": "localhost",
     "hmr": true,
     "https": true,
-    "logLevel": "error",
+    "logLevel": "warn",
     "logTime": false,
     "port": 0,
     "reload": true,

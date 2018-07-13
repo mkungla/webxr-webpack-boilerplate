@@ -37,7 +37,7 @@
     "clean": "npm-run-all clean:*",
     "clean:yarn": " yarn autoclean --force --verbose --emoji",
     "lint": "npm-run-all lint:*",
-    "lint:eslint": "eslint . --ignore-path .gitignore",
+    "lint:eslint": "eslint ./src --ignore-path .gitignore",
     "lint:stylelint": "stylelint 'src/sass/**/*.scss' --syntax scss --config devel/stylelint.json",
     "setup": "npm-run-all setup:*",
     "setup:cert": "openssl req -newkey rsa:4096 -nodes -keyout devel/ssl/localhost.key -x509 -days 365 -out devel/ssl/localhost.crt -config devel/ssl/ssl.cnf",
