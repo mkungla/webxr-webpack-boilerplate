@@ -30,7 +30,7 @@ module.exports = {
   entry: {
     vendors: [
       path.join(baseDir, 'src', 'vendors', 'js', 'vendors.js'),
-      path.join(baseDir, 'src', 'vendors', 'sass', 'vendors.scss')
+      path.join(baseDir, 'src', 'vendors', 'style', 'vendors.scss')
     ],
     'aframe-lib': [
       path.join(baseDir, 'src', 'vendors', 'js', 'aframe-lib.js'),

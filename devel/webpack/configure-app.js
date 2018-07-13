@@ -4,20 +4,24 @@
 const path = require('path')
 
 // Webpack plugins
+const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HandlebarsPlugin = require('handlebars-webpack-plugin')
 
 // Additional imports
 const cli = require('../utils/cli')
-// const AppInfo = require('../utils/appinfo')
+const AppInfo = require('../utils/appinfo')
 
 // define your stuff
 const baseDir = path.join(__dirname, '../../')
 const buildDir = path.join(baseDir, 'build')
-// const appinfo = new AppInfo()
+const appinfo = new AppInfo()
 
 const PLUGINS = [
+  new webpack.DefinePlugin({
+    PROJECT: JSON.stringify(appinfo),
+  }),
   new CleanWebpackPlugin(['build'], {
     // Absolute path to your webpack root folder (paths appended to this)
     // Default: root of your package
@@ -49,12 +53,12 @@ const PLUGINS = [
   }),
   new HandlebarsPlugin({
     // path to hbs scene entry file(s)
-    entry: path.join(baseDir, 'src', 'pages', '*.hbs'),
+    entry: path.join(baseDir, 'src', 'views', '*.hbs'),
     // output path and filename(s). This should lie within the webpacks output-folder
     // if ommited, the input filepath stripped of its extension will be used
     output: path.join(buildDir, '[name].html'),
     // data passed to main hbs template: `main-template(data)`
-    data: path.join(baseDir, 'app.json'),
+    data: appinfo,
     // globbed path to partials, where dir/filename is unique
     partials: [
       path.join(baseDir, 'src', 'partials', '**', '*.hbs')
@@ -73,15 +77,10 @@ const PLUGINS = [
     //   return `{{> html/header}}${templateContent}{{> html/footer}}`
     // },
     // onBeforeRender: function(Handlebars, data) {
-    //   data.aframe = {
-    //     'version': aframeVersion
-    //   }
-    //   data.app.name = data.app.name || data.project.name
-    //   data.app.description = data.app.description || data.project.description
-    //   data.app.keywords = data.app.keywords || data.project.keywords
-    //   data.defaults = require('./defaults.json')
+    //   cli.info('onBeforeRender: ')
+    //   data.app = appinfo
     // },
-    // onBeforeSave: function (Handlebars, resultHtml, filename) {},
+    // onBeforeSave: function(Handlebars, resultHtml, filename) {},
     // onDone: function(Handlebars, filename) {
     //   cli.ok(`updated: ${filename}`)
     // }
@@ -94,13 +93,13 @@ module.exports = {
   entry: {
     app: [
       path.join(baseDir, 'src', 'js', 'app.js'),
-      path.join(baseDir, 'src', 'sass', 'app.scss'),
+      path.join(baseDir, 'src', 'style', 'app.scss'),
     ],
   },
   plugins: PLUGINS,
   output: {
     path: path.join(buildDir, 'app'),
-    filename: path.join('js', '[name].js'),
+    filename: path.join('js', 'app.js'),
   },
   module: {
     rules: [{
@@ -111,6 +110,15 @@ module.exports = {
         'postcss-loader',
         'sass-loader',
       ],
+    }, {
+      test: /\.js$/,
+      exclude: /(node_modules)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
     }]
   },
 }

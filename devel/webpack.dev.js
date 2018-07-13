@@ -61,7 +61,8 @@ serve({
     server,
     options
   }) => {
-    cli.banner(packageJson.name, packageJson.version, devSettings.host, devSettings.port, devSettings.https)
+    cli.debug(`server session ctx: ${server.sessionIdContext}`)
+    cli.banner(packageJson.name, packageJson.version, options.host, options.port, options.options)
   })
 
   /**
@@ -106,12 +107,11 @@ serve({
    * @type Compiler Instance
    */
   server.on('compiler-error', (stats) => {
-    if (stats.json.errors.length > 0) {
+    if (stats.json.warnings.length > 0) {
       stats.json.errors.forEach((e) => {
         cli.error(e)
       })
     }
-    cli.error('compiler error')
   })
 
   /**
@@ -120,8 +120,11 @@ serve({
    * @type Stats Object
    * @type Compiler Instance
    */
-  server.on('compiler-warning', (stats, compiler) => {
-
-    cli.warn('compiler-warning')
+  server.on('compiler-warning', (stats) => {
+    if (stats.json.warnings.length > 0) {
+      stats.json.warnings.forEach((w) => {
+        cli.warn(w)
+      })
+    }
   })
 });

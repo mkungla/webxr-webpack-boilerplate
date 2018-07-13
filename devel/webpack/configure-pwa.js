@@ -4,7 +4,8 @@
 const path = require('path')
 
 // Webpack plugins
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const HandlebarsPlugin = require('handlebars-webpack-plugin')
 const WebappWebpackPlugin = require('webapp-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -43,9 +44,21 @@ module.exports = {
         'postcss-loader',
         'sass-loader',
       ],
+    }, {
+      test: /\.js$/,
+      exclude: /(node_modules)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
     }]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      PROJECT: JSON.stringify(appinfo),
+    }),
     new WebappWebpackPlugin({
       // Your source logo
       logo: path.join(baseDir, 'src', 'img', 'logo.png'),
@@ -90,13 +103,41 @@ module.exports = {
         }
       },
     }),
-    new HtmlWebpackPlugin({
-      title: 'offline',
-      filename: 'offline.html',
-      template: path.join(baseDir, 'src', 'pwa', 'offline.hbs')
+    new HandlebarsPlugin({
+      // path to hbs scene entry file(s)
+      entry: path.join(baseDir, 'src', 'pwa', 'offline.hbs'),
+      // output path and filename(s). This should lie within the webpacks output-folder
+      // if ommited, the input filepath stripped of its extension will be used
+      output: path.join(buildDir, 'offline.html'),
+      // data passed to main hbs template: `main-template(data)`
+      data: appinfo,
+      // globbed path to partials, where dir/filename is unique
+      partials: [
+        path.join(baseDir, 'src', 'pwa', 'partials', '**', '*.hbs')
+      ],
+      // hooks
+      // onBeforeSetup: function(Handlebars) {
+      //   cli.info('Handlebars version: ', Handlebars.VERSION)
+      // },
+      // onBeforeAddPartials: function(Handlebars, partialsMap) {
+      //   // cli.info('update Handlebars partials')
+      // },
+      // onBeforeCompile: function (Handlebars, templateContent) {
+      //   if (templateContent.startsWith('<a-scene')) {
+      //     return `{{> aframe/header}}${templateContent}{{> aframe/footer}}`
+      //   }
+      //   return `{{> html/header}}${templateContent}{{> html/footer}}`
+      // },
+      // onBeforeRender: function(Handlebars, data) {
+      //   cli.info('onBeforeRender: ')
+      // },
+      // onBeforeSave: function(Handlebars, resultHtml, filename) {},
+      // onDone: function(Handlebars, filename) {
+      //   cli.ok(`updated: ${filename}`)
+      // }
     }),
     new MiniCssExtractPlugin({
-      filename: 'app/css/[name].css'
+      filename: 'app/css/offline.css'
     }),
   ],
 }
