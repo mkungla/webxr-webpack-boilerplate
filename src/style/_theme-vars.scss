@@ -1,0 +1,112 @@
+/**
+ * Available themes are red, yellow, green, blue.
+ * you can define your own here
+ */
+// set theme
+$theme: red;
+
+////////////////////////////////////////////////////////////////////////////////
+// COLORS
+$color-yellow:          rgb(255, 198, 93) !default;
+$color-green:           rgb(123, 200, 164) !default;
+$color-blue:            rgb(76, 195, 217) !default;
+$color-red:             rgb(239, 45, 94) !default;
+$color-gray:            rgb(102, 102, 102) !default;
+$color-white:           rgb(255, 255, 255) !default;
+
+$color-bg-body:         rgb(248, 248, 255) !default;
+
+// A-Frame color
+$color-aframe:          rgb(239, 45, 94) !default;
+
+////////////////////////////////////////////////////////////////////////////////
+// DEFAULT THEME
+$color-bg-primary:              $color-red !default;
+$color-text-primary:            rgb(49, 79, 79) !default;
+$color-text-primary-shadow:     $color-white !default;
+$color-text-alert:              rgb(237, 49, 96) !default;
+$color-a:                       darken($color-bg-body, 5%) !default;
+$color-a-active:                $color-white !default;
+// A-Frame stats
+$aframe-stats-bg:                         #333 !default;
+$aframe-stats-text:                       #fafafa !default;
+$aframe-stats-h1:                         #fff !default;
+$aframe-stats-counter:                    #b70000 !default;
+$aframe-stats-counter-shadow:             #b70000 !default;
+$aframe-stats-counter-shadow2:            #fff !default;
+// A-Frame Inspector
+$aframe-inspector-bg:                     #ed3160;
+$aframe-inspector-text:                   #fff;
+$a-enter-vr-modal:                        #fff;
+$enter-vr-button:                         rgba(0, 0, 0, 0.35);
+$enter-vr-button-active:                  #666;
+////////////////////////////////////////////////////////////////////////////////
+// YELLOW THEME
+@if $theme == yellow {
+  $color-bg-primary:            $color-yellow;
+  $color-text-primary:          darken($color-blue, 35%);
+  $color-text-primary-shadow:   darken($color-yellow, 15%);
+  $color-text-alert:            darken($color-red, 35%);
+  $color-a:                     darken($color-bg-primary, 80%);
+  $color-a-active:              lighten($color-a, 30%);
+  // A-Frame stats
+  $aframe-stats-bg:                 $color-yellow;
+  $aframe-stats-text:               $color-text-primary;
+  $aframe-stats-h1:                 darken($color-text-primary, 20%);
+  $aframe-stats-counter:            #b70000;
+  $aframe-stats-counter-shadow:     #b70000;
+  $aframe-stats-counter-shadow2:    #fff;
+  // A-Frame Inspector
+  $aframe-inspector-bg:              $color-bg-primary;
+  $aframe-inspector-text:            $color-text-primary;
+  $a-enter-vr-modal:                 $color-a;
+  $enter-vr-button:                  $color-bg-primary;
+  $enter-vr-button-active:           lighten($color-bg-primary, 10%);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// BLUE THEME
+@if $theme == blue {
+  $color-bg-primary:            $color-blue;
+  $color-text-primary:          darken($color-blue, 35%);
+  $color-text-primary-shadow:   darken($color-blue, 15%);
+  $color-text-alert:            darken($color-red, 35%);
+  $color-a:                     darken($color-bg-primary, 80%);
+  $color-a-active:              lighten($color-a, 30%);
+  // A-Frame stats
+  $aframe-stats-bg:                 $color-blue;
+  $aframe-stats-text:               $color-text-primary;
+  $aframe-stats-h1:                 darken($color-text-primary, 20%);
+  $aframe-stats-counter:            #b70000;
+  $aframe-stats-counter-shadow:     #b70000;
+  $aframe-stats-counter-shadow2:    #fff;
+  // A-Frame Inspector
+  $aframe-inspector-bg:              $color-bg-primary;
+  $aframe-inspector-text:            $color-text-primary;
+  $a-enter-vr-modal:                 $color-a;
+  $enter-vr-button:                  $color-bg-primary;
+  $enter-vr-button-active:           lighten($color-bg-primary, 10%);
+}
+////////////////////////////////////////////////////////////////////////////////
+// GREEN THEME
+@if $theme == green {
+  $color-bg-primary:            $color-green;
+  $color-text-primary:          darken($color-green, 45%);
+  $color-text-primary-shadow:   darken($color-green, 15%);
+  $color-text-alert:            darken($color-red, 35%);
+  $color-a:                     darken($color-bg-primary, 80%);
+  $color-a-active:              lighten($color-a, 30%);
+  // A-Frame stats
+  $aframe-stats-bg:                 $color-green;
+  $aframe-stats-text:               $color-text-primary;
+  $aframe-stats-h1:                 darken($color-text-primary, 20%);
+  $aframe-stats-counter:            #b70000;
+  $aframe-stats-counter-shadow:     #b70000;
+  $aframe-stats-counter-shadow2:    #fff;
+  // A-Frame Inspector
+  $aframe-inspector-bg:              $color-bg-primary;
+  $aframe-inspector-text:            $color-text-primary;
+  $a-enter-vr-modal:                 $color-a;
+  $enter-vr-button:                  $color-bg-primary;
+  $enter-vr-button-active:           lighten($color-bg-primary, 10%);
+}

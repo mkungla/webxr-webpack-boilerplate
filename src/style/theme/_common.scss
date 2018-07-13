@@ -1,0 +1,24 @@
+/* Webapp wrapper */
+html, body {
+  height:100%;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+main {
+  display:block;
+  height: 100%;
+  margin-left: 200px;
+  padding: 0px 10px;
+  background-color: $color-bg-body;
+  h1  {
+    text-transform: uppercase;
+    color: $color-bg-primary;
+    margin-bottom: 2px;
+  }
+}
+sup.app-version {
+  color: $color-text-primary;
+  font-weight: 600;
+  padding-left:6px;
+}

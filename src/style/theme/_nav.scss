@@ -1,0 +1,38 @@
+/* The sidebar menu */
+nav {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200px;
+  padding-top: 20px;
+  background-color: $color-bg-primary;
+  /* Disable horizontal scroll */
+  overflow-x: hidden;
+  box-shadow: 0 0 4px 0 $color-bg-primary, 0 0 16px 0 $color-bg-primary;
+}
+
+/* menu links */
+nav a {
+   padding: 5px;
+   text-decoration: none;
+   font-size: 12px;
+   color: $color-a;
+   display: block;
+   text-transform: uppercase;
+}
+
+nav a:hover {
+   color: $color-a-active;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+   nav {
+     padding: 2px;
+   }
+   nav a {
+     font-size: 10px;
+   }
+}
