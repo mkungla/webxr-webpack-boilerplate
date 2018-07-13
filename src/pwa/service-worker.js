@@ -1,7 +1,7 @@
 /* global self caches fetch Response Headers */
-var version = 'v1::'
+const version = 'v1::'
 
-var CACHE_FILE_LIST = [
+const CACHE_FILE_LIST = [
   '.',
   'style/app-theme.css',
   'js/aframe-app.js',
@@ -11,7 +11,7 @@ var CACHE_FILE_LIST = [
   'index.html'
 ]
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', (event) => {
   console.log('WORKER: install event in progress.')
   event.waitUntil(
     /* The caches built-in is a promise-based API that helps you cache responses,
@@ -22,21 +22,19 @@ self.addEventListener('install', function(event) {
        a versioned cache name here so that we can remove old cache entries in
        one fell swoop later, when phasing out an older service worker.
     */
-    .open(version + 'fundamentals')
-    .then(function(cache) {
-      /* After the cache is opened, we can fill it with the offline fundamentals.
-         The method below will add all resources we've indicated to the cache,
-         after making HTTP requests for each of them.
-      */
-      return cache.addAll(CACHE_FILE_LIST)
-    })
-    .then(function() {
+    .open(`${version}fundamentals`)
+    /* After the cache is opened, we can fill it with the offline fundamentals.
+       The method below will add all resources we've indicated to the cache,
+       after making HTTP requests for each of them.
+    */
+    .then((cache) => cache.addAll(CACHE_FILE_LIST))
+    .then(() => {
       console.log('WORKER: install completed')
     })
   )
 })
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', (event) => {
   console.log('WORKER: fetch event in progress.')
 
   /* We should only cache GET requests, and deal with the rest of method in the
@@ -60,7 +58,7 @@ self.addEventListener('fetch', function(event) {
        to the fetch request.
     */
     .match(event.request)
-    .then(function(cached) {
+    .then((cached) => {
       /* Even if the response is in our cache, we go to the network as well.
          This pattern is known for producing "eventually fresh" responses,
          where we return cached responses immediately, and meanwhile pull
@@ -68,7 +66,7 @@ self.addEventListener('fetch', function(event) {
          Read more:
          https://ponyfoo.com/articles/progressive-networking-serviceworker
       */
-      var networked = fetch(event.request)
+      const networked = fetch(event.request)
         // We handle the network request with success and failure scenarios.
         .then(fetchedFromNetwork, unableToResolve)
         // We should catch errors on the fetchedFromNetwork handler as well.
@@ -84,21 +82,21 @@ self.addEventListener('fetch', function(event) {
         /* We copy the response before replying to the network request.
            This is the response that will be stored on the ServiceWorker cache.
         */
-        var cacheCopy = response.clone()
+        const cacheCopy = response.clone()
 
         console.log('WORKER: fetch response from network.', event.request.url)
 
         caches
           // We open a cache to store the response for this request.
-          .open(version + 'pages')
-          .then(function add(cache) {
+          .open(`${version}pages`)
+          .then((cache) => {
             /* We store the response for this request. It'll later become
                available to caches.match(event.request) calls, when looking
                for cached responses.
             */
             cache.put(event.request, cacheCopy)
           })
-          .then(function() {
+          .then(() => {
             console.log('WORKER: fetch response stored in cache.', event.request.url)
           })
 

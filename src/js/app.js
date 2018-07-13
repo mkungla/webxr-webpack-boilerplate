@@ -20,5 +20,5 @@ if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     console.log('CLIENT: service worker registration failure.')
   })
 } else {
-  console.log('CLIENT: service worker is disabled.')
+  console.log('CLIENT: service worker is not supported.')
 }
