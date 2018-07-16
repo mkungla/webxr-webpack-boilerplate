@@ -1,0 +1,62 @@
+.variables {
+  margin-top: 25px;
+  width: 100%;
+  th {
+    text-align: left;
+  }
+  tr:nth-child(even) {
+    background-color: $color-text-primary-shadow;
+  }
+  td {
+    border-bottom: 1px solid $color-bg-primary;
+  }
+  td:nth-child(3n) {
+    color: $color-text-alert;
+  }
+  pre {
+    min-width: 50px;
+    min-height: 20px;
+  }
+}
+.pwa-images{
+  margin-top: 25px;
+  width: 100%;
+  th {
+    text-align: left;
+  }
+  tr:nth-child(even) {
+    background-color: $color-text-primary-shadow;
+  }
+  td {
+    border-bottom: 1px solid $color-bg-primary;
+  }
+  img {
+    max-width: 150px;
+  }
+}
+.var-color-yellow {background-color: $color-yellow;}
+.var-color-green {background-color: $color-green;}
+.var-color-blue {background-color: $color-blue;}
+.var-color-red {background-color: $color-blue;}
+.var-color-gray {background-color: $color-gray;}
+.var-color-white {background-color: $color-white;}
+.var-color-bg-body {background-color: $color-bg-body;}
+.var-color-aframe {background-color: $color-aframe;}
+
+.var-color-bg-primary {background-color: $color-bg-primary;}
+.var-color-text-primary {background-color: $color-text-primary;}
+.var-color-text-primary-shadow {background-color: $color-text-primary-shadow;}
+.var-color-text-alert {background-color: $color-text-alert;}
+.var-color-a {background-color: $color-a;}
+.var-color-a-active {background-color: $color-a-active;}
+.var-aframe-stats-bg {background-color: $aframe-stats-bg;}
+.var-aframe-stats-text {background-color: $aframe-stats-text;}
+.var-aframe-stats-h1 {background-color: $aframe-stats-h1;}
+.var-aframe-stats-counter {background-color: $aframe-stats-counter;}
+.var-aframe-stats-counter-shadow {background-color: $aframe-stats-counter-shadow;}
+.var-aframe-stats-counter-shadow2 {background-color: $aframe-stats-counter-shadow2;}
+.var-aframe-inspector-bg {background-color: $aframe-inspector-bg;}
+.var-aframe-inspector-text {background-color: $aframe-inspector-text;}
+.var-a-enter-vr-modal {background-color: $a-enter-vr-modal;}
+.var-enter-vr-button {background-color: $enter-vr-button;}
+.var-enter-vr-button-active {background-color: $enter-vr-button-active;}

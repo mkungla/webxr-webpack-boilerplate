@@ -1,0 +1,113 @@
+{{> html/header }}
+{{> html/nav }}
+<main>
+  <h1>{{title}}</h1>
+  <sup class="app-version">{{name}} v: {{version}}</sup>
+
+  <h2>Template and javascript variables</h2>
+  <table class="variables">
+    <thead>
+      <tr>
+        <th>Javascript</th>
+        <th>Handlebars</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><pre>PROJECT.title</pre></td><td><pre>\{{title}}</pre></td><td><pre>{{title}}</pre></td>
+      </tr>
+      <tr>
+        <td><pre>PROJECT.name</pre></td><td><pre>\{{name}}</pre></td><td><pre>{{name}}</pre></td>
+      </tr>
+      <tr>
+        <td><pre>PROJECT.version</pre></td><td><pre>\{{name}}</pre></td><td><pre>{{version}}</pre></td>
+      </tr>
+      <tr>
+        <td><pre>PROJECT.aframe</pre></td><td><pre>\{{aframe}}</pre></td><td><pre>{{aframe}}</pre></td>
+      </tr>
+      <tr>
+        <td><pre>PROJECT.description</pre></td><td><pre>\{{description}}</pre></td><td><pre>{{description}}</pre></td>
+      </tr>
+      <tr>
+        <td><pre>PROJECT.mstilecolor</pre></td><td><pre>\{{mstilecolor}}</pre></td><td><pre>{{mstilecolor}}</pre></td>
+      </tr>
+      <tr>
+        <td><pre>PROJECT.themecolor</pre></td><td><pre>\{{themecolor}}</pre></td><td><pre>{{themecolor}}</pre></td>
+      </tr>
+      <tr>
+        <td><pre>PROJECT.serviceWorker</pre></td><td><pre>\{{serviceWorker}}</pre></td><td><pre>{{serviceWorker}}</pre></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>SASS variables</h2>
+  <table class="variables">
+    <thead>
+      <tr>
+        <th>SASS</th>
+        <th></th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><pre>$theme</pre></td><td><pre>Available themes are red, yellow, green, blue.</pre></td><td><pre>red</pre></td></tr>
+      <tr><td><pre>$color-yellow</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-yellow"></pre></td></tr>
+      <tr><td><pre>$color-green</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-green"></pre></td></tr>
+      <tr><td><pre>$color-blue</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-blue"></pre></td></tr>
+      <tr><td><pre>$color-red</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-red"></pre></td></tr>
+      <tr><td><pre>$color-gray</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-gray"></pre></td></tr>
+      <tr><td><pre>$color-white</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-white"></pre></td></tr>
+      <tr><td><pre>$color-bg-body</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-bg-body"></pre></td></tr>
+      <tr><td><pre>$color-aframe</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-aframe"></pre></td></tr>
+    </tbody>
+  </table>
+
+  <h2>THEME related SASS variables</h2>
+  <h3>Active theme</h3>
+  <table class="variables">
+    <thead>
+      <tr>
+        <th>SASS</th>
+        <th></th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><pre>$color-bg-primary</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-bg-primary"></pre></td></tr>
+      <tr><td><pre>$color-text-primary</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-text-primary"></pre></td></tr>
+      <tr><td><pre>$color-text-primary-shadow</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-text-primary-shadow"></pre></td></tr>
+      <tr><td><pre>$color-text-alert</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-text-alert"></pre></td></tr>
+      <tr><td><pre>$color-a</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-a"></pre></td></tr>
+      <tr><td><pre>$color-a-active</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-color-a-active"></pre></td></tr>
+      <tr><td><pre>$aframe-stats-bg</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-aframe-stats-bg"></pre></td></tr>
+      <tr><td><pre>$aframe-stats-text</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-aframe-stats-text"></pre></td></tr>
+
+      <tr><td><pre>$aframe-stats-h1</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-aframe-stats-h1"></pre></td></tr>
+      <tr><td><pre>$aframe-stats-counter</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-aframe-stats-counter"></pre></td></tr>
+      <tr><td><pre>$aframe-stats-counter-shadow</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-aframe-stats-counter-shadow"></pre></td></tr>
+      <tr><td><pre>$aframe-stats-counter-shadow2</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-aframe-stats-counter-shadow2"></pre></td></tr>
+      <tr><td><pre>$aframe-inspector-bg</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-aframe-inspector-bg"></pre></td></tr>
+      <tr><td><pre>$aframe-inspector-text</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-aframe-inspector-text"></pre></td></tr>
+      <tr><td><pre>$a-enter-vr-modal</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-a-enter-vr-modal"></pre></td></tr>
+      <tr><td><pre>$enter-vr-button</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-enter-vr-button"></pre></td></tr>
+      <tr><td><pre>$enter-vr-button-active</pre></td><td><pre class="sass-var"></pre></td><td><pre class="var-enter-vr-button-active"></pre></td></tr>
+    </tbody>
+  </table>
+</main>
+<script>
+  const vars = document.querySelectorAll('pre.sass-var')
+  const hexDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f")
+  function hex(x) {
+    return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+  }
+  function rgb2hex(rgb) {
+    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+  }
+  vars.forEach((el) => {
+    let css = window.getComputedStyle(el.closest('tr').lastChild.firstChild).getPropertyValue("background-color");
+    el.innerHTML = css + ' - ' + rgb2hex(css)
+  })
+</script>
+{{> html/footer }}
