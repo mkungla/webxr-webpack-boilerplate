@@ -1,13 +1,18 @@
 /* Webapp wrapper */
-html, body {
-  height:100%;
+body {
+  height:auto;
   width:100%;
   margin:0;
   padding:0;
 }
+header {
+  margin: 0 0 0 200px;
+  padding: 0 0 0 10px;
+  height:110px
+}
 main {
   display:block;
-  height: 100%;
+  height: calc(100vh - 135px);
   margin-left: 200px;
   padding: 0px 10px;
   background-color: $color-bg-body;

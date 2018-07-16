@@ -29,15 +29,14 @@ module.exports = {
   //    all aframe components you install would be in aframe-lib.js
   entry: {
     vendors: [
-      path.join(baseDir, 'src', 'vendors', 'js', 'vendors.js'),
-      path.join(baseDir, 'src', 'vendors', 'style', 'vendors.scss')
+      path.join(baseDir, 'src', 'vendors', 'js', 'vendors.js')
     ],
-    'aframe-lib': [
-      path.join(baseDir, 'src', 'vendors', 'js', 'aframe-lib.js'),
+    'vendors-custom': [
+      path.join(baseDir, 'src', 'vendors', 'style', 'vendors-custom.scss')
     ]
   },
   output: {
-    path: path.join(buildDir, 'assets'),
+    path: path.join(buildDir, 'app'),
     filename: 'js/[name].js',
   },
   // vendor stuff

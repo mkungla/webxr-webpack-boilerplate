@@ -1,5 +1,6 @@
 {
   "title": "WebXR Webpack Boilerplate",
   "themecolor": "#ee295f",
-  "mstilecolor": "#24caff"
+  "mstilecolor": "#ee295f",
+  "serviceWorker": false
 }

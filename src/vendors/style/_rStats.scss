@@ -4,6 +4,7 @@
   border-radius: 0;
   font: 10px monospace;
   right: 5px;
+  left: auto;
   line-height: 1em;
   opacity: 0.85;
   overflow: hidden;
@@ -89,6 +90,7 @@
 
 @media (min-width: 480px) {
   .rs-base {
+    left: auto;
     right: 20px;
     top: 20px;
   }

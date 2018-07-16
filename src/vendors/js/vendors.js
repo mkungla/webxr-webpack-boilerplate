@@ -1,4 +1,4 @@
 /**
- * Generic vendor libraries
- */
-console.log('vendors.js')
+ *A-Frame, npm components and generic vendor libraries
+ **/
+import 'aframe/src'
