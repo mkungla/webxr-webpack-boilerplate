@@ -26,11 +26,14 @@ module.exports = {
     offline: [
       path.join(baseDir, 'src', 'pwa', 'offline.js'),
       path.join(baseDir, 'src', 'pwa', 'offline.scss'),
+    ],
+    'service-worker': [
+      path.join(baseDir, 'src', 'pwa', 'service-worker.js'),
     ]
   },
   output: {
     path: path.join(buildDir),
-    filename: './app/js/offline.js',
+    filename: './app/js/[name].js',
   },
   module: {
     rules: [{

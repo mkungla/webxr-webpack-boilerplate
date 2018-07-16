@@ -1,14 +1,18 @@
 /* global self caches fetch Response Headers */
-const version = 'v1::'
+const version = 'v0.9::'
 
 const CACHE_FILE_LIST = [
-  '.',
-  'style/app-theme.css',
-  'js/aframe-app.js',
-  'js/aframe-base.js',
-  'js/app.js',
-  'js/vendors.js',
-  'index.html'
+  'assets/css/app.css',
+  'assets/js/app.js',
+  'assets/css/aframe-lib.css',
+  'assets/css/vendors.css',
+  'assets/js/aframe-lib.js',
+  'assets/js/vendors.js',
+  'assets/pwa/browserconfig.xml',
+  'assets/pwa/manifest.json',
+  'assets/pwa/manifest.webapp',
+  'assets/pwa/offline.css',
+  'assets/pwa/offline.js'
 ]
 
 self.addEventListener('install', (event) => {
@@ -120,7 +124,7 @@ self.addEventListener('fetch', (event) => {
            - Generate a Response programmaticaly, as shown below, and return that
         */
 
-        console.log('WORKER: fetch request failed in both cache and network.')
+        console.log('SW: fetch request failed in both cache and network.')
 
         /* Here we're creating a response programmatically. The first parameter is the
            response body, and the second one defines the options for the response.
