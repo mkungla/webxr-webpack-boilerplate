@@ -1,1 +1,2 @@
-console.log('aframe-lib.js ....')
+import './aframe/a-custom-box'
+import './aframe/example-scale'
