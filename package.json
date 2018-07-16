@@ -36,6 +36,7 @@
     "check:yarn": "yarn check && yarn check --integrity && yarn outdated",
     "clean": "npm-run-all clean:*",
     "clean:yarn": " yarn autoclean --force --verbose --emoji",
+    "initcomponent": "cd src/js/aframe && angle initcomponent",
     "lint": "npm-run-all lint:*",
     "lint:eslint": "eslint ./src --ignore-path .gitignore",
     "lint:stylelint": "stylelint 'src/sass/**/*.scss' --syntax scss --config devel/stylelint.json",
@@ -52,6 +53,8 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.52",
     "@babel/preset-env": "^7.0.0-beta.52",
+    "aframe-registry": "^0.6.0",
+    "angle": "^0.8.1",
     "babel-loader": "8.0.0-beta.4",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",
