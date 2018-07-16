@@ -15,8 +15,8 @@ workflows:
         filters:
           branches:
             only:
-              - /*.-dev/
               - master
+              - /.*-dev$/
               - /hotfix-.*/
 # jobs
 jobs:
