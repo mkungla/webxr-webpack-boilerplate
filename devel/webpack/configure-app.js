@@ -39,7 +39,7 @@ const PLUGINS = [
     // Good for not removing shared files from build directories.
     exclude: [
       '.gitkeep',
-      'assets',
+      'assets'
     ],
     // allow the plugin to clean folders outside of the webpack root.
     // Default: false - don't allow clean folder outside of the webpack root
@@ -61,7 +61,7 @@ const PLUGINS = [
     data: appinfo,
     // globbed path to partials, where dir/filename is unique
     partials: [
-      path.join(baseDir, 'src', 'partials', '**', '*.hbs')
+      path.join(baseDir, 'src', 'views', 'partials', '**', '*.hbs')
     ],
     // hooks
     onBeforeSetup: function(Handlebars) {
@@ -95,11 +95,14 @@ module.exports = {
       path.join(baseDir, 'src', 'js', 'app.js'),
       path.join(baseDir, 'src', 'style', 'app.scss'),
     ],
+    'aframe-lib': [
+      path.join(baseDir, 'src', 'js', 'aframe-lib.js'),
+    ]
   },
   plugins: PLUGINS,
   output: {
     path: path.join(buildDir, 'app'),
-    filename: path.join('js', 'app.js'),
+    filename: path.join('js', '[name].js'),
   },
   module: {
     rules: [{

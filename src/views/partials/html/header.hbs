@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{#if scene.title}}{{scene.title}} | {{/if}}{{app.name}}</title>
-    <meta name="description" content="{{app.description}}">
-    <meta name="keywords" content="{{app.keywords}}">
+    <title>{{#if title}}{{title}}{{else}}{{name}}{{/if}}</title>
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="{{keywords}}">
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{#if scene.title}}{{scene.title}} | {{/if}}{{app.name}}" />
+    <meta property="og:title" content="{{#if title}}{{title}}{{else}}{{name}}{{/if}}" />
     <meta property="og:image" content="assets/images/icons/apple-touch-icon.png" />
-    <meta property="og:description" content="{{app.description}}" />
+    <meta property="og:description" content="{{description}}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="apple-touch-icon" sizes="114x114" href="/assets/pwa/apple-touch-icon-114x114.png">
@@ -45,9 +45,10 @@
     <meta name="msapplication-TileImage" content="/assets/pwa/mstile-144x144.png">
     <meta name="msapplication-config" content="/assets/pwa/browserconfig.xml">
     <meta name="theme-color" content="#fff">
+    <link href="/app/css/vendors.css" rel="stylesheet">
+    <link href="/app/css/vendors-custom.css" rel="stylesheet">
     <link href="/app/css/app.css" rel="stylesheet">
-    <link href="/assets/css/vendors.css" rel="stylesheet">
-    <script src="/assets/js/vendors.js"></script>
-    <script src="/assets/js/aframe-lib.js"></script>
+    <script src="/app/js/vendors.js"></script>
+    <script src="/app/js/aframe-lib.js"></script>
   </head>
   <body>
