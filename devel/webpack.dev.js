@@ -62,7 +62,7 @@ serve({
     options
   }) => {
     cli.debug(`server session ctx: ${server.sessionIdContext}`)
-    cli.banner(packageJson.name, packageJson.version, options.host, options.port, options.options)
+    cli.banner(packageJson.name, packageJson.version, options.host, options.port, options.hot.https)
   })
 
   /**
@@ -82,10 +82,14 @@ serve({
    */
   server.on('build-finished', (stats) => {
     if (stats.stats.compilation.errors.length > 0) {
-      cli.error('TODO: build-finished has errors stats.stats.compilation.errors.length > 0')
+      stats.stats.compilation.errors.forEach((e) => {
+        cli.error(e)
+      })
     }
     if (stats.stats.compilation.warnings.length > 0) {
-      cli.error('TODO: build-finished has warnings stats.stats.compilation.warnings.length > 0')
+      stats.stats.compilation.warnings.forEach((e) => {
+        cli.warn(e)
+      })
     }
     const files = Object.keys(stats.stats.compilation.assets)
 
@@ -107,7 +111,7 @@ serve({
    * @type Compiler Instance
    */
   server.on('compiler-error', (stats) => {
-    if (stats.json.warnings.length > 0) {
+    if (stats.json.errors.length > 0) {
       stats.json.errors.forEach((e) => {
         cli.error(e)
       })
