@@ -11,12 +11,10 @@ const autoprefixer = require('autoprefixer')
 
 // Additional imports
 const cli = require('../utils/cli')
-const AppInfo = require('../utils/appinfo')
 
 // define your stuff
 const baseDir = path.join(__dirname, '../../')
 const buildDir = path.join(baseDir, 'build')
-const appinfo = new AppInfo()
 
 cli.info('load app config from ./devel/webpack/configure-vendors.js')
 module.exports = {
@@ -29,10 +27,10 @@ module.exports = {
   //    all aframe components you install would be in aframe-lib.js
   entry: {
     vendors: [
-      path.join(baseDir, 'src', 'vendors', 'js', 'vendors.js')
+      path.join(baseDir, 'src', 'js', 'vendors.js')
     ],
-    'vendors-custom': [
-      path.join(baseDir, 'src', 'vendors', 'style', 'vendors-custom.scss')
+    'vendors-style': [
+      path.join(baseDir, 'src', 'style', 'vendors', 'vendors-style.scss')
     ]
   },
   output: {
