@@ -72,11 +72,12 @@ stages:
 # jobs
 jobs:
   include:
-    # verify A-Frame pull request
+    # verify pull request
     - stage: lint and test
       env: JOB_NAME=lint
       <<: *tmpl-common-setup
       script: yarn run lint
+
     # # run primary tests
     - <<: *tmpl-common-setup
       env: JOB_NAME=test:ci-on-linux
@@ -85,6 +86,11 @@ jobs:
       after_success:
         # For example here we upload covergae report to codacy
         - cat ./tmp/lcov.info | node_modules/.bin/codacy-coverage --token $CODACY_PROJECT_TOKEN
+
+    - <<: *tmpl-common-setup
+      env: JOB_NAME=check:dependencies
+      script: yarn outdated
+
     # deploy new release + npm package
     - stage: deploy
       <<: *tmpl-ssh-setup
@@ -115,5 +121,4 @@ jobs:
         - if [ ! -z "$(git status --porcelain)" ]; then git add -A && git commit --amend --no-edit; fi
         # deploy
         - git push github/digaverse gh-pages
-
       after_script: echo "after_script https://digaverse.github.io/webxr-webpack-boilerplate"
