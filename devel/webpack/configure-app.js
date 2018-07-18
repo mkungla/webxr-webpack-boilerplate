@@ -53,7 +53,7 @@ const PLUGINS = [
   }),
   new HandlebarsPlugin({
     // path to hbs scene entry file(s)
-    entry: path.join(baseDir, 'src', 'views', '*.hbs'),
+    entry: path.join(baseDir, 'src', 'hbs', '*.hbs'),
     // output path and filename(s). This should lie within the webpacks output-folder
     // if ommited, the input filepath stripped of its extension will be used
     output: path.join(buildDir, '[name].html'),
@@ -61,7 +61,7 @@ const PLUGINS = [
     data: appinfo,
     // globbed path to partials, where dir/filename is unique
     partials: [
-      path.join(baseDir, 'src', 'views', 'partials', '**', '*.hbs')
+      path.join(baseDir, 'src', 'hbs', 'partials', '**', '*.hbs')
     ],
     // hooks
     onBeforeSetup: function(Handlebars) {
