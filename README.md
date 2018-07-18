@@ -24,22 +24,38 @@ while final product going to production may require major refactoring the code b
 [![Dev Dependencies][devdep-status-img]][devdep-status-link]
 
 - [Overview](#overview)
-  * [Project structure](#project-structure)
-  * [Minimal example of app.js](#minimal-example-of-app.js)
-  * [Example Addon](#example-addon)
   * [Custom A-Frame Theme](#custom-a-frame-theme)
+  * [Project structure](#project-structure)
 - [Getting Started](#getting-started)
   * [Setup project based on this repository](#setup-project-based-on-this-repository)
     + [(option 1) Create fork to contribute back to this repository](#-option-1--create-fork-to-contribute-back-to-this-repository)
     + [(option 2) Create new project based on this repository and keep commit history](#-option-2--create-new-project-based-on-this-repository-and-keep-commit-history)
     + [(option 3) Create new project based on this repository without commit history](#-option-3--create-new-project-based-on-this-repository-without-commit-history)
-  * [First run](#first-run)
   * [Build and development server configuration](#build-and-development-server-configuration)
-    * [Add A-Frame components](#add-a-frame-components)
-    * [Add 3rd party libraries](#add-3rd-party-libraries)
+  * [First run](#first-run)  
+- [Development](#development)
+  * [Minimal example of app.js](#minimal-example-of-app.js)
+  * [Example Addon](#example-addon)
+  * [Add A-Frame components](#add-a-frame-components)
+  * [Add 3rd party libraries](#add-3rd-party-libraries)
+- [Build and deploy](#build-and-deploy)
+
 
 ## Overview
- here is overview of WebXR Webpack Boilerplate project and what's included.
+Here is overview of WebXR Webpack Boilerplate project and what's included.
+
+### Custom A-Frame Theme
+
+| red | blue | green | yellow |
+| :---: | :---: | :---: | :---: |
+| ![Theme red][screeenshot-theme-red] | ![Theme blue][screeenshot-theme-blue]  | ![Theme -green][screeenshot-theme-green]  | ![Theme yellow][screeenshot-theme-yellow] |
+
+You can change A-Frame themes by modifying SASS configuration  `$theme` variable in [src/style/_theme-vars.scss](src/style/_theme-vars.scss)
+
+```sass
+// Color themes red !default, yellow, green, blue
+$theme: red;
+```
 
 ---
 
@@ -87,105 +103,6 @@ Project `./src` contains some unnecessary files which are included for demo and 
       - ***vendors-style.scss*** vendor style entrypoint
 - **tests** tests.
 - **tmp** temporary and local files which are not tracked by git.
-
----
-
-### Minimal example of app.js
-
-Here is minimal Example for [./src/js/app.js](src/js/app.js)
-
-```javascript
-/* global PROJECT */
-
-import Application from './application/core'
-// import application addons you want to register
-// import yourAddon from './application/addons/your-addon'
-
-const app = new Application(PROJECT)
-
-// Reqister all application addons by calling registerAddon
-// app.registerAddon(yourAddon, addonConfigObject)
-
-// Start the application as soon as possible
-app.start().then((log) => {
-  log.debug('webapp is running callback')
-}).catch((err) => {
-  console.error(err)
-})
-```
-
-Project is shipped with example adding controls to `start/stop/play/pause` application.
-NOTE that application `start/stop/play/pause` does not affect A-Frame scene. If you wich to do so then you have to set `{"ppaframe": true}` in [./app.json](app.json). Also when you have page which does not have A-Frame scene but in header template you load `aframe-lib.js` then application will not play since A-Frame core system is paused when `<a-scene>` is not found, so you may better create different header file wich you include in pages which do not have a A-Frame scene so that application falls back to using `window.requestAnimationFrame`.
-
----
-
-### Example Addon
-
-Most of application logic is added to application by creating and registering Addons. bellow is outline of how to define your Addon.
-
-```javascript
-/* ./application/addons/your-addon */
-export default {
-  name: 'your-addon',
-  // this addon will not be reqistered if aframe is not present on loaded page
-  // default false
-  aframeRequired: true,
-  // You can set configuration defaults to your Addon here
-  // or set that object as second parameter when you register
-  // your Addon by calling app.registerAddon()
-  data: {},
-
-  setup() {
-    // Called once when you register the Addon
-    // Sets the data to values passed to registerAddon 2 param
-  },
-
-  start() {
-    // Called every time when you start the application
-    // and everytime when you call application start after stoping it.
-  },
-
-  play() {
-    // Called every time when application play is called
-  },
-
-  pause() {
-    // Called every time when application pause is called
-  },
-
-  tick() {
-    // Called in every render loop when application is playing
-  },
-
-  dispose() {
-    // Called when application stop is called.
-    // Currently dispose does not delete this Addon
-    // so calling application start after stop will call
-    // this objects .start again, but not .setup .
-    // This behavior may change in this project skeleton
-    // in the future allowing you to dispose Addons on
-    // run time and re register Addons on demand.
-    // Therefore the name dispose instead of stop
-    // which it is right now by behavior.
-  }
-}
-
-```
-
----
-
-### Custom A-Frame Theme
-
-| red | blue | green | yellow |
-| :---: | :---: | :---: | :---: |
-| ![Theme red][screeenshot-theme-red] | ![Theme blue][screeenshot-theme-blue]  | ![Theme -green][screeenshot-theme-green]  | ![Theme yellow][screeenshot-theme-yellow] |
-
-You can change A-Frame themes by modifying SASS configuration  `$theme` variable in [src/style/_theme-vars.scss](src/style/_theme-vars.scss)
-
-```sass
-// Color themes red !default, yellow, green, blue
-$theme: red;
-```
 
 ---
 
@@ -270,6 +187,12 @@ git push
 
 ---
 
+### Build and development server configuration
+
+Most of build and configuration options can be set in [./app-dev.json](app-dev.json), but if you need more control or customization look into config files in [./devel](devel) directory.
+
+---
+
 ### First run
 
 make sure you have [yarn](https://yarnpkg.com/lang/en/docs/install/) installed, alternately you can use `npm` command instead `yarn`
@@ -289,9 +212,91 @@ You may need to update/rebuild static assets sometimes then just run `yarn run b
 
 ---
 
-### Build and development server configuration
+## Development
 
-Most of build and configuration options can be set in [./app-dev.json](app-dev.json), but if you need more control or customization look into config files in [./devel](devel) directory.
+### Minimal example of app.js
+
+Here is minimal Example for [./src/js/app.js](src/js/app.js)
+
+```javascript
+/* global PROJECT */
+
+import Application from './application/core'
+// import application addons you want to register
+// import yourAddon from './application/addons/your-addon'
+
+const app = new Application(PROJECT)
+
+// Reqister all application addons by calling registerAddon
+// app.registerAddon(yourAddon, addonConfigObject)
+
+// Start the application as soon as possible
+app.start().then((log) => {
+  log.debug('webapp is running callback')
+}).catch((err) => {
+  console.error(err)
+})
+```
+
+Project is shipped with example adding controls to `start/stop/play/pause` application.
+NOTE that application `start/stop/play/pause` does not affect A-Frame scene. If you wich to do so then you have to set `{"ppaframe": true}` in [./app.json](app.json). Also when you have page which does not have A-Frame scene but in header template you load `aframe-lib.js` then application will not play since A-Frame core system is paused when `<a-scene>` is not found, so you may better create different header file wich you include in pages which do not have a A-Frame scene so that application falls back to using `window.requestAnimationFrame`.
+
+---
+
+### Example Addon
+
+Most of application logic is added to application by creating and registering Addons. bellow is outline of how to define your Addon.
+
+```javascript
+/* ./application/addons/your-addon */
+export default {
+  name: 'your-addon',
+  // this addon will not be reqistered if aframe is not present on loaded page
+  // default false
+  aframeRequired: true,
+  // You can set configuration defaults to your Addon here
+  // or set that object as second parameter when you register
+  // your Addon by calling app.registerAddon()
+  data: {},
+
+  setup() {
+    // Called once when you register the Addon
+    // Sets the data to values passed to registerAddon 2 param
+  },
+
+  start() {
+    // Called every time when you start the application
+    // and everytime when you call application start after stoping it.
+  },
+
+  play() {
+    // Called every time when application play is called
+  },
+
+  pause() {
+    // Called every time when application pause is called
+  },
+
+  tick() {
+    // Called in every render loop when application is playing
+  },
+
+  dispose() {
+    // Called when application stop is called.
+    // Currently dispose does not delete this Addon
+    // so calling application start after stop will call
+    // this objects .start again, but not .setup .
+    // This behavior may change in this project skeleton
+    // in the future allowing you to dispose Addons on
+    // run time and re register Addons on demand.
+    // Therefore the name dispose instead of stop
+    // which it is right now by behavior.
+  }
+}
+
+```
+
+----
 
 #### Add A-Frame components
 
@@ -300,6 +305,8 @@ yarn add <some-aframe-component>
 ```
 add import statement to [./src/js/aframe-lib.js](src/js/aframe-lib.js)
 
+---
+
 #### Add 3rd party libraries
 
 ```
@@ -307,6 +314,18 @@ yarn add <some-library>
 ```
 
 if needed add import statement to [./src/js/vendors.js](src/js/vendors.js) if you want to bundle that dependency together with other 3rd party libraries or sass import statment to [./src/style/vendors/vendors-style.scss](src/style/vendors/vendors-style.scss) when adding 3rd party styles.
+
+---
+
+## build and deploy
+
+To build static site just run
+
+```bash
+yarn run build
+```
+
+and contents of [./build](build) directory are ready to be served e.g. [demo][demo-link] is hosted with github pages, tkae look at [gh-pages](https://github.com/digaverse/webxr-wb-test/tree/gh-pages) branch for example
 
 <!-- ASSETS and LINKS -->
 <!-- License -->
@@ -335,8 +354,8 @@ if needed add import statement to [./src/js/vendors.js](src/js/vendors.js) if yo
 [appveyor-link]: https://ci.appveyor.com/project/mkungla/webxr-webpack-boilerplate
 
 <!-- Codacy Badge Grade -->
-[codacy-grade-img]: https://api.codacy.com/project/badge/Grade/b903edd39cb141de94c007cc4d0c4f7d
-[codacy-grade-link]: https://www.codacy.com/app/marko-kungla/webxr-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=digaverse/webxr-webpack-boilerplate&amp;utm_campaign=Badge_Grade
+[codacy-grade-img]: https://api.codacy.com/project/badge/Grade/4210783bda4d4dc9af327a1480cff45b
+[codacy-grade-link]: https://www.codacy.com/app/mkungla/webxr-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=digaverse/webxr-webpack-boilerplate&amp;utm_campaign=Badge_Grade
 
 <!-- Coverage Badge -->
 [coverage-img]: https://img.shields.io/coveralls/github/digaverse/webxr-webpack-boilerplate.svg
