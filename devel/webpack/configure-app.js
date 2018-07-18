@@ -126,11 +126,6 @@ module.exports = {
           presets: ['@babel/preset-env']
         }
       }
-    }, {
-      test: /\.worker.js$/,
-      use: {
-        loader: 'worker-loader'
-      }
     }]
   },
 }
