@@ -1,11 +1,15 @@
 {{> html/header }}
 {{> html/nav }}
+
 <header>
   <h1>{{#if title}}{{title}}{{else}}{{name}}{{/if}}</h1>
   <sup class="app-version">{{name}} v: {{version}}</sup>
+  <br>
+  <div class="summary"><b>move-active-camera</b> addon shows a example how you could integrate your addon with A-Frame scene without using A-Frame components or systems</div>
   {{> app/controls }}
 </header>
-<main>
+
+<main id="move-active-camera">
   <a-scene embedded background="color: #ECECEC">
     {{> scenes/hello-world }}
   </a-scene>

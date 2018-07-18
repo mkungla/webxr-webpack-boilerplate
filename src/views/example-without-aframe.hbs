@@ -1,4 +1,4 @@
-{{> html/header }}
+{{> html/header-without-aframe }}
 {{> html/nav }}
 <header>
   <h1>{{#if title}}{{title}}{{else}}{{name}}{{/if}}</h1>
@@ -6,8 +6,6 @@
   {{> app/controls }}
 </header>
 <main>
-  <a-scene embedded background="color: #ECECEC">
-    {{> scenes/hello-world }}
-  </a-scene>
+
 </main>
 {{> html/footer }}

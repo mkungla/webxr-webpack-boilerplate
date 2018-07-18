@@ -1,9 +1,15 @@
 {{> html/header }}
 {{> html/nav }}
-<main>
-  <h1>{{title}}</h1>
-  <sup class="app-version">{{name}} v: {{version}}</sup>
 
+<header>
+  <h1>{{#if title}}{{title}}{{else}}{{name}}{{/if}}</h1>
+  <sup class="app-version">{{name}} v: {{version}}</sup>
+  <br>
+  <div class="summary">Available and default project config, handlebars and sass variables</div>
+  {{> app/controls }}
+</header>
+
+<main>
   <h2>Template and javascript variables</h2>
   <table class="variables">
     <thead>

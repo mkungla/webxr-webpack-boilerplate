@@ -3,7 +3,11 @@
 <header>
   <h1>{{#if title}}{{title}}{{else}}{{name}}{{/if}}</h1>
   <sup class="app-version">{{name}} v: {{version}}</sup>
+  <br>
+  <div class="summary">Images and icons generated based on logo found ./src/img/logo.png</div>
+  {{> app/controls }}
 </header>
+
 <main>
   <table class="pwa-images">
     <thead>
