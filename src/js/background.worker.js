@@ -6,5 +6,4 @@ self.onmessage = (ev) => {
 
     self.postMessage(msg)
   }
-  throw 'no aTopic on incoming message to ChromeWorker'
 }

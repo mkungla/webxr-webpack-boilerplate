@@ -35,6 +35,7 @@
  */
 const zeroScale = 0.00001
 
+/* eslint no-unused-vars: ["error", { "args": "none" }]*/
 AFRAME.registerComponent('example-component', {
   // To enable multiple instancing on your component,
   // set multiple: true in the component definition:
@@ -105,7 +106,7 @@ AFRAME.registerComponent('example-component', {
   // Called on each render loop or tick of the scene. Used for continuous changes.
   tick(time, timeDelta) {},
 
-  // Identical to the tick method but invoked after the scene has rendered. 
+  // Identical to the tick method but invoked after the scene has rendered.
   tock(time, timeDelta) {},
 
   // Called whenever the scene or entity plays to add

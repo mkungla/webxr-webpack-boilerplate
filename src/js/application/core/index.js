@@ -1,4 +1,4 @@
-/* global window AFRAME THREE Worker */
+/* global window AFRAME THREE */
 import Session from './session'
 
 export default class Application {
