@@ -7,12 +7,10 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 // Additional imports
 const cli = require('../utils/cli')
-const AppInfo = require('../utils/appinfo')
 
 // define your stuff
 const baseDir = path.join(__dirname, '../../')
 const buildDir = path.join(baseDir, 'build')
-const appinfo = new AppInfo()
 
 const PLUGINS = [
   new CopyWebpackPlugin([{

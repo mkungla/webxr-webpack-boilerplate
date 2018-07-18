@@ -23,7 +23,7 @@ const PLUGINS = []
 
 const baseDir = path.join(__dirname, '../')
 const buildDir = path.join(baseDir, 'build')
-const apiDir = path.join(process.cwd(), 'build', 'api')
+// const apiDir = path.join(process.cwd(), 'build', 'api')
 const sslKey = path.join(__dirname, 'ssl', 'localhost.key')
 const sslCrt = path.join(__dirname, 'ssl', 'localhost.crt')
 

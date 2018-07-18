@@ -211,7 +211,8 @@ yarn start
 
 You may need to update/rebuild static assets sometimes then just run `yarn run build` before `yarn start`.
 
-and now open your browser https://localhost:9000 and accept self signed certificates.
+And now open your browser https://localhost:9000 and accept self signed certificates.
+
 ---
 
 ## Development
