@@ -3,14 +3,15 @@
   color: $aframe-stats-text;
   border-radius: 0;
   font: 10px monospace;
-  right: 5px;
-  left: auto;
+  left: 5px;
+  top: auto;
+  right: auto;
+  bottom: 5px;
   line-height: 1em;
   opacity: 0.85;
   overflow: hidden;
   padding: 10px;
   position: fixed;
-  top: 5px;
   width: 300px;
   z-index: 10000;
 }
@@ -90,8 +91,9 @@
 
 @media (min-width: 480px) {
   .rs-base {
-    left: auto;
-    right: 20px;
-    top: 20px;
+    left: 5px;
+    top: auto;
+    right: auto;
+    bottom: 5px;
   }
 }
