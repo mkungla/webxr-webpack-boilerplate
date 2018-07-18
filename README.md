@@ -199,6 +199,7 @@ make sure you have [yarn](https://yarnpkg.com/lang/en/docs/install/) installed, 
 
 ```bash
 yarn install
+yarn run setup # first time run generates SSL certificates so we can serve https and http2 locally
 yarn run build # creates static assets under ./build directory
 ```
 
@@ -210,6 +211,7 @@ yarn start
 
 You may need to update/rebuild static assets sometimes then just run `yarn run build` before `yarn start`.
 
+and now open your browser https://localhost:9000 and accept self signed certificates.
 ---
 
 ## Development
