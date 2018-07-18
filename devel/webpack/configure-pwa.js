@@ -64,7 +64,7 @@ module.exports = {
     }),
     new WebappWebpackPlugin({
       // Your source logo
-      logo: path.join(baseDir, 'src', 'img', 'logo.png'),
+      logo: path.join(baseDir, 'src', 'pwa', 'logo.png'),
 
       // Enable caching and optionally specify the path to store cached data
       // Note: disabling caching may increase build times considerably
