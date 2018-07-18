@@ -5,7 +5,7 @@ const extendDeep = AFRAME.utils.extendDeep
 // This makes the material component a default component and maps all the base material properties.
 const meshMixin = AFRAME.primitives.getMeshMixin()
 
-AFRAME.registerPrimitive('a-custom-box', extendDeep({}, meshMixin, {
+AFRAME.registerPrimitive('a-example-custom-box', extendDeep({}, meshMixin, {
   // Preset default components.
   // These components and component
   // properties will be attached to the entity out-of-the-box.

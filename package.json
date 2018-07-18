@@ -48,7 +48,9 @@
     "test:ci-on-windows": "echo \"run tests\""
   },
   "dependencies": {
-    "aframe": "^0.8.2"
+    "aframe": "^0.8.2",
+    "debug": "^3.1.0",
+    "store": "^2.0.12"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.52",
