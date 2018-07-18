@@ -6,7 +6,7 @@
     "key": "./devel/ssl/localhost.key",
     "cert": "./devel/ssl/localhost.crt"
   },
-  "logLevel": "info",
+  "logLevel": "warn",
   "logTime": true,
   "open": false,
   "webpackDevMiddleware": {
@@ -37,7 +37,7 @@
     "port": 0,
     "reload": true,
     "server": null,
-    "stats": null,
+    "stats": {},
     "validTargets": ["web"]
   }
 }

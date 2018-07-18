@@ -3,15 +3,12 @@
 
 // libraries
 const path = require('path')
-const fs = require('fs')
 const humanizeDuration = require('humanize-duration')
 
 // Webpack plugins
-const merge = require('webpack-merge')
 const serve = require('webpack-serve');
 
 // Webpack configs
-const common = require('./webpack/webpack.config.js')
 
 // Additional imports
 const packageJson = require('../package')
@@ -19,7 +16,6 @@ const devSettings = require('../app-dev')
 const cli = require('./utils/cli')
 
 // define your stuff
-const PLUGINS = []
 
 const baseDir = path.join(__dirname, '../')
 const buildDir = path.join(baseDir, 'build')
@@ -27,31 +23,18 @@ const buildDir = path.join(baseDir, 'build')
 const sslKey = path.join(__dirname, 'ssl', 'localhost.key')
 const sslCrt = path.join(__dirname, 'ssl', 'localhost.crt')
 
-const allConfig = merge.multiple(common, {
-  app: {
-    mode: 'development',
-    devtool: 'inline-source-map',
-    plugins: PLUGINS,
-  },
-  staticAssets: {},
-  vendors: {},
-  pwa: {},
-})
-
 const defaultPort = 9000
 
 /* eslint no-sync: ["error", { allowAtRootLevel: true }]*/
 serve({
-  config: allConfig,
+  config: './devel/final.config.js',
   content: buildDir,
-  dev: devSettings.webpackDevMiddleware,
+  devWare: devSettings.webpackDevMiddleware,
   host: devSettings.host || "localhost",
-  hot: devSettings.webpackHotClient || {},
+  hotClient: devSettings.webpackHotClient || {},
   http2: devSettings.http2 || true,
-  https: devSettings.https || {
-    key: fs.readFileSync(sslKey),
-    cert: fs.readFileSync(sslCrt),
-  },
+  httpsKey: devSettings.https.key || sslKey,
+  httpsCert: devSettings.https.cert || sslCrt,
   logLevel: devSettings.logLevel || 'info',
   logTime: devSettings.logTime || false,
   open: devSettings.open || false,
