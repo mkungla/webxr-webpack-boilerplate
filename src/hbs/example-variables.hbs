@@ -1,4 +1,4 @@
-{{> html/header }}
+{{> html/header-without-aframe }}
 {{> html/nav }}
 
 <header>
@@ -10,7 +10,7 @@
 </header>
 
 <main>
-  <h2>Template and javascript variables</h2>
+  <h2>Template and javascript window variables</h2>
   <table class="variables">
     <thead>
       <tr>
@@ -43,6 +43,12 @@
       </tr>
       <tr>
         <td><pre>PROJECT.serviceWorker</pre></td><td><pre>\{{serviceWorker}}</pre></td><td><pre>{{serviceWorker}}</pre></td>
+      </tr>
+      <tr>
+        <td><pre>PROJECT.logLevel</pre></td><td><pre>\{{logLevel}}</pre></td><td><pre>{{logLevel}}</pre></td>
+      </tr>
+      <tr>
+        <td><pre>PROJECT.ppaframe</pre></td><td><pre>\{{ppaframe}}</pre></td><td><pre>{{ppaframe}}</pre></td>
       </tr>
     </tbody>
   </table>
@@ -109,6 +115,9 @@
   }
   function rgb2hex(rgb) {
     rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    if (!rgb) {
+      return "#fff"
+    }
     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
   }
   vars.forEach((el) => {
