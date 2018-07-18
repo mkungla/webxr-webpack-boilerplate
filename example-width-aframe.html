@@ -66,9 +66,12 @@
   <a href="/example-variables.html">Variables</a>
   <a href="/example-theme-images.html">Images</a>
 </nav>
+
 <header>
   <h1>WebXR Webpack Boilerplate</h1>
   <sup class="app-version">webxr-webpack-boilerplate v: 0.9.11</sup>
+  <br>
+  <div class="summary"><b>move-active-camera</b> addon shows a example how you could integrate your addon with A-Frame scene without using A-Frame components or systems</div>
   <div class="controls">
     <!-- play/pause -->
     <div id="app-timer">00:00:00</div>
@@ -76,7 +79,8 @@
     <button id="start-stop" class='start-stop'></button>
   </div>
 </header>
-<main>
+
+<main id="move-active-camera">
   <a-scene embedded background="color: #ECECEC">
     <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
     <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>

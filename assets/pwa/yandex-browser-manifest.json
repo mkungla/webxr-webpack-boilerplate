@@ -1,0 +1,9 @@
+{
+  "version": "0.9.11",
+  "api_version": 1,
+  "layout": {
+    "logo": "/assets/pwa/yandex-browser-50x50.png",
+    "color": "#fff",
+    "show_title": true
+  }
+}

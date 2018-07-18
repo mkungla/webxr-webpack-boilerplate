@@ -1,0 +1,414 @@
+/**
+ * Available themes are red, yellow, green, blue.
+ * you can define your own here
+ */
+body {
+  background: ghostwhite;
+  color: #314f4f; }
+
+/* Webapp wrapper */
+body {
+  height: auto;
+  width: 100%;
+  margin: 0;
+  padding: 0; }
+
+header {
+  margin: 0 0 0 200px;
+  padding: 0 0 0 10px;
+  height: 110px; }
+
+main {
+  display: block;
+  height: calc(100vh - 135px);
+  margin-left: 200px;
+  padding: 0px 10px;
+  background-color: ghostwhite; }
+  main h1 {
+    text-transform: uppercase;
+    color: #ef2d5e;
+    margin-bottom: 2px; }
+
+sup.app-version {
+  float: left;
+  color: #314f4f;
+  font-weight: 600;
+  padding-left: 6px; }
+
+.variables {
+  margin-top: 25px;
+  width: 100%; }
+  .variables th {
+    text-align: left; }
+  .variables tr:nth-child(even) {
+    background-color: white; }
+  .variables td {
+    border-bottom: 1px solid #ef2d5e; }
+  .variables td:nth-child(3n) {
+    color: #ed3160; }
+  .variables pre {
+    min-width: 50px;
+    min-height: 20px; }
+
+.pwa-images {
+  margin-top: 25px;
+  width: 100%; }
+  .pwa-images th {
+    text-align: left; }
+  .pwa-images tr:nth-child(even) {
+    background-color: white; }
+  .pwa-images td {
+    border-bottom: 1px solid #ef2d5e; }
+  .pwa-images img {
+    max-width: 150px; }
+
+.var-color-yellow {
+  background-color: #ffc65d; }
+
+.var-color-green {
+  background-color: #7bc8a4; }
+
+.var-color-blue {
+  background-color: #4cc3d9; }
+
+.var-color-red {
+  background-color: #4cc3d9; }
+
+.var-color-gray {
+  background-color: #666666; }
+
+.var-color-white {
+  background-color: white; }
+
+.var-color-bg-body {
+  background-color: ghostwhite; }
+
+.var-color-aframe {
+  background-color: #ef2d5e; }
+
+.var-color-bg-primary {
+  background-color: #ef2d5e; }
+
+.var-color-text-primary {
+  background-color: #314f4f; }
+
+.var-color-text-primary-shadow {
+  background-color: white; }
+
+.var-color-text-alert {
+  background-color: #ed3160; }
+
+.var-color-a {
+  background-color: #dfdfff; }
+
+.var-color-a-active {
+  background-color: white; }
+
+.var-aframe-stats-bg {
+  background-color: #333; }
+
+.var-aframe-stats-text {
+  background-color: #fafafa; }
+
+.var-aframe-stats-h1 {
+  background-color: #fff; }
+
+.var-aframe-stats-counter {
+  background-color: #b70000; }
+
+.var-aframe-stats-counter-shadow {
+  background-color: #b70000; }
+
+.var-aframe-stats-counter-shadow2 {
+  background-color: #fff; }
+
+.var-aframe-inspector-bg {
+  background-color: #ed3160; }
+
+.var-aframe-inspector-text {
+  background-color: #fff; }
+
+.var-a-enter-vr-modal {
+  background-color: #fff; }
+
+.var-enter-vr-button {
+  background-color: rgba(0, 0, 0, 0.35); }
+
+.var-enter-vr-button-active {
+  background-color: #666; }
+
+.controls {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  height: 60px;
+  width: 300px; }
+
+.play-pause {
+  float: left;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: 34px;
+  border-color: transparent transparent transparent #ef2d5e;
+  transition: 100ms all ease;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 18px 0 18px 30px; }
+  .play-pause.playing {
+    border-style: double;
+    border-width: 0px 0 0px 30px; }
+  .play-pause:hover {
+    border-color: transparent transparent transparent #ef2d5e; }
+
+.start-stop {
+  float: left;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: 34px;
+  border-color: transparent transparent transparent #ef2d5e;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 0px 0 0px 30px; }
+  .start-stop.stopped {
+    display: none; }
+  .start-stop:hover {
+    border-color: transparent transparent transparent #ef2d5e; }
+
+#app-timer {
+  float: left;
+  height: 34px;
+  width: 180px;
+  color: #ef2d5e;
+  text-shadow: 0 0 10px #d0e2e2, 0 0 20px rgba(255, 255, 255, 0);
+  text-align: center;
+  letter-spacing: 0.05em;
+  font-size: 24px;
+  line-height: 34px; }
+
+.summary {
+  float: left;
+  font-size: 12px; }
+
+/* The sidebar menu */
+nav {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200px;
+  padding-top: 20px;
+  background-color: #ef2d5e;
+  /* Disable horizontal scroll */
+  overflow-x: hidden;
+  box-shadow: 0 0 4px 0 #ef2d5e, 0 0 16px 0 #ef2d5e; }
+
+/* menu links */
+nav a {
+  padding: 5px;
+  text-decoration: none;
+  font-size: 12px;
+  color: #dfdfff;
+  display: block;
+  text-transform: uppercase; }
+
+nav a:hover {
+  color: white; }
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  nav {
+    padding: 2px; }
+  nav a {
+    font-size: 10px; } }
+
+.variables {
+  margin-top: 25px;
+  width: 100%; }
+  .variables th {
+    text-align: left; }
+  .variables tr:nth-child(even) {
+    background-color: white; }
+  .variables td {
+    border-bottom: 1px solid #ef2d5e; }
+  .variables td:nth-child(3n) {
+    color: #ed3160; }
+  .variables pre {
+    min-width: 50px;
+    min-height: 20px; }
+
+.pwa-images {
+  margin-top: 25px;
+  width: 100%; }
+  .pwa-images th {
+    text-align: left; }
+  .pwa-images tr:nth-child(even) {
+    background-color: white; }
+  .pwa-images td {
+    border-bottom: 1px solid #ef2d5e; }
+  .pwa-images img {
+    max-width: 150px; }
+
+.var-color-yellow {
+  background-color: #ffc65d; }
+
+.var-color-green {
+  background-color: #7bc8a4; }
+
+.var-color-blue {
+  background-color: #4cc3d9; }
+
+.var-color-red {
+  background-color: #4cc3d9; }
+
+.var-color-gray {
+  background-color: #666666; }
+
+.var-color-white {
+  background-color: white; }
+
+.var-color-bg-body {
+  background-color: ghostwhite; }
+
+.var-color-aframe {
+  background-color: #ef2d5e; }
+
+.var-color-bg-primary {
+  background-color: #ef2d5e; }
+
+.var-color-text-primary {
+  background-color: #314f4f; }
+
+.var-color-text-primary-shadow {
+  background-color: white; }
+
+.var-color-text-alert {
+  background-color: #ed3160; }
+
+.var-color-a {
+  background-color: #dfdfff; }
+
+.var-color-a-active {
+  background-color: white; }
+
+.var-aframe-stats-bg {
+  background-color: #333; }
+
+.var-aframe-stats-text {
+  background-color: #fafafa; }
+
+.var-aframe-stats-h1 {
+  background-color: #fff; }
+
+.var-aframe-stats-counter {
+  background-color: #b70000; }
+
+.var-aframe-stats-counter-shadow {
+  background-color: #b70000; }
+
+.var-aframe-stats-counter-shadow2 {
+  background-color: #fff; }
+
+.var-aframe-inspector-bg {
+  background-color: #ed3160; }
+
+.var-aframe-inspector-text {
+  background-color: #fff; }
+
+.var-a-enter-vr-modal {
+  background-color: #fff; }
+
+.var-enter-vr-button {
+  background-color: rgba(0, 0, 0, 0.35); }
+
+.var-enter-vr-button-active {
+  background-color: #666; }
+
+.controls {
+  position: fixed;
+  right: 30px;
+  top: 10px;
+  height: 60px;
+  width: 300px; }
+
+.play-pause {
+  float: left;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: 34px;
+  border-color: transparent transparent transparent #ef2d5e;
+  transition: 100ms all ease;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 18px 0 18px 30px; }
+  .play-pause.playing {
+    border-style: double;
+    border-width: 0px 0 0px 30px; }
+  .play-pause:hover {
+    border-color: transparent transparent transparent #ef2d5e; }
+
+.start-stop {
+  float: left;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: 34px;
+  border-color: transparent transparent transparent #ef2d5e;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 0px 0 0px 30px; }
+  .start-stop.stopped {
+    display: none; }
+  .start-stop:hover {
+    border-color: transparent transparent transparent #ef2d5e; }
+
+#app-timer {
+  float: left;
+  height: 34px;
+  width: 180px;
+  color: #ef2d5e;
+  text-shadow: 0 0 10px #d0e2e2, 0 0 20px rgba(255, 255, 255, 0);
+  text-align: center;
+  letter-spacing: 0.05em;
+  font-size: 24px;
+  line-height: 34px; }
+
+.summary {
+  float: left;
+  font-size: 12px; }
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out; }
+
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0); }
+  20%, 60% {
+    transform: rotate(-25deg); }
+  40%, 80% {
+    transform: rotate(10deg); } }
+
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none; }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out; } }
+
+a.github-corner {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: #FAFAFA;
+  display: block;
+  padding: 15px 0;
+  text-decoration: none; }
+
+
+/*# sourceMappingURL=app.css.map*/
