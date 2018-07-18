@@ -116,7 +116,7 @@ module.exports = {
       data: appinfo,
       // globbed path to partials, where dir/filename is unique
       partials: [
-        path.join(baseDir, 'src', 'pwa', 'partials', '**', '*.hbs')
+        path.join(baseDir, 'src', 'pwa', 'pwa-partials', '**', '*.hbs')
       ],
       // hooks
       // onBeforeSetup: function(Handlebars) {
