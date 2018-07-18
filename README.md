@@ -1,12 +1,16 @@
 # WebXR Webpack Boilerplate
 
-**Starter Kit for building rich, immersive WebXR projects (featuring [A-Frame][aframe-link]) PWA with Webpack and SASS**
+**Starter Kit for building rich, immersive WebXR projects (featuring [A-Frame][aframe-link]) PWA with Webpack, Handlebars and SASS**
 
-[![Project License][license-img]][license-link]
+[![Project License][license-img]][license-link] [![A-Frame Version][aframe-img]][aframe-link]
 
 ## Introduction
 
-The goal of WebXR Webpack Boilerplate is to provide a high-quality, high-performance code base to accelerate WebXR development. It is designed to be flexible in order to support rapid implementation and customization within your project. — **take a look at [demo][demo-link]**
+The goal of WebXR Webpack Boilerplate is to provide a high-quality, high-performance code base to accelerate WebXR development and specially prototyping. It is designed to be flexible in order to support rapid implementation and customization within your project. — **take a look at [demo][demo-link]**  
+
+> Personally I use this boilerplate mostly for quick prototyping WebXR ideas,  
+while final product going to production may require major refactoring the code base.  
+[@mkungla](https://github.com/mkungla)
 
 **Project build status**
 
@@ -19,64 +23,154 @@ The goal of WebXR Webpack Boilerplate is to provide a high-quality, high-perform
 [![Dependencies][dep-status-img]][dep-status-link]
 [![Dev Dependencies][devdep-status-img]][devdep-status-link]
 
----
-
 - [Overview](#overview)
   * [Project structure](#project-structure)
+  * [Minimal example of app.js](#minimal-example-of-app.js)
+  * [Example Addon](#example-addon)
   * [Custom A-Frame Theme](#custom-a-frame-theme)
 - [Getting Started](#getting-started)
-  * [Fork this repository](#fork-this-repository)
+  * [Setup project based on this repository](#setup-project-based-on-this-repository)
     + [(option 1) Create fork to contribute back to this repository](#-option-1--create-fork-to-contribute-back-to-this-repository)
-    + [(option 2) Create new Open Source project based on this repository](#-option-2--create-new-open-source-project-based-on-this-repository)
-    + [(option 3) Create new private project based on this repository](#-option-3--create-new-private-project-based-on-this-repository)
+    + [(option 2) Create new project based on this repository and keep commit history](#-option-2--create-new-project-based-on-this-repository-and-keep-commit-history)
+    + [(option 3) Create new project based on this repository without commit history](#-option-3--create-new-project-based-on-this-repository-without-commit-history)
   * [First run](#first-run)
-  * [Build Configuration](#build-configuration)
+  * [Build and development server configuration](#build-and-development-server-configuration)
     * [Add A-Frame components](#add-a-frame-components)
     * [Add 3rd party libraries](#add-3rd-party-libraries)
-    * [Build or rebuild 3rd party libraries](build-or-rebuild-3rd-party-libraries)
+
+## Overview
+ here is overview of WebXR Webpack Boilerplate project and what's included.
 
 ---
-## Overview
-> here is overview of WebXR Webpack Boilerplate project and what's included.
-
-### Frameworks
-
-- [![A-Frame Version][aframe-img]][aframe-link]
 
 ### Project structure
+Project `./src` contains some unnecessary files which are included for demo and example purposes. You can remove all of these files and associated references and imports from your project.
 
-- **build** development and staging build output directory
-- **devel** development related files like webpack and project configuration files.
-  - **coverage** coverage report (#2)
-- **dist** project release files, output of `yarn run dist`.
-- **docs** project documentation or can be used for gh-pages
-- **res** all static and raw resources which are rather src files for `src/assets` e.g raw design files.
-  - **audio** audio files
-  - **images** image files
-  - **models** 3D objects and models
-  - **video** video files
-- **src** project source files.
-  - **aframe** A-Frame compnents,systems.shaders
-    - **components** custom components
-    - **primitives** custom primitives
-    - **shaders** custom shaders
-    - **systems** custom systems
-  - **api** dummy API
-  - **assets** project assets which may be processed by Webpack if rule is set in Webpack configuration
-    - **static** all assets are just copied to {build}/assets/static
-  - **js** main application
-  - **partials** partials for handlebars
-    - **aframe** partials for A-Frame scenes
-    - **html** partials for HTML pages
-    - **...** your own partials structure
-  - **scenes** all your A-Frame scenes or HTML pages
-  - **style** project styles
-    - **config** style configuration
-      - **themes** style themes
-      - **vendor** vendor sass files
-    - **app** your app styles
-- **tests** test suites.
+- **.circleci** [CircleCI][circleci-site] Continuous Integration and Delivery configurations, feel free to delete that if you dont use [CircleCI][circleci-site] as your CI provider. This project uses [CircleCI][circleci-site] for macOS builds.
+- **.github** All Github related config files.
+- **build** Build directory `yarn run build`.
+- **devel** Development related files like webpack and project configuration files.
+- **src** Project source files.
+  - **hbs** Project handlebars templates
+    - ***index.hbs*** outputs `./build/index.html`
+    - **partials** handlebars partials used within views
+      - **aframe** partials for A-Frame entities
+      - **app** app partials
+      - **html** common html partials like headrs and footers
+      - **scenes** good place to put markup of your different WebXR scenes.
+
+  - **js** Application javascript code and entry points
+    - **aframe** A-Frame compnents,systems.shaders. Create your custom A-Frame components to this directory.
+    - ***aframe-lib.js*** In this file you would import A-Frame, external npm components and also your custom components which will be bundled into one single file ensuring that your component registration is done right.
+    - ***app.js*** Main app entrypoint. File where you configure the application, while you should avoid writing your application logic code there. Instead use [./src/js/application/addons](src/js/application/addons) for that. Take look at [Minimal example of app.js](#minimal-example-of-app.js)
+    - **application** Application javascript code
+      - **addons** Most of your application logic should be here in application addons. Take a look at [Example Addon](#example-addon)
+      - **core** Application core most of cases you don't need to edit this code however if you find something add or enhance there please consider opening a pull request and contribute your modification to this project.
+    - ***background.worker.js*** Background web Worker if you need to use one, which requires you do modifications in [./src/js/application/core/index.js](src/js/application/core/index.js) how your worker is behaving and change webpack config in [./devel/webpack/configure-app.js](devel/webpack/configure-app.js) to load and build that Worker correctly.
+    - ***vendors.js*** In this file you would import all your external vendor dependencies `e.g. Lodash, jQuery etc.` If any of vendor libraries have embedded styles then these will be extracted to `./buid/app/css/vendors.css` so make sure that you import it in your handlebars header template used `e.g.` [./src/hbs/partials/html/header.hbs](src/hbs/partials/html/header.hbs) If you need to customize some vendor styles then use [./src/style/vendors/vendors-style.scss](src/style/vendors/vendors-style.scss) for that.
+  - **pwa** Progressive Web App entrypoint, service worker and other PWA assets. Everything in this directory could be taken as independent app from main app and since the handlebars templates result html pages in `./build` root then you should make sure that you dont have conflicting file names which would result only one of them being created. If you want to change that behavior edit [./devel/webpack/configure-pwa.js](devel/webpack/configure-pwa.js) config. Also note that even though you can cross reference handlebar templates within webpack cross compiler you should try to avoid that and keep your partials related to views found in `./src/pwa` in `./src/pwa/pwa-partials`
+    - ***logo.png*** Changing that logo will generate all the variations of your logo under `./build/assets/pwa/` using [webapp-webpack-plugin][webapp-webpack-plugin-link]
+    - ***offline.js*** entrypoint you could use for app when application is offline.
+    - ***offline.scss*** example offline style entry
+    - **pwa-partials** handlebars partials related to views found in `./src/pwa`
+  - **static** Static assets copied over to `./build/assets/static`. By default only `CopyWebpackPlugin` is used if you need more control edit [./devel/webpack/configure-static-assets.js](devel/webpack/configure-static-assets.js) config file.
+    - **audio**
+    - **images**
+    - **models**
+    - **video**
+  - **style** Application style scss files
+    - ***app.scss*** main app entrypoint
+    - **theme** directory to contain your theme sass partials
+      - ***_theme-base.scss*** theme base file, if that file grows to big separate your design into smaller partials under same directory and include these in [./src/style/app.scss](src/style/app.scss)
+    - ***_theme-vars.scss*** scss file where you define your theme variables
+    - **vendors** Vendor styles
+      - ***vendors-style.scss*** vendor style entrypoint
+- **tests** tests.
 - **tmp** temporary and local files which are not tracked by git.
+
+---
+
+### Minimal example of app.js
+
+Here is minimal Example for [./src/js/app.js](src/js/app.js)
+
+```javascript
+/* global PROJECT */
+
+import Application from './application/core'
+// import application addons you want to register
+// import yourAddon from './application/addons/your-addon'
+
+const app = new Application(PROJECT)
+
+// Reqister all application addons by calling registerAddon
+// app.registerAddon(yourAddon, addonConfigObject)
+
+// Start the application as soon as possible
+app.start().then((log) => {
+  log.debug('webapp is running callback')
+}).catch((err) => {
+  console.error(err)
+})
+```
+
+Project is shipped with example adding controls to `start/stop/play/pause` application.
+NOTE that application `start/stop/play/pause` does not affect A-Frame scene. If you wich to do so then you have to set `{"ppaframe": true}` in [./app.json](app.json). Also when you have page which does not have A-Frame scene but in header template you load `aframe-lib.js` then application will not play since A-Frame core system is paused when `<a-scene>` is not found, so you may better create different header file wich you include in pages which do not have a A-Frame scene so that application falls back to using `window.requestAnimationFrame`.
+
+---
+
+### Example Addon
+
+Most of application logic is added to application by creating and registering Addons. bellow is outline of how to define your Addon.
+
+```javascript
+/* ./application/addons/your-addon */
+export default {
+  name: 'your-addon',
+  // this addon will not be reqistered if aframe is not present on loaded page
+  // default false
+  aframeRequired: true,
+  // You can set configuration defaults to your Addon here
+  // or set that object as second parameter when you register
+  // your Addon by calling app.registerAddon()
+  data: {},
+
+  setup() {
+    // Called once when you register the Addon
+    // Sets the data to values passed to registerAddon 2 param
+  },
+
+  start() {
+    // Called every time when you start the application
+    // and everytime when you call application start after stoping it.
+  },
+
+  play() {
+    // Called every time when application play is called
+  },
+
+  pause() {
+    // Called every time when application pause is called
+  },
+
+  tick() {
+    // Called in every render loop when application is playing
+  },
+
+  dispose() {
+    // Called when application stop is called.
+    // Currently dispose does not delete this Addon
+    // so calling application start after stop will call
+    // this objects .start again, but not .setup .
+    // This behavior may change in this project skeleton
+    // in the future allowing you to dispose Addons on
+    // run time and re register Addons on demand.
+    // Therefore the name dispose instead of stop
+    // which it is right now by behavior.
+  }
+}
+
+```
 
 ---
 
@@ -86,7 +180,7 @@ The goal of WebXR Webpack Boilerplate is to provide a high-quality, high-perform
 | :---: | :---: | :---: | :---: |
 | ![Theme red][screeenshot-theme-red] | ![Theme blue][screeenshot-theme-blue]  | ![Theme -green][screeenshot-theme-green]  | ![Theme yellow][screeenshot-theme-yellow] |
 
-You can change A-Frame themes by modifying SASS configuration  `$theme` variable in [src/style/app-theme.scss](src/style/app-theme.scss)
+You can change A-Frame themes by modifying SASS configuration  `$theme` variable in [src/style/_theme-vars.scss](src/style/_theme-vars.scss)
 
 ```sass
 // Color themes red !default, yellow, green, blue
@@ -96,124 +190,137 @@ $theme: red;
 ---
 
 ## Getting Started
-> instructions to set up your project
+instructions to set up your project
 
-### Fork this repository
-> Follow one of the 3 options below
+### Setup project based on this repository
+Follow one of the 3 options below which suits best for your needs. Options below are shown for [github.com](github.com) public and private repositories, so if your project will be hosted elsewhere you know your self what you have to change.  
 
-> navigate to directory you keep your projects and set following temporary environment variables
+#### (option 1) Create fork to contribute back to this repository
+**First** Fork this repository in [github.com](https://github.com/digabrain/webxr-webpack-boilerplate)
+
+**Next** navigate to directory where you keep your projects and set following temporary environment variables
 
 ```bash
 cd <your-projects>
-PROJECT_NAME="<your-new-project-dir-name>"
 GITHUB_USERNAME="<github-username>"
 ```
 
-*for full copy you need [git-lfs plugin for git][git-lfs-link]*
-
-#### (option 1) Create fork to contribute back to this repository
-> clone full copy of this repository and set remotes to be able sync your repository with upstream
-
+**Next** clone full copy of this repository and set remotes to be able to sync your repository with upstream
 ```bash
-git clone --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/webxr-webpack-boilerplate.git "$PROJECT_NAME"
-cd "$PROJECT_NAME"
+git clone --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/webxr-webpack-boilerplate.git
+cd webxr-webpack-boilerplate
 git remote add github/digaverse git@github.com:digaverse/webxr-webpack-boilerplate.git
 ```
 <sup>and start hacking.</sup>
 
-#### (option 2) Create new Open Source project based on this repository
-> clone minimal copy of this repository and set remotes for your new repository.  
-> Your repository GitHub project URL should be in form of  
-> https://github.com/$GITHUB_USERNAME/$PROJECT_NAME  
-> and repository should be new (clean repository)
+#### (option 2) Create new project based on this repository and keep commit history
+**First** navigate to directory you keep your projects and set following temporary environment variables
 
 ```bash
-GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/webxr-webpack-boilerplate.git "$PROJECT_NAME"
+cd <your-projects>
+GITHUB_USERNAME="<github-username>"
+# PROJECT_NAME should be valid github repository name
+PROJECT_NAME="<your-new-project-name>"
+```
+
+**Next** go and create new public or private repository under `$GITHUB_USERNAME` and set project name same as `$PROJECT_NAME`. While creating the repository make sure that no default files are created,
+
+- unselect `Initialize this repository with a README `
+- make sure that both `Add .gitignore and Add a license` are set to NONE  
+
+**Next**
+
+```bash
+git clone --bare git@github.com:digaverse/webxr-webpack-boilerplate.git
+cd webxr-webpack-boilerplate.git
+git push --mirror git@github.com:$GITHUB_USERNAME/$PROJECT_NAME.git
+cd ..
+rm -rf webxr-webpack-boilerplate.git
+git clone --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/$PROJECT_NAME.git
+```
+
+<sup>and start hacking.</sup>
+
+##### (option 3) Create new project based on this repository without commit history
+**First** navigate to directory you keep your projects and set following temporary environment variables
+
+```bash
+cd <your-projects>
+GITHUB_USERNAME="<github-username>"
+# PROJECT_NAME should be valid github repository name
+PROJECT_NAME="<your-new-project-name>"
+```
+
+**Next** go and create new public or private repository under `$GITHUB_USERNAME` and set project name same as `$PROJECT_NAME`. While creating the repository make sure that no default files are created,
+
+- unselect `Initialize this repository with a README `
+- make sure that both `Add .gitignore and Add a license` are set to NONE  
+
+```bash
+git clone --depth=1 git@github.com:digaverse/webxr-webpack-boilerplate.git $PROJECT_NAME
 cd "$PROJECT_NAME"
 rm -rf .git
 git init
-git remote set-url github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/"$PROJECT_NAME".git
-git push github/"$GITHUB_USERNAME" master
+git add -A && git commit -m"initial commit"
+git remote add github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/$PROJECT_NAME.git
+git push
 ```
+
 <sup>and start hacking.</sup>
 
-#### (option 3) Create new private project based on this repository
-
-
-```bash
-GIT_LFS_SKIP_SMUDGE=1 git clone --depth=1 --origin github/"$GITHUB_USERNAME" git@github.com:"$GITHUB_USERNAME"/webxr-webpack-boilerplate.git "$PROJECT_NAME"
-cd "$PROJECT_NAME"
-rm -rf .git
-git init
-# add your private remote
-```
-<sup>and start hacking.</sup>
+---
 
 ### First run
 
-By default `yarn start` will not build vendor libraries to improve `webpack-dev-server` performance a bit.
-Vendor libraries are only built when running `yarn run build` or `yarn run dist`
+make sure you have [yarn](https://yarnpkg.com/lang/en/docs/install/) installed, alternately you can use `npm` command instead `yarn`
 
-```
-brew install yarn
-```
-
-```
+```bash
 yarn install
-yarn run build
+yarn run build # creates static assets under ./build directory
+```
+
+to start the dev server run
+
+```bash
 yarn start
 ```
 
-### Build Configuration
+You may need to update/rebuild static assets sometimes then just run `yarn run build` before `yarn start`.
 
-#### Modify package.json devSettings
+---
 
-| key | description |
-| --- | --- |
-| host | host for webpack dev server, default `localhost` and set it `0.0.0.0` to share it on your LAN |
-| port | port to use by webpack dev server |
-| allowedHosts | `[]` array of allowed hosts |
+### Build and development server configuration
+
+Most of build and configuration options can be set in [./app-dev.json](app-dev.json), but if you need more control or customization look into config files in [./devel](devel) directory.
 
 #### Add A-Frame components
 
 ```
-yarn add -D <some-aframe-component>
+yarn add <some-aframe-component>
 ```
-add import statement to `./src/aframe/aframe-base.js`
+add import statement to [./src/js/aframe-lib.js](src/js/aframe-lib.js)
 
 #### Add 3rd party libraries
 
 ```
-yarn add -D <some-library>
+yarn add <some-library>
 ```
 
-optionally add import statement to `./src/js/vendors.js` if you want to bundle that dependency together with other 3rd party libraries
+if needed add import statement to [./src/js/vendors.js](src/js/vendors.js) if you want to bundle that dependency together with other 3rd party libraries or sass import statment to [./src/style/vendors/vendors-style.scss](src/style/vendors/vendors-style.scss) when adding 3rd party styles.
 
-#### Build or rebuild 3rd party libraries*
-
-when you want to update/rebuild vendor libraries you have to run `yarn run build` before `yarn start`.
-
-> - `./src/aframe-base.js` *where you import A-Frame and external A-Frame components.*
-> - `./src/js/vendors.js` *where you import any other 3rd party libraries*
-
-
-however if you some reason want to rebuild and watch vendor libraries while
-developing you can enable that by setting environment variable.
-
-```
-WITH_VENDORS="true" yarn start
-```
-
----
 <!-- ASSETS and LINKS -->
 <!-- License -->
+
 [license-img]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-link]: https://raw.githubusercontent.com/digaverse/webxr-webpack-boilerplate/master/LICENSE
 
 <!-- A-Frame -->
-[aframe-img]: https://img.shields.io/badge/a--frame-0.7.1-FC3164.svg?style=flat-square
+[aframe-img]: https://img.shields.io/badge/a--frame-0.8.2-FC3164.svg?style=flat-square
 [aframe-link]: https://aframe.io/
 [aframe-logo]: assets/images/aframe/logo-152.png
+
+<!-- demo -->
+[demo-link]: https://digaverse.github.io/webxr-webpack-boilerplate
 
 <!-- travis-ci -->
 [travis-img]: https://travis-ci.org/digaverse/webxr-webpack-boilerplate.svg?branch=master
@@ -231,19 +338,23 @@ WITH_VENDORS="true" yarn start
 [codacy-grade-img]: https://api.codacy.com/project/badge/Grade/b903edd39cb141de94c007cc4d0c4f7d
 [codacy-grade-link]: https://www.codacy.com/app/marko-kungla/webxr-webpack-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=digaverse/webxr-webpack-boilerplate&amp;utm_campaign=Badge_Grade
 
-<!-- Codacy Badge Coverage -->
+<!-- Coverage Badge -->
 [coverage-img]: https://img.shields.io/coveralls/github/digaverse/webxr-webpack-boilerplate.svg
 [coverage-link]: https://github.com/digaverse/webxr-webpack-boilerplate
 
+<!-- Dependencies -->
 [dep-status-img]: https://david-dm.org/digaverse/webxr-webpack-boilerplate/status.svg
 [dep-status-link]: https://david-dm.org/digaverse/webxr-webpack-boilerplate#info=dependencies
+
 [devdep-status-img]: https://david-dm.org/digaverse/webxr-webpack-boilerplate/dev-status.svg
 [devdep-status-link]: https://david-dm.org/digaverse/webxr-webpack-boilerplate#info=devDependencies
 
-[git-lfs-link]: https://git-lfs.github.com/
-[demo-link]: https://digaverse.github.io/webxr-webpack-boilerplate
+[circleci-site]: https://circleci.com/
+
+[webapp-webpack-plugin-link]: https://github.com/brunocodutra/webapp-webpack-plugin
+
 <!-- images -->
-[screeenshot-theme-red]: res/images/screenshots/theme-red.png
-[screeenshot-theme-blue]: res/images/screenshots/theme-blue.png
-[screeenshot-theme-green]: res/images/screenshots/theme-green.png
-[screeenshot-theme-yellow]: res/images/screenshots/theme-yellow.png
+[screeenshot-theme-red]: src/static/images/screenshots/theme-red.png
+[screeenshot-theme-blue]: src/static/images/screenshots/theme-blue.png
+[screeenshot-theme-green]: src/static/images/screenshots/theme-green.png
+[screeenshot-theme-yellow]: src/static/images/screenshots/theme-yellow.png
