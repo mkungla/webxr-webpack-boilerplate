@@ -325,10 +325,19 @@ if needed add import statement to [./src/js/vendors.js](src/js/vendors.js) if yo
 To build static site just run
 
 ```bash
+# (not required): do sign version git tags
+yarn config set version-sign-git-tag true
+# (not required): to remove "v" version-tag-prefix
+yarn config set version-tag-prefix ""
+# (not required): do update version
+yarn version
+# build everything into ./build directory
 yarn run build
+# git push to remote
+git push && git push --tags
 ```
 
-and contents of [./build](build) directory are ready to be served e.g. [demo][demo-link] is hosted with github pages, tkae look at [gh-pages](https://github.com/digaverse/webxr-wb-test/tree/gh-pages) branch for example
+Contents of [./build](build) directory are ready to be served just copy contents of `./build` directory to your webserver root. e.g. [demo][demo-link] is hosted with github pages, take a look at [gh-pages](https://github.com/digaverse/webxr-wb-test/tree/gh-pages) branch for example
 
 <!-- ASSETS and LINKS -->
 <!-- License -->
