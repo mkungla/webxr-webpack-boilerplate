@@ -3,5 +3,6 @@
   "themecolor": "#ee295f",
   "mstilecolor": "#ee295f",
   "serviceWorker": false,
-  "logLevel": "debug"
+  "logLevel": "debug",
+  "ppaframe": true
 }

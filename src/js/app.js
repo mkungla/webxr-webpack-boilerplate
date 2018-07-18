@@ -1,5 +1,4 @@
 /* global document PROJECT */
-/* eslint-disable no-underscore-dangle */
 
 import Application from './application/core'
 // import application addons you want to register
@@ -29,7 +28,7 @@ app.registerAddon(moveActiveCamera, {
 app.start().then((log) => {
   log.debug('webapp is running')
 }).catch((err) => {
-  console.log(err)
+  console.error(err)
 })
 
 /**
@@ -57,7 +56,7 @@ ppBtn.addEventListener('click', (e) => {
     app.start().then((log) => {
       log.debug('webapp is running')
     }).catch((err) => {
-      console.log(err)
+      console.error(err)
     })
     if (ppBtn.classList.contains('playing')) {
       ppBtn.classList.toggle('playing')
@@ -76,7 +75,7 @@ ssBtn.addEventListener('click', (e) => {
     app.stop().then((log) => {
       log.debug('webapp is stopped')
     }).catch((err) => {
-      console.log(err)
+      console.error(err)
     })
     if (ppBtn.classList.contains('playing')) {
       ppBtn.classList.toggle('playing')
