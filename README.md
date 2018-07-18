@@ -331,7 +331,7 @@ if needed add import statement to [./src/js/vendors.js](src/js/vendors.js) if yo
 [circleci-link]: https://circleci.com/gh/digaverse/webxr-webpack-boilerplate/tree/master
 
 <!-- appveyor -->
-[appveyor-img]: https://ci.appveyor.com/api/projects/status/euaqfb6ir75eucxq?svg=true
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/fqyc4q7p1tya4dld/branch/master?svg=true
 [appveyor-link]: https://ci.appveyor.com/project/mkungla/webxr-webpack-boilerplate
 
 <!-- Codacy Badge Grade -->
