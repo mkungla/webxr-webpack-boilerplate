@@ -65,7 +65,10 @@ export default class Application {
     } else {
       // use A-Frame render loop
       this.hasAframe = true
-      AFRAME.registerSystem('my-component', {
+      const runtimeSysName = `${this.session.get('config').name}-runtime}`
+
+      this.log.debug(`register ${runtimeSysName} system for A-Frame`)
+      AFRAME.registerSystem(runtimeSysName, {
         init() {
           app.aframe = this.el
         },
@@ -100,6 +103,11 @@ export default class Application {
       return
     }
 
+    // play A-Frame
+    if (this.hasAframe && this.session.get('config').ppaframe) {
+      this.aframe.play()
+    }
+
     for (const [name, addon] of Object.entries(this.addons)) {
       // initialize addons if thats first call to start
       if (addon.app && addon.enabled) {
@@ -121,6 +129,11 @@ export default class Application {
     // check that application is not in shutdown progress
     if (this.disposing('pause'))
       return
+
+    // pause A-Frame
+    if (this.hasAframe && this.session.get('config').ppaframe) {
+      this.aframe.pause()
+    }
 
     for (const [name, addon] of Object.entries(this.addons)) {
       // initialize addons if thats first call to start
@@ -279,6 +292,7 @@ export default class Application {
     }
     addon.app = null
     addon.aframeRequired = false
+    // perhaps should do a deep merge of data and addon defaults instead of replace
     addon.data = data ? data : addon.data
     addon.enabled = true
     addon.isPlaying = false
