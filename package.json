@@ -1,6 +1,6 @@
 {
   "name": "webxr-webpack-boilerplate",
-  "version": "0.9.11",
+  "version": "0.9.12",
   "description": "Starter Kit for building rich, immersive WebXR projects (featuring A-Frame) PWA with Webpack and SASS",
   "author": "Marko Kungla <marko.kungla@gmail.com> (https://github.com/mkungla)",
   "main": "src/app.js",
