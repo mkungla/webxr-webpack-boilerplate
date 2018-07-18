@@ -6,8 +6,8 @@
     "key": "./devel/ssl/localhost.key",
     "cert": "./devel/ssl/localhost.crt"
   },
-  "logLevel": "warn",
-  "logTime": false,
+  "logLevel": "info",
+  "logTime": true,
   "open": false,
   "webpackDevMiddleware": {
     "headers": {
@@ -28,9 +28,9 @@
   },
   "webpackHotClient": {
     "allEntries": false,
-    "autoConfigure": true,
+    "autoConfigure": false,
     "host": "localhost",
-    "hmr": true,
+    "hmr": false,
     "https": true,
     "logLevel": "warn",
     "logTime": false,

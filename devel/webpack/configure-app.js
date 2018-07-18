@@ -97,12 +97,16 @@ module.exports = {
     ],
     'aframe-lib': [
       path.join(baseDir, 'src', 'js', 'aframe-lib.js'),
+    ],
+    'background.worker': [
+      path.join(baseDir, 'src', 'js', 'background.worker.js'),
     ]
   },
   plugins: PLUGINS,
   output: {
     path: path.join(buildDir, 'app'),
     filename: path.join('js', '[name].js'),
+    globalObject: 'this'
   },
   module: {
     rules: [{
@@ -121,6 +125,11 @@ module.exports = {
         options: {
           presets: ['@babel/preset-env']
         }
+      }
+    }, {
+      test: /\.worker.js$/,
+      use: {
+        loader: 'worker-loader'
       }
     }]
   },
