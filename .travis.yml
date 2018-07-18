@@ -84,18 +84,18 @@ jobs:
       # Do something when everything was successful!
       after_success:
         # For example here we upload covergae report to codacy
-        - cat ./devel/coverage/lcov.info | node_modules/.bin/codacy-coverage --token $CODACY_PROJECT_TOKEN
+        - cat ./tmp/lcov.info | node_modules/.bin/codacy-coverage --token $CODACY_PROJECT_TOKEN
     # deploy new release + npm package
     - stage: deploy
       <<: *tmpl-ssh-setup
       <<: *tmpl-common-setup
-      before_script: echo "before_deploy https://digaverse.github.io/webxr-webpack-boilerplate"
+      before_script: echo "before_script https://digaverse.github.io/webxr-webpack-boilerplate"
       script:
         # build and prepare
         - git checkout -b prepare-deploy $TRAVIS_TAG
         - yarn install
-        - yarn run dist
-        - mv $TRAVIS_BUILD_DIR/dist $TRAVIS_BUILD_DIR/deploy
+        - yarn run build
+        - mv $TRAVIS_BUILD_DIR/build $TRAVIS_BUILD_DIR/deploy
         - BUILDREF="$TRAVIS_TAG :bookmark:"
         - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/digaverse/webxr-webpack-boilerplate/tree/$TRAVIS_TAG"
         - ls -la && git status
@@ -116,4 +116,4 @@ jobs:
         # deploy
         - git push github/digaverse gh-pages
 
-      after_script: echo "after_deploy https://digaverse.github.io/webxr-webpack-boilerplate"
+      after_script: echo "after_script https://digaverse.github.io/webxr-webpack-boilerplate"
