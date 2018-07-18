@@ -7,15 +7,18 @@
 *.log
 npm-debug.log*
 package-lock.json
+devel/ssl/localhost.crt
+devel/ssl/localhost.key
 
 ################################################################################
 # DIRECTORIES to ignore
 ################################################################################
-**/[Bb]uild/*
+build/*
 **/dist/*
 **/devel/coverage/*
-**/[Tt]mp/*
-**/node_modules/*
+**/public/*
+**/tmp/*
+node_modules/*
 
 ################################################################################
 # exception rules

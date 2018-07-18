@@ -1,0 +1,13 @@
+{{> html/header-without-aframe }}
+{{> html/nav }}
+<header>
+  <h1>{{#if title}}{{title}}{{else}}{{name}}{{/if}}</h1>
+  <sup class="app-version">{{name}} v: {{version}}</sup>
+  <br>
+  <div class="summary">Since A-Frame is not loaded on this page app fallback to `requestAnimationFrame`</div>
+  {{> app/controls }}
+</header>
+<main>
+
+</main>
+{{> html/footer }}

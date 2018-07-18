@@ -1,0 +1,28 @@
+[req]
+prompt             = no
+default_bits       = 4096
+default_md         = sha512
+distinguished_name = dn
+req_extensions     = v3_req
+
+[dn]
+countryName            = "WW"                          # C=
+stateOrProvinceName    = "XR"                           # ST=
+localityName           = "webxr"                        # L=
+postalCode             = "00000"                        # L/postalcode=
+streetAddress          = "30 gigaparsecs on your left"  # L/street=
+organizationName       = "web"                          # O=
+organizationalUnitName = "webxr"                        # OU=
+commonName             = "localhost"                    # CN=
+emailAddress           = "localhost@localhost.com"      # CN/emailAddress=
+
+[v3_req]
+basicConstraints = CA:FALSE
+subjectAltName = @alt_names
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage=serverAuth
+
+[alt_names]
+DNS.1 = localhost
+DNS.2 = localhost.localdomain
+DNS.1 = 127.0.0.1

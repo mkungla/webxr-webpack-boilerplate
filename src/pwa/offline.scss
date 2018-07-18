@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/**
+ * Styles for offline page only
+*/
+@import '../style/theme-vars';
+body {
+  background: $color-bg-body;
+  color: $color-text-primary;
+}
+
+#offline {
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  color: $color-text-primary;
+  font-size: 14px;
+  line-height: 24px;
+  font-style: normal;
+  position: relative;
+  padding: 15px;
+  text-align: center;
+  width: 410px;
+  margin: 0 auto;
+  h1 {
+    color: $color-aframe;
+    font-size: 76px;
+    font-weight: 900;
+    letter-spacing: 10px;
+    line-height: 70px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    width: inherit;
+    color: $color-text-primary;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 35px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}
+#logo {
+  width: 150px;
+  height: 150px;
+}
+
+footer {
+  text-align: left;
+  padding-left: 20px;
+  width: inherit;
+  small {
+    float:left;
+    width: inherit;
+  }
+}

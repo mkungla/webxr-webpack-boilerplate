@@ -9,50 +9,58 @@
 # Linux/Mac: git config --global core.autocrlf input
 # Windows: git config --global core.autocrlf true
 # Auto detect text files and perform LF normalization
-* eol=lf
+
 * text=auto
+* text eol=lf
+
 # git objects as text for diff
+# Ensure that the following files, and file name patterns are treated as a text files
+
+*.dockerignore text
+Dockerfile text
+*.js text
+*.json text
+*.scss text
+*.sh text eol=lf
+*.htm text
+*.html text
 *.md text
-*.yml text
-*.yaml text
 *.options text
-# git objects as binary
-*.gif  binary
-*.jpeg binary
-*.png binary
-*.jpg binary
-*.data binary
-*.so binary
-*.wav binary
-*.mp3 binary
-*.mtl binary
-*.obj binary
+*.scss text
+*.yaml text
+*.yml text
+*.txt text
 .editorconfig text
 .gitattributes text
 .gitignore text
-
-# Ensure that the following files, and file name patterns are treated as a text files
-
-*.txt text
-*.js text
-*.html text
-*.npmignore text
-*.md text
-*.scss text
-.gitattributes text
-.gitignore text
-.travis.yml text
-.gitlab-ci.yml text
 LICENSE text
 
 # Avoid creation of unnecessary big commit objects
 # For these files we do not want to see text diff for
+*.ai binary
+*.data binary
+*.db binary
+*.eot binary
+*.eps binary
+*.gif  binary
+*.jpeg binary
+*.jpg binary
+*.js.map* binary
 *.min.* binary minified
-*js.map* binary
-*.svg binary
+*.mp3 binary
 *.mtl binary
 *.obj binary
-*.jpg  binary
-*.jpeg binary
+*.otf binary
+*.pdf binary
 *.png binary
+*.psd binary
+*.so binary
+*store binary
+*.svg binary
+*.ttf binary
+*.ttc binary
 *.wav binary
+*.woff binary
+*.woff2 binary
+*.zip binary
+*.xcf binary

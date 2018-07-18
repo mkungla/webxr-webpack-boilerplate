@@ -1,5 +1,7 @@
-// NB! This entripoint is only rebuilt by
-// - yarn run build
-// - yarn run dist
-// other vendor scripts to bundle into separate file
-// you can bundle here almost anything require extra libs, js, css, images etc.
+/**
+ * Generic vendor libraries
+ * NOTE that if vendor library has embedded styles then these will get
+ * extracted to ./build/assets/css/vendors.css
+ * if you want to modify these style to it in
+ * ./src/style/vendors/vendors-style.scss
+ */

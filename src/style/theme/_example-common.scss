@@ -1,0 +1,166 @@
+/* Webapp wrapper */
+body {
+  height:auto;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+header {
+  margin: 0 0 0 200px;
+  padding: 0 0 0 10px;
+  height:110px
+}
+main {
+  display:block;
+  height: calc(100vh - 135px);
+  margin-left: 200px;
+  padding: 0px 10px;
+  background-color: $color-bg-body;
+  h1  {
+    text-transform: uppercase;
+    color: $color-bg-primary;
+    margin-bottom: 2px;
+  }
+}
+sup.app-version {
+  float:left;
+  color: $color-text-primary;
+  font-weight: 600;
+  padding-left:6px;
+}
+.variables {
+  margin-top: 25px;
+  width: 100%;
+  th {
+    text-align: left;
+  }
+  tr:nth-child(even) {
+    background-color: $color-text-primary-shadow;
+  }
+  td {
+    border-bottom: 1px solid $color-bg-primary;
+  }
+  td:nth-child(3n) {
+    color: $color-text-alert;
+  }
+  pre {
+    min-width: 50px;
+    min-height: 20px;
+  }
+}
+.pwa-images{
+  margin-top: 25px;
+  width: 100%;
+  th {
+    text-align: left;
+  }
+  tr:nth-child(even) {
+    background-color: $color-text-primary-shadow;
+  }
+  td {
+    border-bottom: 1px solid $color-bg-primary;
+  }
+  img {
+    max-width: 150px;
+  }
+}
+.var-color-yellow {background-color: $color-yellow;}
+.var-color-green {background-color: $color-green;}
+.var-color-blue {background-color: $color-blue;}
+.var-color-red {background-color: $color-blue;}
+.var-color-gray {background-color: $color-gray;}
+.var-color-white {background-color: $color-white;}
+.var-color-bg-body {background-color: $color-bg-body;}
+.var-color-aframe {background-color: $color-aframe;}
+
+.var-color-bg-primary {background-color: $color-bg-primary;}
+.var-color-text-primary {background-color: $color-text-primary;}
+.var-color-text-primary-shadow {background-color: $color-text-primary-shadow;}
+.var-color-text-alert {background-color: $color-text-alert;}
+.var-color-a {background-color: $color-a;}
+.var-color-a-active {background-color: $color-a-active;}
+.var-aframe-stats-bg {background-color: $aframe-stats-bg;}
+.var-aframe-stats-text {background-color: $aframe-stats-text;}
+.var-aframe-stats-h1 {background-color: $aframe-stats-h1;}
+.var-aframe-stats-counter {background-color: $aframe-stats-counter;}
+.var-aframe-stats-counter-shadow {background-color: $aframe-stats-counter-shadow;}
+.var-aframe-stats-counter-shadow2 {background-color: $aframe-stats-counter-shadow2;}
+.var-aframe-inspector-bg {background-color: $aframe-inspector-bg;}
+.var-aframe-inspector-text {background-color: $aframe-inspector-text;}
+.var-a-enter-vr-modal {background-color: $a-enter-vr-modal;}
+.var-enter-vr-button {background-color: $enter-vr-button;}
+.var-enter-vr-button-active {background-color: $enter-vr-button-active;}
+
+// controls Example
+.controls {
+  position:fixed;
+  right: 10px;
+  top:10px;
+  height: 60px;
+  width: 300px;
+}
+.play-pause {
+  float:left;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: 34px;
+
+  border-color: transparent transparent transparent $color-bg-primary;
+  transition: 100ms all ease;
+  cursor: pointer;
+
+  // play state
+  border-style: solid;
+  border-width: 18px 0 18px 30px;
+
+  &.playing {
+    border-style: double;
+    border-width: 0px 0 0px 30px;
+  }
+
+  &:hover {
+    border-color: transparent transparent transparent $color-bg-primary;
+  }
+}
+.start-stop {
+  float:left;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  width: 0;
+  height: 34px;
+
+  border-color: transparent transparent transparent $color-bg-primary;
+  cursor: pointer;
+
+  // play state
+  border-style: solid;
+  border-width: 0px 0 0px 30px;
+
+  &.stopped {
+    display: none;
+  }
+
+  &:hover {
+    border-color: transparent transparent transparent $color-bg-primary;
+  }
+}
+
+#app-timer {
+  float:left;
+  height: 34px;
+  width: 180px;
+
+  color: $color-bg-primary;
+  text-shadow: 0 0 10px lighten($color-text-primary, 60%),  0 0 20px rgba($color-text-primary-shadow, 0);
+  text-align: center;
+  letter-spacing: 0.05em;
+  font-size: 24px;
+  line-height:34px;
+}
+.summary {
+  float:left;
+  font-size: 12px;
+}

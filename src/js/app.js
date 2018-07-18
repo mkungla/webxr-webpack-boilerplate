@@ -1,35 +1,87 @@
-/* global AFRAME THREE TWEEN PROJECT_VERSION PROJECT_NAME PROJECT_ISSUE_URL */
+/* global document PROJECT */
+
+import Application from './application/core'
+// import application addons you want to register
+import timer from './application/addons/example-timer'
+import moveActiveCamera from './application/addons/example-move-active-camera'
+
+const app = new Application(PROJECT)
+
+// Reqister all application addons by calling registerAddon
+app.registerAddon(timer, {
+  seletor: 'app-timer'
+})
+app.registerAddon(moveActiveCamera, {
+  startPosition: {
+    x: 0,
+    y: 1.6,
+    z: 1
+  },
+  startRotation: {
+    x: 0,
+    y: 90,
+    z: 0
+  }
+})
+
+// Start the application as soon as possible
+app.start().then((log) => {
+  log.debug('webapp is running')
+}).catch((err) => {
+  console.error(err)
+})
+
 /**
- * 1. app styles will be extraxted to style/app-theme.css
- *    and not included in final bundle of this entry point!
+ * EXAMPLE
+ *
+ *  Example controls used in ./controls.html example
+ *  you can remove following code
+ *  most of cases you don't need control over play, pause, stop, start
+ *  and define your application logic either by creating and registering addons
+ *  or when using A-Frame also in aframe components and systems
  */
-import '../style/app-theme.scss'
-import '../style/app-theme-blue.scss'
-import '../style/app-theme-green.scss'
-import '../style/app-theme-red.scss'
-import '../style/app-theme-yellow.scss'
 
-const appConfig = require('../app-config')
+// play / pause
+const ppBtn = document.getElementById('play-pause')
+// start / stop
+const ssBtn = document.getElementById('start-stop')
 
-if (process.env.NODE_ENV !== 'production' && typeof AFRAME !== 'undefined') {
-  const info = AFRAME.utils.debug(`${PROJECT_NAME}:info`)
-  info('Looks like we are in development mode!')
-  info(`Version: ${PROJECT_VERSION}-dev`)
-  info(`report issues: ${PROJECT_ISSUE_URL}`)
-  info(`A-Frame Version: ${AFRAME.version}`)
-  info(`three.js Version: r${THREE.REVISION}`)
-  info(`including TWEEN: ${TWEEN._nextId}`)
-  console.dir(appConfig)
-}
+ppBtn.addEventListener('click', (e) => {
+  if (ppBtn.classList.contains('playing')) {
+    // pause app
+    app.pause()
+  } else if (ssBtn.classList.contains('stopped')) {
+    ssBtn.classList.toggle('stopped')
+    // play app
+    app.start().then((log) => {
+      log.debug('webapp is running')
+    }).catch((err) => {
+      console.error(err)
+    })
+    if (ppBtn.classList.contains('playing')) {
+      ppBtn.classList.toggle('playing')
+    }
+  } else {
+    app.play()
+  }
+  ppBtn.classList.toggle('playing')
+  e.preventDefault()
+  return false
+})
 
-// ServiceWorker is a progressive technology. Ignore unsupported browsers
-if ('serviceWorker' in navigator) {
-  console.log('CLIENT: service worker registration in progress.')
-  navigator.serviceWorker.register('/service-worker.js').then(function () {
-    console.log('CLIENT: service worker registration complete.')
-  }, function () {
-    console.log('CLIENT: service worker registration failure.')
-  })
-} else {
-  console.log('CLIENT: service worker is not supported.')
-}
+ssBtn.addEventListener('click', (e) => {
+  if (!ssBtn.classList.contains('stopped')) {
+    // stop app
+    app.stop().then((log) => {
+      log.debug('webapp is stopped')
+    }).catch((err) => {
+      console.error(err)
+    })
+    if (ppBtn.classList.contains('playing')) {
+      ppBtn.classList.toggle('playing')
+    }
+  }
+  ssBtn.classList.toggle('stopped')
+  e.preventDefault()
+  return false
+})

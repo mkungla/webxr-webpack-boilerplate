@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+// base style
+@import 'theme-vars',
+        'theme/theme-base';
+
+// your custom style
+@import 'theme/example-common',
+        'theme/example-nav',
+        'theme/example-pages',
+        'theme/digaverse-github-io';

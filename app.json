@@ -1,0 +1,8 @@
+{
+  "title": "WebXR Webpack Boilerplate",
+  "themecolor": "#ee295f",
+  "mstilecolor": "#ee295f",
+  "serviceWorker": false,
+  "logLevel": "debug",
+  "ppaframe": true
+}

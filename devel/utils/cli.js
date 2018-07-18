@@ -13,7 +13,7 @@ const Ok = (...message) => {
   )
 }
 
-const Error = (...message) => {
+const Err = (...message) => {
   console.error(
     chalk.bold.magenta(`[ ${packageName} ] `),
     chalk.bold.red('\u2718'),
@@ -50,18 +50,18 @@ const Hr = () => {
 }
 
 module.exports = {
-  error: Error,
+  error: Err,
   info: Info,
   warn: Warning,
   ok: Ok,
   debug: Debug,
   hr: Hr,
-  banner: (name, ver, host, port) => {
+  banner: (name, ver, host, port, ssl) => {
     Hr()
     Ok(`${name} v${ver} development server.`)
     Info('Open your browser:')
-    Info(`    localhost: http://${host}:${port}`)
-    Info(`          LAN: http://${ip.address()}:${port}`)
+    Info(`    localhost: ${ssl?'https':'http'}://${host}:${port}`)
+    Info(`          LAN: ${ssl?'https':'http'}://${ip.address()}:${port}`)
     Debug(`Press ${chalk.italic('CTRL-C')} to stop`)
   }
 }

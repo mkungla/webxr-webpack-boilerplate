@@ -1,0 +1,13 @@
+{{> html/header }}
+{{> html/nav }}
+<header>
+  <h1>{{#if title}}{{title}}{{else}}{{name}}{{/if}}</h1>
+  <sup class="app-version">{{name}} v: {{version}}</sup>
+  {{> app/controls }}
+</header>
+<main>
+  <a-scene stats embedded background="color: #ECECEC">
+    {{> scenes/hello-world }}
+  </a-scene>
+</main>
+{{> html/footer }}
