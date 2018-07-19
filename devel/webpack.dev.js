@@ -4,11 +4,15 @@
 // libraries
 const path = require('path')
 const humanizeDuration = require('humanize-duration')
+const fs = require('fs')
 
 // Webpack plugins
+const webpack = require('webpack')
 const serve = require('webpack-serve');
+const merge = require('webpack-merge')
 
 // Webpack configs
+const common = require('./webpack/webpack.config.js')
 
 // Additional imports
 const packageJson = require('../package')
@@ -25,16 +29,36 @@ const sslCrt = path.join(__dirname, 'ssl', 'localhost.crt')
 
 const defaultPort = 9000
 
+// define your stuff
+const PLUGINS = []
+
+const configs = merge.multiple(common, {
+  app: {
+    mode: 'development',
+    devtool: 'inline-source-map',
+    plugins: PLUGINS,
+  },
+  staticAssets: {},
+  vendors: {},
+  pwa: {},
+})
+
+
 /* eslint no-sync: ["error", { allowAtRootLevel: true }]*/
-serve({
-  config: './devel/final.config.js',
+serve({}, {
+  compiler: webpack(configs),
   content: buildDir,
-  devWare: devSettings.webpackDevMiddleware,
+  clipboard: true,
+  devMiddleware: devSettings.webpackDevMiddleware,
   host: devSettings.host || "localhost",
   hotClient: devSettings.webpackHotClient || {},
   http2: devSettings.http2 || true,
-  httpsKey: devSettings.https.key || sslKey,
-  httpsCert: devSettings.https.cert || sslCrt,
+  https: {
+    key: fs.readFileSync(sslKey), // Private keys in PEM format.
+    cert: fs.readFileSync(sslCrt), // Cert chains in PEM format.
+    // pfx: PFX or PKCS12 encoded private key and certificate chain.
+    // passphrase: A shared passphrase used for a single private key and/or a PFX.
+  },
   logLevel: devSettings.logLevel || 'info',
   logTime: devSettings.logTime || false,
   open: devSettings.open || false,
