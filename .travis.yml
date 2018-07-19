@@ -45,7 +45,7 @@ templates:
               "  IdentityFile $SSH_FILE" \
               "  LogLevel ERROR" >> ~/.ssh/config
 
-       git config user.email "devops@digaverse.com"
+       git config user.email "35643799+howibot@users.noreply.github.com"
        git config user.name "howibot"
 
 # defaults
