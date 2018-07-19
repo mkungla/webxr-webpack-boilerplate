@@ -105,6 +105,7 @@ jobs:
         - yarn install
         - yarn run build
         - mv $TRAVIS_BUILD_DIR/build $TRAVIS_BUILD_DIR/deploy
+        - cp -R $TRAVIS_BUILD_DIR/.circleci $TRAVIS_BUILD_DIR/deploy/
         - BUILDREF="$TRAVIS_TAG :bookmark:"
         - COMMIT_MSG="$BUILDREF ($TRAVIS_BUILD_NUMBER) commit https://github.com/digaverse/webxr-webpack-boilerplate/tree/$TRAVIS_TAG"
         - ls -la && git status
