@@ -88,7 +88,7 @@ Project `./src` contains some unnecessary files which are included for demo and 
 
   - **js** Application javascript code and entry points
     - **aframe** A-Frame compnents,systems.shaders. Create your custom A-Frame components to this directory.
-    - ***aframe-lib.js*** In this file you would import A-Frame, external npm components and also your custom components which will be bundled into one single file ensuring that your component registration is done right.
+    - ***lib-aframe.js*** In this file you would import A-Frame, external npm components and also your custom components which will be bundled into one single file ensuring that your component registration is done right.
     - ***app.js*** Main app entrypoint. File where you configure the application, while you should avoid writing your application logic code there. Instead use [./src/js/application/addons](src/js/application/addons) for that. Take look at [Minimal example of app.js](#minimal-example-of-app-js)
     - **application** Application javascript code
       - **addons** Most of your application logic should be here in application addons. Take a look at [Example Addon](#example-addon)
@@ -262,7 +262,7 @@ app.start().then((log) => {
 ```
 
 Project is shipped with example adding controls to `start/stop/play/pause` application.
-NOTE that application `start/stop/play/pause` does not affect A-Frame scene. If you wich to do so then you have to set `{"ppaframe": true}` in [./app.json](app.json). Also when you have page which does not have A-Frame scene but in header template you load `aframe-lib.js` then application will not play since A-Frame core system is paused when `<a-scene>` is not found, so you may better create different header file wich you include in pages which do not have a A-Frame scene so that application falls back to using `window.requestAnimationFrame`.
+NOTE that application `start/stop/play/pause` does not affect A-Frame scene. If you wich to do so then you have to set `{"ppaframe": true}` in [./app.json](app.json). Also when you have page which does not have A-Frame scene but in header template you load `lib-aframe.js` then application will not play since A-Frame core system is paused when `<a-scene>` is not found, so you may better create different header file wich you include in pages which do not have a A-Frame scene so that application falls back to using `window.requestAnimationFrame`.
 
 ---
 
@@ -345,7 +345,7 @@ export default {
 ```
 yarn add <some-aframe-component>
 ```
-add import statement to [./src/js/aframe-lib.js](src/js/aframe-lib.js)
+add import statement to [./src/js/lib-aframe.js](src/js/lib-aframe.js)
 
 ---
 

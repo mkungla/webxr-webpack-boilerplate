@@ -27,7 +27,7 @@ module.exports = {
   // if one starts getting to big.
   // e.g. vendor libs like
   //    lodash would be in vendors.js and
-  //    all aframe components you install would be in aframe-lib.js
+  //    all aframe components you install would be in lib-aframe.js
   entry: {
     vendors: [
       path.join(baseDir, 'src', 'js', 'vendors.js')

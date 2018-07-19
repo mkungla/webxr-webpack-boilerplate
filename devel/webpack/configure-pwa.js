@@ -114,10 +114,10 @@ module.exports = {
     }),
     new HandlebarsPlugin({
       // path to hbs scene entry file(s)
-      entry: path.join(baseDir, 'src', 'pwa', 'offline.hbs'),
+      entry: path.join(baseDir, 'src', 'pwa', 'index.hbs'),
       // output path and filename(s). This should lie within the webpacks output-folder
       // if ommited, the input filepath stripped of its extension will be used
-      output: path.join(buildDir, 'offline.html'),
+      output: path.join(buildDir, 'offline', 'index.html'),
       // data passed to main hbs template: `main-template(data)`
       data: appinfo,
       // globbed path to partials, where dir/filename is unique

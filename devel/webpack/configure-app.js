@@ -96,8 +96,8 @@ module.exports = {
       path.join(baseDir, 'src', 'js', 'app.js'),
       path.join(baseDir, 'src', 'style', 'app.scss'),
     ],
-    'aframe-lib': [
-      path.join(baseDir, 'src', 'js', 'aframe-lib.js'),
+    'lib-aframe': [
+      path.join(baseDir, 'src', 'js', 'lib-aframe.js'),
     ],
     'background.worker': [
       path.join(baseDir, 'src', 'js', 'background.worker.js'),

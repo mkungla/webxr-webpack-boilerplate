@@ -4,9 +4,9 @@ const version = 'v0.9::'
 const CACHE_FILE_LIST = [
   'assets/css/app.css',
   'assets/js/app.js',
-  'assets/css/aframe-lib.css',
+  'assets/css/lib-aframe.css',
   'assets/css/vendors.css',
-  'assets/js/aframe-lib.js',
+  'assets/js/lib-aframe.js',
   'assets/js/vendors.js',
   'assets/pwa/browserconfig.xml',
   'assets/pwa/manifest.json',
