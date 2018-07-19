@@ -28,17 +28,18 @@ while final product going to production may require major refactoring the code b
   * [Project structure](#project-structure)
 - [Getting Started](#getting-started)
   * [Setup project based on this repository](#setup-project-based-on-this-repository)
-    + [(option 1) Create fork to contribute back to this repository](#-option-1--create-fork-to-contribute-back-to-this-repository)
-    + [(option 2) Create new project based on this repository and keep commit history](#-option-2--create-new-project-based-on-this-repository-and-keep-commit-history)
-    + [(option 3) Create new project based on this repository without commit history](#-option-3--create-new-project-based-on-this-repository-without-commit-history)
+    + [(option 1) Create fork to contribute back to this repository](#create-fork-to-contribute-back-to-this-repository)
+    + [(option 2) Create new project based on this repository and keep commit history](#create-new-project-based-on-this-repository-and-keep-commit-history)
+    + [(option 3) Create new project based on this repository without commit history](#create-new-project-based-on-this-repository-without-commit-history)
   * [Build and development server configuration](#build-and-development-server-configuration)
   * [First run](#first-run)  
 - [Development](#development)
-  * [Minimal example of app.js](#minimal-example-of-app.js)
+  * [Minimal example of app.js](#minimal-example-of-app-js)
   * [Example Addon](#example-addon)
   * [Add A-Frame components](#add-a-frame-components)
   * [Add 3rd party libraries](#add-3rd-party-libraries)
 - [Build and deploy](#build-and-deploy)
+  * [Static app](#static-app)
 
 
 ## Overview
@@ -87,7 +88,7 @@ Project `./src` contains some unnecessary files which are included for demo and 
   - **js** Application javascript code and entry points
     - **aframe** A-Frame compnents,systems.shaders. Create your custom A-Frame components to this directory.
     - ***aframe-lib.js*** In this file you would import A-Frame, external npm components and also your custom components which will be bundled into one single file ensuring that your component registration is done right.
-    - ***app.js*** Main app entrypoint. File where you configure the application, while you should avoid writing your application logic code there. Instead use [./src/js/application/addons](src/js/application/addons) for that. Take look at [Minimal example of app.js](#minimal-example-of-app.js)
+    - ***app.js*** Main app entrypoint. File where you configure the application, while you should avoid writing your application logic code there. Instead use [./src/js/application/addons](src/js/application/addons) for that. Take look at [Minimal example of app.js](#minimal-example-of-app-js)
     - **application** Application javascript code
       - **addons** Most of your application logic should be here in application addons. Take a look at [Example Addon](#example-addon)
       - **core** Application core most of cases you don't need to edit this code however if you find something add or enhance there please consider opening a pull request and contribute your modification to this project.
@@ -121,7 +122,9 @@ instructions to set up your project
 ### Setup project based on this repository
 Follow one of the 3 options below which suits best for your needs. Options below are shown for [github.com](github.com) public and private repositories, so if your project will be hosted elsewhere you know your self what you have to change.  
 
-#### (option 1) Create fork to contribute back to this repository
+#### Create fork to contribute back to this repository
+(option 1)
+
 **First** Fork this repository in [github.com](https://github.com/digabrain/webxr-webpack-boilerplate)
 
 **Next** navigate to directory where you keep your projects and set following temporary environment variables
@@ -139,7 +142,9 @@ git remote add github/digaverse git@github.com:digaverse/webxr-webpack-boilerpla
 ```
 <sup>and start hacking.</sup>
 
-#### (option 2) Create new project based on this repository and keep commit history
+#### Create new project based on this repository and keep commit history
+(option 2)
+
 **First** navigate to directory you keep your projects and set following temporary environment variables
 
 ```bash
@@ -167,7 +172,9 @@ git clone --origin github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/$PR
 
 <sup>and start hacking.</sup>
 
-##### (option 3) Create new project based on this repository without commit history
+##### Create new project based on this repository without commit history
+(option 3)
+
 **First** navigate to directory you keep your projects and set following temporary environment variables
 
 ```bash
@@ -226,7 +233,10 @@ And now open your browser https://localhost:9000 and accept self signed certific
 
 ## Development
 
-### Minimal example of app.js
+application configuration file is [./app.json](app.json) all properties will be available within both in handlebars templates and `PROJECT.{property}` and in application/addon level `this.session.get('config').{property}` while most of webpack config is set in [./app-dev.json](app-dev.json). Keep in mind when you edit these files you have to restart development server in order these changes to take effect.
+
+
+### Minimal example of app js
 
 Here is minimal Example for [./src/js/app.js](src/js/app.js)
 
@@ -274,6 +284,25 @@ export default {
   setup() {
     // Called once when you register the Addon
     // Sets the data to values passed to registerAddon 2 param
+
+    // Within addon following properties are set
+    //
+    // this.aframeRequired  - is aframe required
+​    // this.enabled         - is addon enabled
+​    // this.isPlaying       - is addon playing
+    // this.name            - addon given name
+    // this.data            - addon configuration  
+​    // this.app             - reference to app
+    //      using app you can access session `this.app.session`
+    //      and other addons `this.app.addons['addon-name']`
+    // this.log             - gives named logger for current addon
+    //      you can call and displaying these messages depends
+    //      your ./app.json setting which logLevel is set
+    //        this.log.debug(args...)
+    //        this.log.info(args...)
+    //        this.log.ok(args...)
+    //        this.log.warn(args...)
+    //        this.log.error(args...)
   },
 
   start() {
@@ -330,6 +359,8 @@ if needed add import statement to [./src/js/vendors.js](src/js/vendors.js) if yo
 ---
 
 ## build and deploy
+
+### Static app
 
 To build static site just run
 
