@@ -29,7 +29,7 @@ class AppInfo {
 
   validate() {
     for (const [key, val] of Object.entries(configDefaults)) {
-      if (!Object.hasOwnProperty(key, this)) {
+      if (!(key in this)) {
         this[key] = val
       }
     }
