@@ -11,6 +11,7 @@ environment:
 
 install:
   - ps: Install-Product node $env:nodejs_version
+  - cp example.app-dev.json app-dev.json && cp example.app.json app.json
   - yarn install
 
 build_script:

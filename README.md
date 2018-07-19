@@ -215,6 +215,11 @@ Most of build and configuration options can be set in [./app-dev.json](app-dev.j
 make sure you have [yarn](https://yarnpkg.com/lang/en/docs/install/) installed, alternately you can use `npm` command instead `yarn`
 
 ```bash
+# copy app-dev.json
+cp example.app-dev.json app-dev.json
+# copy  app.json
+cp example.app.json app.json
+# install and setup
 yarn install
 yarn run setup # first time run generates SSL certificates so we can serve https and http2 locally
 yarn build # creates static assets under ./build directory

@@ -40,7 +40,9 @@ jobs:
             node --version
       - run:
           name: install dependencies
-          command: yarn install
+          command:
+            - cp example.app-dev.json app-dev.json && cp example.app.json app.json
+            - yarn install
       - run:
           name: lint (standard)
           command: yarn run lint
@@ -63,7 +65,9 @@ jobs:
             node --version
       - run:
           name: install dependencies
-          command: yarn install
+          command:
+            - cp example.app-dev.json app-dev.json && cp example.app.json app.json
+            - yarn install
       - run:
           name: run mac tests
           command: yarn run test:ci-on-mac
@@ -86,7 +90,9 @@ jobs:
             node --version
       - run:
           name: install dependencies
-          command: yarn install
+          command:
+            - cp example.app-dev.json app-dev.json && cp example.app.json app.json
+            - yarn install
       - run:
           name: build
           command: yarn run build

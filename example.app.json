@@ -2,8 +2,9 @@
   "title": "WebXR Webpack Boilerplate",
   "themecolor": "#ee295f",
   "mstilecolor": "#ee295f",
-  "serviceWorker": false,
+  "serviceWorker": true,
   "logLevel": "debug",
-  "ppaframe": true,
-  "sassTheme": "red"
+  "aframePlayPause": true,
+  "sassTheme": "red",
+  "urlPrefix": ""
 }

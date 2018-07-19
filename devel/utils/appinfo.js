@@ -2,18 +2,37 @@ const packageJson = require('../../package')
 const aframeVersion = require('aframe/package').version
 const appConfig = require('../../app')
 
+const configDefaults = {
+  title: packageJson.name || 'WebXR Webpack Boilerplate',
+  name: packageJson.name || 'webxr-webpack-boilerplate',
+  version: packageJson.version || '0.0.1',
+  description: packageJson.description || 'webxr demo',
+  keywords: packageJson.keywords || 'webxr, demo',
+  themecolor: '#ee295f',
+  mstilecolor: '#ee295f',
+  serviceWorker: true,
+  logLevel: 'warn',
+  aframePlayPause: false,
+  sassTheme: 'red',
+  urlPrefix: '',
+  // add current A-Frame version to app info
+  aframe: aframeVersion
+}
+
 class AppInfo {
   constructor() {
     if (appConfig !== null) {
       Object.assign(this, appConfig)
     }
-    this.title = this.title || packageJson.name
-    this.name = this.name || packageJson.name
-    this.version = this.version || packageJson.version
-    this.description = this.description || packageJson.description
-    this.keywords = this.keywords || packageJson.keywords
-    // add current A-Frame version to app info
-    this.aframe = aframeVersion
+    this.validate()
+  }
+
+  validate() {
+    for (const [key, val] of Object.entries(configDefaults)) {
+      if (!Object.hasOwnProperty(key, this)) {
+        this[key] = val
+      }
+    }
   }
 }
 module.exports = AppInfo
