@@ -1,5 +1,5 @@
 {
-  "version": "0.9.12",
+  "version": "0.9.13",
   "name": "WebXR Webpack Boilerplate",
   "description": "Starter Kit for building rich, immersive WebXR projects (featuring A-Frame) PWA with Webpack and SASS",
   "icons": {
