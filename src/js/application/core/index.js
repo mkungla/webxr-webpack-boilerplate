@@ -2,7 +2,6 @@
 import Session from './session'
 
 import storeEngine from 'store/src/store-engine'
-import sessionStorage from 'store/storages/sessionStorage'
 import localStorage from 'store/storages/localStorage'
 
 export default class Application {
