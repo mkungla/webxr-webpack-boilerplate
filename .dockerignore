@@ -1,0 +1,5 @@
+*
+!**/*.dockerkeep
+!Dockerfile
+!docker
+!build

@@ -40,6 +40,7 @@ while final product going to production may require major refactoring the code b
   * [Add 3rd party libraries](#add-3rd-party-libraries)
 - [Build and deploy](#build-and-deploy)
   * [Static app](#static-app)
+  * [Build and run Docker image](#build-and-run-docker-image)
 
 
 ## Overview
@@ -216,7 +217,7 @@ make sure you have [yarn](https://yarnpkg.com/lang/en/docs/install/) installed, 
 ```bash
 yarn install
 yarn run setup # first time run generates SSL certificates so we can serve https and http2 locally
-yarn run build # creates static assets under ./build directory
+yarn build # creates static assets under ./build directory
 ```
 
 to start the dev server run
@@ -358,7 +359,7 @@ if needed add import statement to [./src/js/vendors.js](src/js/vendors.js) if yo
 
 ---
 
-## build and deploy
+## Build and deploy
 
 ### Static app
 
@@ -372,12 +373,26 @@ yarn config set version-tag-prefix ""
 # (not required): do update version
 yarn version
 # build everything into ./build directory
-yarn run build
+yarn build
 # git push to remote
 git push && git push --tags
 ```
 
 Contents of [./build](build) directory are ready to be served just copy contents of `./build` directory to your webserver root. e.g. [demo][demo-link] is hosted with github pages, take a look at [gh-pages](https://github.com/digaverse/webxr-wb-test/tree/gh-pages) branch for example
+
+
+### Build and run Docker image
+
+requires `yarn build` before
+
+```bash
+yarn run build:docker
+```
+and fire up your docker image
+
+```bash
+yarn run start:docker
+```
 
 <!-- ASSETS and LINKS -->
 <!-- License -->

@@ -32,6 +32,7 @@
   ],
   "scripts": {
     "build": "webpack --config ./devel/webpack.prod.js",
+    "build:docker": "docker build -t digaverse/webxr-webpack-boilerplate:latest .",
     "check": "npm-run-all check:*",
     "check:yarn": "yarn check && yarn check --integrity && yarn outdated",
     "clean": "npm-run-all clean:*",
@@ -43,6 +44,7 @@
     "setup": "npm-run-all setup:*",
     "setup:cert": "openssl req -newkey rsa:4096 -nodes -keyout devel/ssl/localhost.key -x509 -days 365 -out devel/ssl/localhost.crt -config devel/ssl/ssl.cnf",
     "start": "webpack --config ./devel/webpack.dev.js",
+    "start:docker": "docker run --rm -p 8080:8080 --name webxr_webpack_boilerplate digaverse/webxr-webpack-boilerplate:latest",
     "test:ci-on-linux": "echo \"run tests\"",
     "test:ci-on-mac": "echo \"run tests\"",
     "test:ci-on-windows": "echo \"run tests\""
