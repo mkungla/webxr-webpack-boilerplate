@@ -11,10 +11,13 @@ const autoprefixer = require('autoprefixer')
 
 // Additional imports
 const cli = require('../utils/cli')
+const AppInfo = require('../utils/appinfo')
 
 // define your stuff
 const baseDir = path.join(__dirname, '../../')
 const buildDir = path.join(baseDir, 'build')
+const appinfo = new AppInfo()
+const sassTheme = appinfo.sassTheme || 'red'
 
 cli.info('load app config from ./devel/webpack/configure-vendors.js')
 module.exports = {
@@ -83,7 +86,8 @@ module.exports = {
         }, {
           loader: 'sass-loader',
           options: {
-            outputStyle: 'compressed'
+            outputStyle: 'compressed',
+            data: `$theme: ${sassTheme};`,
           }
         }
       ],

@@ -2,8 +2,9 @@
  * Available themes are red, yellow, green, blue.
  * you can define your own here
  */
-// set theme
-$theme: red;
+// set default theme if variable was not set
+// this should be set in ./app.json file
+$theme: red !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 // COLORS

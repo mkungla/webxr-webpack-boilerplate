@@ -4,5 +4,6 @@
   "mstilecolor": "#ee295f",
   "serviceWorker": false,
   "logLevel": "debug",
-  "ppaframe": true
+  "ppaframe": true,
+  "sassTheme": "red"
 }

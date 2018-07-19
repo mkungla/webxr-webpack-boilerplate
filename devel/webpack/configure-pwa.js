@@ -17,6 +17,7 @@ const AppInfo = require('../utils/appinfo')
 const baseDir = path.join(__dirname, '../../')
 const buildDir = path.join(baseDir, 'build')
 const appinfo = new AppInfo()
+const sassTheme = appinfo.sassTheme || 'red'
 
 cli.info('load app config from ./devel/webpack/configure-pwa.js')
 module.exports = {
@@ -45,7 +46,12 @@ module.exports = {
         MiniCssExtractPlugin.loader,
         'css-loader',
         'postcss-loader',
-        'sass-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            data: `$theme: ${sassTheme};`,
+          }
+        }
       ],
     }, {
       test: /\.js$/,

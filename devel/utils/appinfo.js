@@ -11,6 +11,7 @@ class AppInfo {
     this.name = this.name || packageJson.name
     this.version = this.version || packageJson.version
     this.description = this.description || packageJson.description
+    this.keywords = this.keywords || packageJson.keywords
     // add current A-Frame version to app info
     this.aframe = aframeVersion
   }

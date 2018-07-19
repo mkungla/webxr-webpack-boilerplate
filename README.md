@@ -50,11 +50,20 @@ Here is overview of WebXR Webpack Boilerplate project and what's included.
 | :---: | :---: | :---: | :---: |
 | ![Theme red][screeenshot-theme-red] | ![Theme blue][screeenshot-theme-blue]  | ![Theme -green][screeenshot-theme-green]  | ![Theme yellow][screeenshot-theme-yellow] |
 
-You can change A-Frame themes by modifying SASS configuration  `$theme` variable in [src/style/_theme-vars.scss](src/style/_theme-vars.scss)
+You can change A-Frame themes by modifying [./app.json](app.json) sassTheme property which sets SASS configuration  `$theme` variable
 
-```sass
+```json
 // Color themes red !default, yellow, green, blue
-$theme: red;
+{
+    "sassTheme": "red"
+}
+```
+
+if that property is not set then default theme is used in [src/style/_theme-vars.scss](src/style/_theme-vars.scss)
+
+```scss
+// Color themes red !default, yellow, green, blue
+$theme: red !default;
 ```
 
 ---
