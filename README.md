@@ -394,6 +394,8 @@ and fire up your docker image
 yarn run start:docker
 ```
 
+And now open your browser https://localhost:8080
+
 <!-- ASSETS and LINKS -->
 <!-- License -->
 
