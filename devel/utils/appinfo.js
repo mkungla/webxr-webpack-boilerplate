@@ -10,9 +10,8 @@ const configDefaults = {
   keywords: packageJson.keywords || 'webxr, demo',
   themecolor: '#ee295f',
   mstilecolor: '#ee295f',
-  serviceWorker: true,
   logLevel: 'warn',
-  aframePlayPause: false,
+  ppaframe: false,
   sassTheme: 'red',
   urlPrefix: '',
   // add current A-Frame version to app info

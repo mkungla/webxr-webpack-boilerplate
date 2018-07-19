@@ -1,16 +1,7 @@
 import engine from 'store/src/store-engine'
-import localStorage from 'store/storages/localStorage'
 import sessionStorage from 'store/storages/sessionStorage'
-import cookieStorage from 'store/storages/cookieStorage'
-import memoryStorage from 'store/storages/memoryStorage'
 import Logger from './logger'
-import StorePlugins from 'store/plugins/all'
-const storages = [
-  localStorage,
-  sessionStorage,
-  cookieStorage,
-  memoryStorage
-]
+import defaultsPlugin from 'store/plugins/defaults'
 
 const configDefaults = {
   'loglevel': 'info',
@@ -18,7 +9,7 @@ const configDefaults = {
 
 export default class Session {
   constructor(config) {
-    this.store = engine.createStore(storages, StorePlugins)
+    this.store = engine.createStore([sessionStorage], defaultsPlugin)
     this.camera = null
     this.loggers = {}
     if (!this.get('config') && config) {

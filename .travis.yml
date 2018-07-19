@@ -101,7 +101,7 @@ jobs:
       script:
         # build and prepare
         - git checkout -b prepare-deploy $TRAVIS_TAG
-        - cp example.app-dev.json app-dev.json && cp example.app.json app.json
+        - cp example.app-dev.json app-dev.json && cp devel/deploy.app.json app.jso
         - yarn install
         - yarn run build
         - mv $TRAVIS_BUILD_DIR/build $TRAVIS_BUILD_DIR/deploy

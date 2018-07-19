@@ -299,10 +299,12 @@ export default {
     // this.name            - addon given name
     // this.data            - addon configuration  
 ​    // this.app             - reference to app
-    //      using app you can access session `this.app.session`
-    //      and other addons `this.app.addons['addon-name']`
-    // this.log             - gives named logger for current addon
-    //      you can call and displaying these messages depends
+    //   this.app.session   - access application session
+    //   this.app.store     - app localStorage
+    //   this.app.addons['addon-name'] - access other registered addons
+    //     ``
+    // this.log             - gives named logger for current addon.
+    //      Displaying these messages depends on
     //      your ./app.json setting which logLevel is set
     //        this.log.debug(args...)
     //        this.log.info(args...)

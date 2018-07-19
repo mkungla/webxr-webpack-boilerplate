@@ -1,6 +1,10 @@
 /* global window AFRAME THREE */
 import Session from './session'
 
+import storeEngine from 'store/src/store-engine'
+import sessionStorage from 'store/storages/sessionStorage'
+import localStorage from 'store/storages/localStorage'
+
 export default class Application {
   /**
    * Main application constructor
@@ -35,6 +39,9 @@ export default class Application {
     // Register background worker
     this.bgWorker = null
 
+    // localStorage
+    this.store = null
+
     // initialize
     this.init()
 
@@ -53,6 +60,9 @@ export default class Application {
     // check that application is not in shutdown progress
     if (this.disposing('init'))
       return
+
+    // setup localstorage
+    this.store = storeEngine.createStore(localStorage)
 
     /* eslint consistent-this: ["error", "app"] */
     const app = this
@@ -107,7 +117,7 @@ export default class Application {
     if (this.hasAframe && this.session.get('config').ppaframe) {
       this.aframe.play()
     }
-
+    this.log.debug(this.session.get('config').ppaframe)
     for (const [name, addon] of Object.entries(this.addons)) {
       // initialize addons if thats first call to start
       if (addon.app && addon.enabled) {
