@@ -197,7 +197,7 @@ rm -rf .git
 git init
 git add -A && git commit -m"initial commit"
 git remote add github/"$GITHUB_USERNAME" git@github.com:$GITHUB_USERNAME/$PROJECT_NAME.git
-git push
+git push -u github/"$GITHUB_USERNAME" master
 ```
 
 <sup>and start hacking.</sup>
