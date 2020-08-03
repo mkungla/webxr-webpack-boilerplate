@@ -50,7 +50,7 @@
     "test:ci-on-windows": "echo \"run tests\""
   },
   "dependencies": {
-    "aframe": "^0.8.2",
+    "aframe": "^1.0.4",
     "debug": "^3.1.0",
     "store": "^2.0.12"
   },
