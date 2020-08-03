@@ -1123,10 +1123,11 @@ an-array@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/an-array/-/an-array-1.0.0.tgz#c125a5bb8257778e35f4b4f6aa9c7d0fa9e42665"
 
-angle@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/angle/-/angle-0.8.1.tgz#b75a25a00f0336507989dd10d19a7adcaf31e5d4"
+angle@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/angle/-/angle-0.9.1.tgz#a15490ce53d0da8b053f81c0674251c95748dff2"
   dependencies:
+    aframe-registry "^0.6.0"
     cheerio "^0.22.0"
     commander "^2.9.0"
     glob "^7.1.1"
