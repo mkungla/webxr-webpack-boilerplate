@@ -63,7 +63,7 @@
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
-    "eslint": "^5.0.1",
+    "eslint": "^7.6.0",
     "handlebars": "^4.0.11",
     "handlebars-loader": "^1.7.0",
     "handlebars-webpack-plugin": "^1.5.0",
