@@ -55,7 +55,7 @@
     "store": "^2.0.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.52",
+    "@babel/core": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
     "aframe-registry": "^0.6.0",
     "angle": "^0.8.1",
