@@ -84,6 +84,6 @@
     "webpack": "^4.14.0",
     "webpack-cli": "^3.1.0",
     "webpack-merge": "^5.1.0",
-    "webpack-serve": "^2.0.2"
+    "webpack-serve": "^2.0.3"
   }
 }
