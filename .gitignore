@@ -11,7 +11,7 @@ npm-debug.log*
 package-lock.json
 devel/ssl/localhost.crt
 devel/ssl/localhost.key
-
+yarn.lock
 ################################################################################
 # DIRECTORIES to ignore
 ################################################################################
