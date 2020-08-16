@@ -62,7 +62,7 @@
     "babel-loader": "8.0.0-beta.4",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^6.0.3",
-    "css-loader": "^1.0.0",
+    "css-loader": "^4.2.1",
     "eslint": "^5.0.1",
     "handlebars": "^4.6.0",
     "handlebars-loader": "^1.7.0",
