@@ -23,7 +23,7 @@ workflows:
 jobs:
   lint:
     macos:
-      xcode: "9.0"
+      xcode: "9.4.1"
     steps:
       - checkout
       - run:
@@ -48,7 +48,7 @@ jobs:
           command: yarn run lint
   test:
     macos:
-      xcode: "9.0"
+      xcode: "9.4.1"
     steps:
       - checkout
       - run:
@@ -73,7 +73,7 @@ jobs:
           command: yarn run test:ci-on-mac
   build:
     macos:
-      xcode: "9.0"
+      xcode: "9.4.1"
     steps:
       - checkout
       - run:
